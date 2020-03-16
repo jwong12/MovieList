@@ -1,0 +1,28 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-movie-reviews-dev-215810-authRole",
+            "UnauthRoleArn": "arn:aws:iam::527255552477:role/amplify-movie-reviews-dev-215810-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::527255552477:role/amplify-movie-reviews-dev-215810-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-movie-reviews-dev-215810-deployment",
+            "UnauthRoleName": "amplify-movie-reviews-dev-215810-unauthRole",
+            "StackName": "amplify-movie-reviews-dev-215810",
+            "StackId": "arn:aws:cloudformation:us-west-2:527255552477:stack/amplify-movie-reviews-dev-215810/c03961f0-6742-11ea-9e88-023afdc78754",
+            "AmplifyAppId": "d16wiixuisnu8n"
+        },
+        "categories": {
+            "auth": {
+                "moviereviewsac8ad40e": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"1122896174743839\",\"client_secret\":\"158a3d12865b3aaa5d951294b5c829ab\"},{\"ProviderName\":\"Google\",\"client_id\":\"597067790856-854j4ftvd0qrfe90o1jkh0mrff16hke4.apps.googleusercontent.com\",\"client_secret\":\"U0EPoKS8ovpWABKPBvLCgjZK\"}]"
+                }
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d16wiixuisnu8n",
+                    "type": "manual"
+                }
+            }
+        }
+    }
+}
