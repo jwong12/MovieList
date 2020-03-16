@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule }   from '@angular/forms';
@@ -13,8 +15,15 @@ import { MovieImages }      from './app.movieImages';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, AboutComponent, PageDefault, MovieImages, HighlightDirective],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, AppRoutingModule, FormsModule],
-  providers: [],
+  imports: [
+    BrowserModule, 
+    AppRoutingModule, 
+    HttpClientModule, 
+    AppRoutingModule, 
+    FormsModule,
+    AmplifyAngularModule
+  ],
+  providers: [AmplifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
