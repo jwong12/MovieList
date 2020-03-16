@@ -1,0 +1,151 @@
+#movie-content {
+    padding: 0px;
+
+    h1{
+        text-align: center;
+        color: #1b7ac7;
+        margin: 10px;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .pag-bottom {
+        justify-content: flex-end;
+        padding-bottom: 8px;
+    }
+
+    #total-results {
+        padding: 5px 0 0 10px;
+        font-size: 14px;
+    }
+
+    .paginator {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+        
+        .modal {
+            border-color: #ddd;
+            color: #4285F4;
+            background: #fff;
+            text-decoration: none;
+        }
+
+        .prev {
+            cursor: pointer;
+            font-size: 24px;
+            padding: 1px 15px;
+            -moz-border-radius: 6px 0 0 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px 0 0 6px;
+        }
+        
+        .next {
+            cursor: pointer;
+            font-size: 24px;
+            padding: 1px 15px;
+            -moz-border-radius: 0 6px 6px 0;
+            -webkit-border-radius: 0;
+            border-radius: 0 6px 6px 0;
+
+        }
+
+        .pages {
+            width: 66px;
+            text-align: center;
+            font-size: 13px;
+            padding-top: 8px;
+        }
+
+        a:hover {
+            background: #eee;
+        }
+
+        a:active {
+            border-color: #4285F4;
+            background: #4285F4;
+            color: #fff;
+        }
+
+        .unselectable {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    }
+
+    .movie{
+        display: inline-block;
+        margin-right: 20px;
+        margin-top: 5px;
+        margin-bottom: 25px;
+        width: 185px;
+        height: 568px;
+        border: 1px solid rgb(167, 165, 165);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        .movie-img {
+            width: 185px;
+            height: 277px;
+        }
+    
+        .movie-description{
+            margin: 0px;
+            padding: 7px;
+            height: 277px;
+            overflow: hidden;
+            background-color:white;
+            
+            #movie-header{
+                padding-bottom: 6px;
+
+                h3 {
+                    font-family: sans-serif;
+                    color: dimgray;
+                    margin: 0px;
+                    padding-bottom: 9px;
+                    text-align: center;
+                    font-size: 17px;
+                }
+    
+                div {
+                    margin: 0px;
+                    padding-bottom: 3px;
+                    text-align: center;
+                    font-size: 13px;
+
+                    #rating{
+                        color: Chocolate;
+                    }
+    
+                    #likes {
+                        color: dodgerblue;
+                    }
+                }
+            }
+
+            p {
+                margin: 0px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1134px) {
+    .pagination {
+        width: 808px;
+    }
+}
+
+@media only screen and (min-width: 1135px) {
+    .pagination {
+        width: 1014px;
+    }
+}

@@ -1,0 +1,27 @@
+$font-stack: 'franklin', Sans-serif;
+$nav-color: #e45f0f;
+
+#content {
+    font-family: $font-stack;
+    background-color: rgb(230, 230, 230);
+    padding-top: 15px;    
+    padding-left: 20px;    
+    width: 836px;
+    min-height: 950px;
+    border-radius: 6px;
+    margin: auto;
+    margin-bottom: 10px;
+
+    a {
+        font-weight: bold;
+        text-decoration: none;
+        color: $nav-color;
+        margin-right: 25px;
+    }
+}
+
+@media only screen and (min-width: 1135px) {
+    #content {
+        width: 1045px;
+    }
+}
