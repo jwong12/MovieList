@@ -9,12 +9,21 @@ import { HighlightDirective }   from './app.highlightDirective';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent }    from './app.home';
+import { WatchListComponent } from './app.watchList';
 import { AboutComponent }   from './app.about';
 import { PageDefault }      from './app.pagedefault';
 import { MovieImages }      from './app.movieImages';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent, PageDefault, MovieImages, HighlightDirective],
+  declarations: [
+    AppComponent, 
+    HomeComponent, 
+    WatchListComponent,
+    AboutComponent, 
+    PageDefault, 
+    MovieImages, 
+    HighlightDirective
+  ],
   imports: [
     BrowserModule, 
     AppRoutingModule, 
