@@ -14,7 +14,7 @@
     </div>
     <div class="movie" *ngFor="let movie of _movieArray" myMovieHighlight>
         <div class="movie-img">
-            <images-directive [posterPath]="movie.poster_path ? 'http://image.tmdb.org/t/p/w185' + movie.poster_path : '../assets/images/error.jpeg'" [altText]="movie.original_title"></images-directive>
+            <images-directive [posterPath]="movie.poster_path ? 'http://image.tmdb.org/t/p/w185' + movie.poster_path : '../assets/images/movie_not_found.jpg'" [altText]="movie.original_title"></images-directive>
         </div>
         <div class="movie-description">
             <div id="movie-header">

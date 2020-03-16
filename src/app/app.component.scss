@@ -1,5 +1,6 @@
 $font-stack: 'franklin', Sans-serif;
-$nav-color: #e45f0f;
+$nav-color: #ef4444;
+$nav-color-hover: #ff9456;
 
 #content {
     font-family: $font-stack;
@@ -13,10 +14,14 @@ $nav-color: #e45f0f;
     margin-bottom: 10px;
 
     a {
+        font-size: 20px;
         font-weight: bold;
         text-decoration: none;
         color: $nav-color;
         margin-right: 25px;
+    }
+    a:hover{
+        color: $nav-color-hover;
     }
 }
 
