@@ -4,6 +4,7 @@
     h1{
         text-align: center;
         color: #1b7ac7;
+        text-shadow: 2px 1px 3px rgb(0,0,0,0.2);
         margin: 10px;
     }
 
@@ -83,13 +84,11 @@
 
     .movie{
         display: inline-block;
-        margin-right: 20px;
-        margin-top: 5px;
-        margin-bottom: 25px;
+        margin: 6px 10px;
         width: 185px;
         height: 568px;
         border: 1px solid rgb(167, 165, 165);
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 3px 5px 0 rgb(0, 0, 0, 0.2);
 
         .movie-img {
             width: 185px;
