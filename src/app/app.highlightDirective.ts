@@ -20,9 +20,7 @@ export class HighlightDirective {
 
     private highlight(attr: string, margin: string, shadow: string) {
         this.el.nativeElement.style.boxShadow = shadow;
-        // this.el.nativeElement.style.transition = "all 200ms ease-out";
         this.el.nativeElement.style.border = attr;
         this.el.nativeElement.style.margin = margin;
-        // this.el.nativeElement.style.backgroundColor = "rgb(92,92,92)";
     }
 }
