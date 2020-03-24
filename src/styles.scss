@@ -4,11 +4,12 @@
     src: url('assets/fonts/Franklin Gothic Medium Regular.ttf') format("opentype");
     font-family: franklin;
     src: url('assets/fonts/FRABK.TTF') format("opentype");
-
 }
 
 html, body {
     margin: 5px 0px 5px 0px;
+    background-color: #2f2f2f;
 }
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
