@@ -25,8 +25,26 @@ $nav-color-hover: #ff9456;
     }
 }
 
+@media only screen and (max-width: 1134px) {
+    #content {
+        width: 850px;
+    }
+}
+
+@media only screen and (max-width: 928px) {
+    #content {
+        width: 641px;
+    }
+}
+
+@media only screen and (max-width: 722px) {
+    #content {
+        width: 432px;
+    }
+}
+
 @media only screen and (min-width: 1135px) {
     #content {
-        width: 1045px;
+        width: 1055px;
     }
 }

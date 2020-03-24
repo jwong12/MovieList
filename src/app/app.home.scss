@@ -144,6 +144,18 @@
     }
 }
 
+@media only screen and (max-width: 928px) {
+    .pagination {
+        width: 602px;
+    }
+}
+
+@media only screen and (max-width: 722px) {
+    .pagination {
+        width: 396px;
+    }
+}
+
 @media only screen and (min-width: 1135px) {
     .pagination {
         width: 1014px;
