@@ -1,15 +1,20 @@
-<select name="_genreArray" [(ngModel)]='genreSelect' (click)="selectGenre(genreSelect)">
-    <option *ngFor="let genre of _genreArray" [ngValue]="genre">{{genre.name}}</option>
-</select><br>
 <div id="movie-content">
     <div id="header-title">
             <h1>{{title}}</h1>
     </div>
     <!-- <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
     <button (click)="openModal('custom-modal-2')">Open Modal 2</button> -->
+    
     <div class="pagination">
-        
-        <div id="total-results">Total Movies: {{totalMovies}}</div>
+        <div id="selection-container">
+            <select name="_genreArray" [(ngModel)]='genreSelect' (change)="selectGenre(genreSelect)">
+                <option 
+                    *ngFor="let genre of _genreArray" 
+                    [ngValue]="genre"
+                >{{genre.name}}</option>
+            </select>
+            <div id="total-results">Total Movies: {{totalMovies}}</div>
+        </div>
         <div class="paginator">
             <a class="modal prev unselectable" (click)=prevPage()>&laquo;</a>
             <div class="modal pages">{{currentPage}} / {{totalPages}}</div>

@@ -4,7 +4,24 @@
     #header-title {
 
     }
-    
+
+    #selection-container {
+        display:flex;
+        vertical-align: middle;
+        padding: 7px 0 0 20px;
+
+        select {
+            width: 130px;
+            height: 25px;
+            font-size: 14px;
+        }
+
+        #total-results {
+            margin: 3px 30px;
+            font-size: 16px;
+        }
+    }
+
     h1{
         text-align: center;
         color: #ab2cb9;
@@ -21,11 +38,6 @@
     .pag-bottom {
         justify-content: flex-end;
         padding-bottom: 8px;
-    }
-
-    #total-results {
-        padding: 5px 0 0 10px;
-        font-size: 14px;
     }
 
     .paginator {
