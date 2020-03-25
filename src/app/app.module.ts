@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule }   from '@angular/forms';
 import { HighlightDirective }   from './app.highlightDirective';
+import { ModalModule } from './movieModal';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent }    from './app.home';
@@ -30,7 +31,8 @@ import { MovieImages }      from './app.movieImages';
     HttpClientModule, 
     AppRoutingModule, 
     FormsModule,
-    AmplifyAngularModule
+    AmplifyAngularModule,
+    ModalModule
   ],
   providers: [AmplifyService],
   bootstrap: [AppComponent]

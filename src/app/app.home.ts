@@ -1,6 +1,7 @@
 import { Component, Directive, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MovieURLService } from './app.movieURLService';
+import { ModalService } from './movieModal';
 
 const movieLink = "http://image.tmdb.org/t/p/w185";
 
@@ -25,7 +26,7 @@ export class HomeComponent {
     totalPages: number;
     totalMovies: number;
 
-    constructor(private http: HttpClient, movieService: MovieURLService) {
+    constructor(private http: HttpClient, movieService: MovieURLService, private modalService: ModalService) {
         this._http = http;
         this.movieAPI = movieService;
         this.title = "Recent Movies";
@@ -59,6 +60,14 @@ export class HomeComponent {
           alert(error);
           console.error(error)
         })
+    }
+
+    openModal(id: string, name) {
+        this.modalService.open(id);
+    }
+
+    closeModal(id: string) {
+        this.modalService.close(id);
     }
 
     nextPage() {

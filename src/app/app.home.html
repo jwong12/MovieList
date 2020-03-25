@@ -4,6 +4,8 @@
 
 <div id="movie-content">
     <h1>{{title}}</h1>
+    <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
+    <button (click)="openModal('custom-modal-2')">Open Modal 2</button>
     <div class="pagination">
         <div id="total-results">Total Movies: {{totalMovies}}</div>
         <div class="paginator">
@@ -32,4 +34,14 @@
             <a class="modal next unselectable" (click)=nextPage()>&raquo;</a>
         </div>
     </div>
+    <jw-modal id="custom-modal-1">
+        <h1>A Custom Modal!</h1>
+        <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+        <button (click)="closeModal('custom-modal-1');">Close</button>
+    </jw-modal>
+    
+    <jw-modal id="custom-modal-2">
+        <h1 style="height:1000px">A Tall Custom Modal!</h1>
+        <button (click)="closeModal('custom-modal-2');">Close</button>
+    </jw-modal>
 </div>
