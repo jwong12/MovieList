@@ -1,6 +1,6 @@
 #movie-content {
     padding: 0px;
-
+    
     h1{
         text-align: center;
         color: #8e239a;
@@ -12,17 +12,17 @@
     .pagination {
         display: flex;
         justify-content: space-between;   
+        margin-bottom: 10px;
     }
 
     .pag-bottom {
         justify-content: flex-end;
-        padding-bottom: 8px;
+        margin: 10px 0;
     }
 
     .paginator {
         display: flex;
         justify-content: flex-end;
-        margin-bottom: 10px;
         height: 32px;
 
         .modal {
@@ -83,7 +83,7 @@
         display: inline-block;
         margin: 6px 10px;
         width: 185px;
-        height: 568px;
+        height: 559px;
         border: 1px solid rgb(167, 165, 165);
         box-shadow: 0 3px 5px 0 rgb(0, 0, 0, 0.2);
 
@@ -101,29 +101,28 @@
         .movie-description{
             margin: 0px;
             padding: 7px;
-            height: 277px;
+            height: 268px;
             overflow: hidden;
             background-color:white;
             
             .movie-header{
-                padding-bottom: 6px;
+                margin-bottom: 3px;
 
                 .movie-title {
                     align-content: center;
+                    margin-bottom: 2px;
 
                     h3 {
-                        display:inline-block;
+                        display:inline;
                         font-family: sans-serif;
                         color: #0820a8de;
                         margin: 0px;
-                        margin-bottom: 3px;
                         text-align: center;
                         font-size: 17px;
                         cursor: pointer;
                     }
 
                     h3:hover{
-                        // color: #e42a2a;
                         color: #1584ce;
                     }
                 }
@@ -147,6 +146,7 @@
             p {
                 margin: 0px;
                 font-size: 14px;
+                line-height: 16px;
             }
         }
     }
@@ -188,11 +188,14 @@
 
     #selection-container {
         display: initial;
-        padding-bottom: 7px;
 
         #total-results {
             margin: 6px 4px;
         }
+    }
+
+    .pag-top{
+        margin-top: 25px;
     }
 }
 

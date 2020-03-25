@@ -76,7 +76,7 @@ export class HomeComponent {
 
     nextPage() {
         if(this.currentPage !== this.totalPages) {
-            if(this.genreSelect === undefined || this.genreSelect === null) {
+            if(this.genreSelect.id === 1) {
                 this.getMovies(this.movieAPI.getRecentMoviesURL(++this.currentPage));
             } else {
                 this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, ++this.currentPage));
@@ -86,7 +86,7 @@ export class HomeComponent {
 
     prevPage() {
         if(this.currentPage !== 1) {
-            if(this.genreSelect === undefined || this.genreSelect === null) {
+            if(this.genreSelect.id === 1) {
                 this.getMovies(this.movieAPI.getRecentMoviesURL(--this.currentPage));
             } else {
                 this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, --this.currentPage));
