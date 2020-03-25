@@ -1,33 +1,30 @@
 #movie-content {
     padding: 0px;
-
+    
     h1{
         text-align: center;
-        color: #1b7ac7;
+        color: #8e239a;
         text-shadow: 2px 1px 3px rgb(0,0,0,0.2);
         margin: 10px;
+        font-size: 2.5em;
     }
 
     .pagination {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-between;   
+        margin-bottom: 10px;
     }
 
     .pag-bottom {
         justify-content: flex-end;
-        padding-bottom: 8px;
-    }
-
-    #total-results {
-        padding: 5px 0 0 10px;
-        font-size: 14px;
+        margin: 10px 0;
     }
 
     .paginator {
         display: flex;
         justify-content: flex-end;
-        margin-bottom: 10px;
-        
+        height: 32px;
+
         .modal {
             border-color: #ddd;
             color: #4285F4;
@@ -86,32 +83,48 @@
         display: inline-block;
         margin: 6px 10px;
         width: 185px;
-        height: 568px;
+        height: 559px;
         border: 1px solid rgb(167, 165, 165);
         box-shadow: 0 3px 5px 0 rgb(0, 0, 0, 0.2);
 
         .movie-img {
             width: 185px;
             height: 277px;
+            cursor: pointer;
+            filter: brightness(75%);
+        }
+
+        .movie-img:hover {
+            filter: brightness(100%);
         }
     
         .movie-description{
             margin: 0px;
             padding: 7px;
-            height: 277px;
+            height: 268px;
             overflow: hidden;
             background-color:white;
             
-            #movie-header{
-                padding-bottom: 6px;
+            .movie-header{
+                margin-bottom: 3px;
 
-                h3 {
-                    font-family: sans-serif;
-                    color: dimgray;
-                    margin: 0px;
-                    padding-bottom: 9px;
-                    text-align: center;
-                    font-size: 17px;
+                .movie-title {
+                    align-content: center;
+                    margin-bottom: 2px;
+
+                    h3 {
+                        display:inline;
+                        font-family: sans-serif;
+                        color: #0820a8de;
+                        margin: 0px;
+                        text-align: center;
+                        font-size: 17px;
+                        cursor: pointer;
+                    }
+
+                    h3:hover{
+                        color: #1584ce;
+                    }
                 }
     
                 div {
@@ -133,8 +146,26 @@
             p {
                 margin: 0px;
                 font-size: 14px;
+                line-height: 16px;
             }
         }
+    }
+}
+
+#selection-container {
+    display:flex;
+    vertical-align: middle;
+    padding: 3px 0 0 20px;
+
+    select {
+        width: 130px;
+        height: 25px;
+        font-size: 14px;
+    }
+
+    #total-results {
+        margin: 3px 30px;
+        font-size: 16px;
     }
 }
 
@@ -153,6 +184,18 @@
 @media only screen and (max-width: 722px) {
     .pagination {
         width: 396px;
+    }
+
+    #selection-container {
+        display: initial;
+
+        #total-results {
+            margin: 6px 4px;
+        }
+    }
+
+    .pag-top{
+        margin-top: 25px;
     }
 }
 

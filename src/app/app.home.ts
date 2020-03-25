@@ -1,6 +1,7 @@
 import { Component, Directive, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MovieURLService } from './app.movieURLService';
+import { ModalService } from './movieModal';
 
 const movieLink = "http://image.tmdb.org/t/p/w185";
 
@@ -25,7 +26,7 @@ export class HomeComponent {
     totalPages: number;
     totalMovies: number;
 
-    constructor(private http: HttpClient, movieService: MovieURLService) {
+    constructor(private http: HttpClient, movieService: MovieURLService, private modalService: ModalService) {
         this._http = http;
         this.movieAPI = movieService;
         this.title = "Recent Movies";
@@ -51,9 +52,13 @@ export class HomeComponent {
     }
 
     getGenres(URL: string) {
+        this.genreSelect = { id: 1, name: "Recent Movies" };
+        this._genreArray = [this.genreSelect];
+
         this._http.get<any>(URL)
         .subscribe(data => {
-            this._genreArray = data.genres;
+            this._genreArray = [...this._genreArray, ...data.genres];
+            console.log(this._genreArray);
         }, 
         error =>{
           alert(error);
@@ -61,9 +66,17 @@ export class HomeComponent {
         })
     }
 
+    openModal(id: string, name) {
+        this.modalService.open(id);
+    }
+
+    closeModal(id: string) {
+        this.modalService.close(id);
+    }
+
     nextPage() {
         if(this.currentPage !== this.totalPages) {
-            if(this.genreSelect === undefined || this.genreSelect === null) {
+            if(this.genreSelect.id === 1) {
                 this.getMovies(this.movieAPI.getRecentMoviesURL(++this.currentPage));
             } else {
                 this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, ++this.currentPage));
@@ -73,7 +86,7 @@ export class HomeComponent {
 
     prevPage() {
         if(this.currentPage !== 1) {
-            if(this.genreSelect === undefined || this.genreSelect === null) {
+            if(this.genreSelect.id === 1) {
                 this.getMovies(this.movieAPI.getRecentMoviesURL(--this.currentPage));
             } else {
                 this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, --this.currentPage));
@@ -82,8 +95,17 @@ export class HomeComponent {
     }
 
     selectGenre(genreSel: genre){
-        this.genreSelect = genreSel;
-        this.title = this.genreSelect.name;
-        this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, 1));
+        if(genreSel !== undefined && genreSel.id === 1) {
+            this.genreSelect = genreSel;
+            this.title = this.genreSelect.name;
+            this.getMovies(this.movieAPI.getRecentMoviesURL());
+
+        } else {
+            this.genreSelect = genreSel;
+            console.log(genreSel)
+            console.log(this.genreSelect)
+            this.title = this.genreSelect.name;
+            this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, 1));
+        }
     }
  }

@@ -1,50 +1,52 @@
 $font-stack: 'franklin', Sans-serif;
-$nav-color: #ef4444;
-$nav-color-hover: #ff9456;
+$nav-color: #656565;
+$nav-color-hover: #0044ff;
 
 #content {
     font-family: $font-stack;
-    background-color: rgb(230, 230, 230);
-    padding-top: 15px;    
-    padding-left: 20px;    
+    background-color: #eae8e8;
+    padding: 20px;  
     width: 836px;
-    min-height: 950px;
+    // min-height: 950px;
     border-radius: 6px;
     margin: auto;
     margin-bottom: 10px;
 
     a {
-        font-size: 20px;
+        font-size: 1.1em;
         font-weight: bold;
         text-decoration: none;
         color: $nav-color;
-        margin-right: 25px;
+        margin: 0 13px;
+        font-family: arial;
     }
+
     a:hover{
         color: $nav-color-hover;
+        text-shadow: 0 0 4px rgba(0,0,0,0.2);
     }
 }
 
 @media only screen and (max-width: 1134px) {
     #content {
-        width: 850px;
+        width: 832px;
     }
 }
 
 @media only screen and (max-width: 928px) {
     #content {
-        width: 641px;
+        width: 623px;
     }
 }
 
 @media only screen and (max-width: 722px) {
     #content {
-        width: 432px;
+        width: 414px;
     }
 }
 
 @media only screen and (min-width: 1135px) {
     #content {
-        width: 1055px;
+        width: 1037px;
     }
 }
