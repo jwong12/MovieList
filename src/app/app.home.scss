@@ -1,30 +1,9 @@
 #movie-content {
     padding: 0px;
 
-    #header-title {
-
-    }
-
-    #selection-container {
-        display:flex;
-        vertical-align: middle;
-        padding: 7px 0 0 20px;
-
-        select {
-            width: 130px;
-            height: 25px;
-            font-size: 14px;
-        }
-
-        #total-results {
-            margin: 3px 30px;
-            font-size: 16px;
-        }
-    }
-
     h1{
         text-align: center;
-        color: #ab2cb9;
+        color: #8e239a;
         text-shadow: 2px 1px 3px rgb(0,0,0,0.2);
         margin: 10px;
         font-size: 2.5em;
@@ -32,7 +11,7 @@
 
     .pagination {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-between;   
     }
 
     .pag-bottom {
@@ -44,7 +23,8 @@
         display: flex;
         justify-content: flex-end;
         margin-bottom: 10px;
-        
+        height: 32px;
+
         .modal {
             border-color: #ddd;
             color: #4285F4;
@@ -136,7 +116,7 @@
                         font-family: sans-serif;
                         color: #0820a8de;
                         margin: 0px;
-                        padding-bottom: 9px;
+                        margin-bottom: 3px;
                         text-align: center;
                         font-size: 17px;
                         cursor: pointer;
@@ -172,6 +152,23 @@
     }
 }
 
+#selection-container {
+    display:flex;
+    vertical-align: middle;
+    padding: 3px 0 0 20px;
+
+    select {
+        width: 130px;
+        height: 25px;
+        font-size: 14px;
+    }
+
+    #total-results {
+        margin: 3px 30px;
+        font-size: 16px;
+    }
+}
+
 @media only screen and (max-width: 1134px) {
     .pagination {
         width: 808px;
@@ -187,6 +184,15 @@
 @media only screen and (max-width: 722px) {
     .pagination {
         width: 396px;
+    }
+
+    #selection-container {
+        display: initial;
+        padding-bottom: 7px;
+
+        #total-results {
+            margin: 6px 4px;
+        }
     }
 }
 
