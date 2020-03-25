@@ -1,10 +1,10 @@
 $font-stack: 'franklin', Sans-serif;
-$nav-color: #ef4444;
-$nav-color-hover: #ff9456;
+$nav-color: #656565;
+$nav-color-hover: #0044ff;
 
 #content {
     font-family: $font-stack;
-    background-color: rgb(230, 230, 230);
+    background-color: #eae8e8;
     padding-top: 15px;    
     padding-left: 20px;    
     width: 836px;
@@ -14,14 +14,17 @@ $nav-color-hover: #ff9456;
     margin-bottom: 10px;
 
     a {
-        font-size: 20px;
+        font-size: 1.1em;
         font-weight: bold;
         text-decoration: none;
         color: $nav-color;
         margin-right: 25px;
+        font-family: arial;
     }
+
     a:hover{
         color: $nav-color-hover;
+        text-shadow: 0 0 4px rgba(0,0,0,0.2);
     }
 }
 

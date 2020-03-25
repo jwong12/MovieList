@@ -1,11 +1,16 @@
 #movie-content {
     padding: 0px;
 
+    #header-title {
+
+    }
+    
     h1{
         text-align: center;
-        color: #1b7ac7;
+        color: #ab2cb9;
         text-shadow: 2px 1px 3px rgb(0,0,0,0.2);
         margin: 10px;
+        font-size: 2.5em;
     }
 
     .pagination {
@@ -93,6 +98,12 @@
         .movie-img {
             width: 185px;
             height: 277px;
+            cursor: pointer;
+            filter: brightness(75%);
+        }
+
+        .movie-img:hover {
+            filter: brightness(100%);
         }
     
         .movie-description{
@@ -102,16 +113,27 @@
             overflow: hidden;
             background-color:white;
             
-            #movie-header{
+            .movie-header{
                 padding-bottom: 6px;
 
-                h3 {
-                    font-family: sans-serif;
-                    color: dimgray;
-                    margin: 0px;
-                    padding-bottom: 9px;
-                    text-align: center;
-                    font-size: 17px;
+                .movie-title {
+                    align-content: center;
+
+                    h3 {
+                        display:inline-block;
+                        font-family: sans-serif;
+                        color: #0820a8de;
+                        margin: 0px;
+                        padding-bottom: 9px;
+                        text-align: center;
+                        font-size: 17px;
+                        cursor: pointer;
+                    }
+
+                    h3:hover{
+                        // color: #e42a2a;
+                        color: #1584ce;
+                    }
                 }
     
                 div {

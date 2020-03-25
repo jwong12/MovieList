@@ -1,12 +1,14 @@
 <select name="_genreArray" [(ngModel)]='genreSelect' (click)="selectGenre(genreSelect)">
     <option *ngFor="let genre of _genreArray" [ngValue]="genre">{{genre.name}}</option>
-</select><br/>
-
+</select><br>
 <div id="movie-content">
-    <h1>{{title}}</h1>
-    <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
-    <button (click)="openModal('custom-modal-2')">Open Modal 2</button>
+    <div id="header-title">
+            <h1>{{title}}</h1>
+    </div>
+    <!-- <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
+    <button (click)="openModal('custom-modal-2')">Open Modal 2</button> -->
     <div class="pagination">
+        
         <div id="total-results">Total Movies: {{totalMovies}}</div>
         <div class="paginator">
             <a class="modal prev unselectable" (click)=prevPage()>&laquo;</a>
@@ -14,13 +16,16 @@
             <a class="modal next unselectable" (click)=nextPage()>&raquo;</a>
         </div>
     </div>
+    
     <div class="movie" *ngFor="let movie of _movieArray" myMovieHighlight>
-        <div class="movie-img">
+        <div class="movie-img" (click)="openModal('custom-modal-1')">
             <images-directive [posterPath]="movie.poster_path ? 'http://image.tmdb.org/t/p/w185' + movie.poster_path : '../assets/images/movie_not_found.jpg'" [altText]="movie.original_title"></images-directive>
         </div>
         <div class="movie-description">
-            <div id="movie-header">
-                <h3>{{movie.title}}</h3>
+            <div class="movie-header">
+                <div class="movie-title">
+                    <h3 (click)="openModal('custom-modal-1')">{{movie.title}}</h3>
+                </div>
                 <div>Release Date: {{movie.release_date}}</div>
                 <div>Rating: <span id="rating">{{movie.vote_average}}</span> Likes: <span id="likes">{{movie.vote_count}}</span></div>
             </div>
