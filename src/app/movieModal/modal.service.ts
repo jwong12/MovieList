@@ -14,10 +14,10 @@ export class ModalService {
         this.modals = this.modals.filter(x => x.id !== id);
     }
 
-    open(id: string) {
+    open(id: string, movie) {
         // open modal specified by id
         const modal = this.modals.find(x => x.id === id);
-        modal.open();
+        modal.open(movie);
     }
 
     close(id: string) {

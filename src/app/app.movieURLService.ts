@@ -7,7 +7,8 @@ const GENRE_URL = 'https://api.themoviedb.org/3/genre/movie/list?api_key='
                 + '&language=en-US';
 
 const MOVIES_URL  = 'http://api.themoviedb.org/3/discover/movie?api_key='
-                + API_KEY;
+                + API_KEY;  
+
 
 export class MovieURLService {
 

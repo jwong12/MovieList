@@ -1,5 +1,21 @@
 ﻿/* MODAL STYLES
 -------------------------------*/
+@xxlarge:      ~"only screen and (min-width: 1001px) and (max-width: 1250px)";
+@xlarge:      ~"only screen and (min-width: 929px) and (max-width: 1000px)";
+@large:      ~"only screen and (min-width: 723px) and (max-width: 928px)";
+@medium:      ~"only screen and (min-width: 676px) and (max-width: 722px)";
+@tablet:      ~"only screen and (min-width: 601px) and (max-width: 675px)";
+@small:      ~"only screen and (max-width: 600px)";
+
+#media-query {
+    .mixin-one {
+        margin: auto;    
+        position: fixed;
+        top: 50%;
+        left: 50%;
+    }
+}
+
 jw-modal {
     /* modals are hidden by default */
     display: none;
@@ -13,17 +29,80 @@ jw-modal {
         left: 0;
 
         /* z-index must be higher than .jw-modal-background */
-        z-index: 1000;
+        z-index: 901;
         
         /* enables scrolling for tall modals */
         overflow: auto;
 
         .jw-modal-body {
-            padding: 20px;
-            background: #fff;
-
+            display: flex;
             /* margin exposes part of the modal background */
-            margin: 40px 200px;        
+            margin: 160px 200px;    
+            // height:auto;
+            // max-width: 500px;
+            background-color: white;
+            background-color: rgb(36, 36, 36);
+
+            @media @xxlarge {
+                #media-query.mixin-one();
+                width: 880px;
+                margin-top: -298px;
+                margin-left: -440px;  
+            }
+
+            @media @xlarge {
+                #media-query.mixin-one();
+                width: 820px;
+                margin-top: -278px;
+                margin-left: -410px;  
+            }
+
+            @media @large {
+                #media-query.mixin-one();
+                width: 650px;
+                margin-top: -208px;
+                margin-left: -325px;  
+            }
+
+            @media @medium {
+                #media-query.mixin-one();
+                width: 550px;
+                margin-top: -208px;
+                margin-left: -275px;  
+            }
+
+            @media @tablet {
+                #media-query.mixin-one();
+                width: 500px;
+                margin-top: -189px;
+                margin-left: -250px;  
+            }
+
+            @media @small {
+                #media-query.mixin-one();
+                width: 450px;
+                margin-top: -170px;
+                margin-left: -225px;                
+            }
+
+            .img-div {
+                width: 45%;
+                background-color: rgb(36, 36, 36);
+
+                img{
+                    width:100%;
+                }
+            }
+
+            .desc-wrapper {
+                width: 55%;
+                border-bottom: 3px solid rgb(36, 36, 36);
+                background-color: white;
+
+                .description {
+
+                }    
+            }
         }
     }
 
@@ -48,3 +127,4 @@ body.jw-modal-open {
     /* body overflow is hidden to hide main scrollbar when modal window is open */
     overflow: hidden;
 }
+
