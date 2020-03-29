@@ -2,6 +2,8 @@
 
 import { ModalService } from './modal.service';
 
+const posterLink = "https://image.tmdb.org/t/p/original/";
+
 @Component({ 
     selector: 'jw-modal', 
     templateUrl: 'modal.component.html', 
@@ -9,6 +11,8 @@ import { ModalService } from './modal.service';
     encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit, OnDestroy {
+    imgSrc: String; 
+
     @Input() id: string;
     private element: any;
 
@@ -44,9 +48,11 @@ export class ModalComponent implements OnInit, OnDestroy {
     }
 
     // open modal
-    open(): void {
+    open(movie): void {
         this.element.style.display = 'block';
         document.body.classList.add('jw-modal-open');
+        console.log(movie);
+        this.imgSrc = posterLink + movie.poster_path;
     }
 
     // close modal
