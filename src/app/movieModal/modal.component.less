@@ -1,12 +1,13 @@
 ﻿/* MODAL STYLES
 -------------------------------*/
-@xxxlarge:      ~"only screen and (min-width: 1251px)";
-@xxlarge:      ~"only screen and (min-width: 1001px) and (max-width: 1250px)";
-@xlarge:      ~"only screen and (min-width: 929px) and (max-width: 1000px)";
-@large:      ~"only screen and (min-width: 723px) and (max-width: 928px)";
+@xxxlarge:    ~"only screen and (min-width: 1135px)";
+@xxlarge:     ~"only screen and (min-width: 1029px) and (max-width: 1134px)";
+@xlarge:      ~"only screen and (min-width: 929px) and (max-width: 1028px)";
+@large:       ~"only screen and (min-width: 811px) and (max-width: 928px)";
+@full:        ~"only screen and (min-width: 723px) and (max-width: 810px)";
 @medium:      ~"only screen and (min-width: 676px) and (max-width: 722px)";
 @tablet:      ~"only screen and (min-width: 601px) and (max-width: 675px)";
-@small:      ~"only screen and (max-width: 600px)";
+@small:       ~"only screen and (max-width: 600px)";
 
 #media-query {
     .mixin-one {
@@ -44,46 +45,60 @@ jw-modal {
             background-color: white;
             background-color: rgb(36, 36, 36);
 
+            @media @xxxlarge {
+                #media-query.mixin-one();
+                width: 1080px;
+                margin-top: -366px;
+                margin-left: -540px;  
+            }
+
             @media @xxlarge {
                 #media-query.mixin-one();
-                width: 880px;
-                margin-top: -298px;
-                margin-left: -440px;  
+                width: 910px;
+                margin-top: -309px;
+                margin-left: -450px;
             }
 
             @media @xlarge {
                 #media-query.mixin-one();
-                width: 820px;
-                margin-top: -278px;
-                margin-left: -410px;  
+                width: 850px;
+                margin-top: -289px;
+                margin-left: -425px;  
             }
 
             @media @large {
                 #media-query.mixin-one();
-                width: 650px;
-                margin-top: -208px;
-                margin-left: -325px;  
+                width: 780px;
+                margin-top: -265px;
+                margin-left: -390px;  
+            }
+
+            @media @full {
+                #media-query.mixin-one();
+                width: 700px;
+                margin-top: -235px;
+                margin-left: -350px;  
             }
 
             @media @medium {
                 #media-query.mixin-one();
-                width: 550px;
-                margin-top: -208px;
-                margin-left: -275px;  
+                width: 660px;
+                margin-top: -225px;
+                margin-left: -330px;  
             }
 
             @media @tablet {
                 #media-query.mixin-one();
-                width: 500px;
-                margin-top: -189px;
-                margin-left: -250px;  
+                width: 580px;
+                margin-top: -198px;
+                margin-left: -290px;
             }
 
             @media @small {
                 #media-query.mixin-one();
-                width: 450px;
-                margin-top: -170px;
-                margin-left: -225px;                
+                width: 500px;
+                margin-top: -171px;
+                margin-left: -250px;                
             }
 
             .img-div {
@@ -97,7 +112,7 @@ jw-modal {
 
             .desc-wrapper {
                 width: 55%;
-                border-bottom: 3px solid rgb(36, 36, 36);
+                border-bottom: 4px solid rgb(36, 36, 36);
                 background-color: #cacaca;
                 position: relative;
 
@@ -107,73 +122,73 @@ jw-modal {
                     transform: translateY(-50%);
                     padding: 10px;
                     color: rgb(58, 58, 58);
-                    font-size: 2.2vw;
+                    font-size: 16px;
 
                     h2 {
-                        font-size: 2.5vw;
+                        font-size: 30px;
                         color: #498bc5;
                     }
 
                     @media @xxxlarge {
-                        font-size: 1.5vw;
-
                         h2 {
-                            font-size: 1.9vw;
+                            font-size: 30px;
                         }
                     }
 
                     @media @xxlarge {
-                        font-size: 1.7vw;
-
                         h2 {
-                            font-size: 2.1vw;
+                            font-size: 28px;
                         }
                     }
 
                     @media @xlarge {
-                        font-size: 1.5vw;
+                        font-size: 16px;
 
                         h2 {
-                            font-size: 1.9vw;
+                            font-size: 26px;
                         }
                     }
 
                     @media @large {
-                        font-size: 1.8vw;
+                        font-size: 15px;
 
                         h2 {
-                            font-size: 2vw;
+                            font-size: 24px;
+                        }
+                    }
+
+                    @media @full {
+                        font-size: 14px;
+
+                        h2 {
+                            font-size: 22px;
                         }
                     }
 
                     @media @medium {
-                        font-size: 2vw;
+                        font-size: 13px;
 
                         h2 {
-                            font-size: 2.4vw;
+                            font-size: 20px;
                         }
                     }
 
                     @media @tablet {
-                        font-size: 1.8vw;
+                        font-size: 12px;
 
                         h2 {
-                            font-size: 2.2vw;
+                            font-size: 18px;
                         }
                     }
 
                     @media @small {
-                        font-size: 1.9vw;
+                        font-size: 11px;
 
                         h2 {
-                            font-size: 2.3vw;
+                            font-size: 16px;
                         }
                         
-                    }
-
-                    
-
-                    
+                    }                    
                 }    
             }
         }
