@@ -32,17 +32,14 @@ export class MovieURLService {
     }
 
     getGenreURL() {
-
         return GENRE_URL;
     }
 
     getMoviesURL(genreId: number, pageNumber: number = 1) {
-
         return MOVIES_URL + '&primary_release_date.gte=' + this.getDaysPassedDate() + '&primary_release_date.lte=' + this.getTodaysDate() + '&page=' + pageNumber + '&with_genres=' + genreId;
     }
 
     getRecentMoviesURL(pageNumber: number = 1) {
-        
         return MOVIES_URL + '&primary_release_date.gte=' + this.getDaysPassedDate() + '&primary_release_date.lte=' + this.getTodaysDate() + '&page=' + pageNumber;
     }
 }
