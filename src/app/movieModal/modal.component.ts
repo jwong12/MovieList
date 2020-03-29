@@ -12,6 +12,12 @@ const posterLink = "https://image.tmdb.org/t/p/original/";
 })
 export class ModalComponent implements OnInit, OnDestroy {
     imgSrc: String; 
+    title: String;
+    year: Number;
+    genres: String;
+    userScore: Number;
+    popularity: Number;
+    overview: String;
 
     @Input() id: string;
     private element: any;
@@ -48,12 +54,38 @@ export class ModalComponent implements OnInit, OnDestroy {
     }
 
     // open modal
-    open(movie): void {
+    open(movie, genreArray): void {
         this.element.style.display = 'block';
         document.body.classList.add('jw-modal-open');
         console.log(movie);
         this.imgSrc = posterLink + movie.poster_path;
+        this.title = movie.title;
+        this.year = parseInt(movie.release_date.slice(0, 4));
+        this.genres = this.getGenre(movie.genre_ids, genreArray);
+        this.userScore = movie.vote_average;
+        this.popularity = movie.popularity;
+        this.overview = movie.overview;
     }
+
+    getGenre(genreId, genreArray) {
+        let genres = '';
+
+        for(let i = 0; i < genreId.length; i++) {
+            for(let j = 0; j < genreArray.length; j++) {
+                if(genreArray[j].id === genreId[i]) {
+                    if(genres === '') {
+                        genres += genreArray[j].name
+
+                    } else {
+                        genres += ', ' + genreArray[j].name
+                    }
+                    
+                    break;
+                }
+            }
+        }
+        return genres;
+    } 
 
     // close modal
     close(): void {

@@ -67,7 +67,7 @@ export class HomeComponent {
     }
 
     openModal(id: string, movie) {
-        this.modalService.open(id, movie);
+        this.modalService.open(id, movie, this._genreArray);
     }
 
     closeModal(id: string) {

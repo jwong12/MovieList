@@ -1,5 +1,6 @@
 ﻿/* MODAL STYLES
 -------------------------------*/
+@xxxlarge:      ~"only screen and (min-width: 1251px)";
 @xxlarge:      ~"only screen and (min-width: 1001px) and (max-width: 1250px)";
 @xlarge:      ~"only screen and (min-width: 929px) and (max-width: 1000px)";
 @large:      ~"only screen and (min-width: 723px) and (max-width: 928px)";
@@ -97,10 +98,82 @@ jw-modal {
             .desc-wrapper {
                 width: 55%;
                 border-bottom: 3px solid rgb(36, 36, 36);
-                background-color: white;
+                background-color: #cacaca;
+                position: relative;
 
                 .description {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    padding: 10px;
+                    color: rgb(58, 58, 58);
+                    font-size: 2.2vw;
 
+                    h2 {
+                        font-size: 2.5vw;
+                        color: #498bc5;
+                    }
+
+                    @media @xxxlarge {
+                        font-size: 1.5vw;
+
+                        h2 {
+                            font-size: 1.9vw;
+                        }
+                    }
+
+                    @media @xxlarge {
+                        font-size: 1.7vw;
+
+                        h2 {
+                            font-size: 2.1vw;
+                        }
+                    }
+
+                    @media @xlarge {
+                        font-size: 1.5vw;
+
+                        h2 {
+                            font-size: 1.9vw;
+                        }
+                    }
+
+                    @media @large {
+                        font-size: 1.8vw;
+
+                        h2 {
+                            font-size: 2vw;
+                        }
+                    }
+
+                    @media @medium {
+                        font-size: 2vw;
+
+                        h2 {
+                            font-size: 2.4vw;
+                        }
+                    }
+
+                    @media @tablet {
+                        font-size: 1.8vw;
+
+                        h2 {
+                            font-size: 2.2vw;
+                        }
+                    }
+
+                    @media @small {
+                        font-size: 1.9vw;
+
+                        h2 {
+                            font-size: 2.3vw;
+                        }
+                        
+                    }
+
+                    
+
+                    
                 }    
             }
         }
