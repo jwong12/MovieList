@@ -5,9 +5,8 @@ $nav-color-hover: #0044ff;
 #content {
     font-family: $font-stack;
     background-color: #eae8e8;
-    padding: 20px;  
-    width: 836px;
-    // min-height: 950px;
+    padding: 5px;  
+    width: 414px;
     border-radius: 6px;
     margin: auto;
     margin-bottom: 10px;
@@ -27,26 +26,26 @@ $nav-color-hover: #0044ff;
     }
 }
 
-@media only screen and (max-width: 1134px) {
+@media only screen and (min-width: 660px) {
     #content {
-        width: 832px;
+        width: 621px;
     }
 }
 
-@media only screen and (max-width: 928px) {
+@media only screen and (min-width: 865px) {
     #content {
-        width: 623px;
+        width: 828px;
     }
 }
 
-@media only screen and (max-width: 722px) {
+@media only screen and (min-width: 1075px) {
     #content {
-        width: 414px;
+        width: 1035px;
     }
 }
 
-@media only screen and (min-width: 1135px) {
+@media only screen and (min-width: 1285px) {
     #content {
-        width: 1037px;
+        width: 1242px;
     }
 }

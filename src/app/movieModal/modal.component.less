@@ -1,13 +1,13 @@
 ﻿/* MODAL STYLES
 -------------------------------*/
-@xxxlarge:    ~"only screen and (min-width: 1135px)";
-@xxlarge:     ~"only screen and (min-width: 1029px) and (max-width: 1134px)";
-@xlarge:      ~"only screen and (min-width: 929px) and (max-width: 1028px)";
-@large:       ~"only screen and (min-width: 811px) and (max-width: 928px)";
-@full:        ~"only screen and (min-width: 723px) and (max-width: 810px)";
-@medium:      ~"only screen and (min-width: 676px) and (max-width: 722px)";
-@tablet:      ~"only screen and (min-width: 601px) and (max-width: 675px)";
-@small:       ~"only screen and (max-width: 600px)";
+@xxxlarge:    ~"only screen and (min-width: 1185px)";
+@xxlarge:     ~"only screen and (min-width: 1075px) and (max-width: 1184px)";
+@xlarge:      ~"only screen and (min-width: 970px) and (max-width: 1074px)";
+@large:       ~"only screen and (min-width: 865px) and (max-width: 969px)";
+@full:        ~"only screen and (min-width: 765px) and (max-width: 864px)";
+@medium:      ~"only screen and (min-width: 660px) and (max-width: 764px)";
+@tablet:      ~"only screen and (min-width: 585px) and (max-width: 659px)";
+@small:       ~"only screen and (max-width: 584px)";
 
 #media-query {
     .mixin-one {
@@ -40,16 +40,14 @@ jw-modal {
             display: flex;
             /* margin exposes part of the modal background */
             margin: 160px 200px;    
-            // height:auto;
-            // max-width: 500px;
             background-color: white;
             background-color: rgb(36, 36, 36);
 
             @media @xxxlarge {
                 #media-query.mixin-one();
-                width: 1080px;
-                margin-top: -366px;
-                margin-left: -540px;  
+                width: 980px;
+                margin-top: -333px;
+                margin-left: -490px;  
             }
 
             @media @xxlarge {
@@ -68,23 +66,23 @@ jw-modal {
 
             @media @large {
                 #media-query.mixin-one();
-                width: 780px;
-                margin-top: -265px;
-                margin-left: -390px;  
+                width: 800px;
+                margin-top: -272px;
+                margin-left: -400px;  
             }
 
             @media @full {
                 #media-query.mixin-one();
-                width: 700px;
-                margin-top: -235px;
-                margin-left: -350px;  
+                width: 730px;
+                margin-top: -237px;
+                margin-left: -365px;  
             }
 
             @media @medium {
                 #media-query.mixin-one();
-                width: 660px;
-                margin-top: -225px;
-                margin-left: -330px;  
+                width: 650px;
+                margin-top: -221px;
+                margin-left: -325px;  
             }
 
             @media @tablet {
@@ -115,6 +113,11 @@ jw-modal {
                 border-bottom: 4px solid rgb(36, 36, 36);
                 background-color: #cacaca;
                 position: relative;
+
+                .close-button {
+                    display: flex;
+                    justify-content: flex-end;
+                }
 
                 .description {
                     position: absolute;
