@@ -1,8 +1,16 @@
+<div id="header">
+    <div id="nav-bar">
+        <div id="logo-wrapper">
+            <img src="../assets/images/oscar.png" alt="Website Icon" />
+            <h1>Movie Reviews</h1>
+        </div>
+        <nav>
+            <a routerLink="/home" routerLinkActive="active">Home</a>
+            <a routerLink="/watchlist" routerLinkActive="active">Watch List</a>
+            <a routerLink="/about" routerLinkActive="active">About</a>
+        </nav>  
+    </div> 
+</div>
 <div id="content">
-    <nav>
-        <a routerLink="/home" routerLinkActive="active">Home</a>
-        <a routerLink="/watchlist" routerLinkActive="active">Watch List</a>
-        <a routerLink="/about" routerLinkActive="active">About</a>
-    </nav><br/>
     <router-outlet></router-outlet>
 </div>

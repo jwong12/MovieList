@@ -1,6 +1,62 @@
-$font-stack: 'franklin', Sans-serif;
-$nav-color: #656565;
-$nav-color-hover: #0044ff;
+$font-stack: 'Source Sans Pro', arial, sans-serif;
+$nav-bg: #032541f2;
+$nav-color: #f1f1f1;
+$nav-color-hover: #909090;
+
+#header {
+    display: flex;
+    justify-content: center;
+    height: 75px;
+    background-color: $nav-bg;
+    color: white;
+    
+    #nav-bar{
+        display: flex;
+        justify-content: space-between;
+        width: 1200px; 
+        
+        #logo-wrapper {
+            display: flex;
+            padding: 11px 22px;
+
+            img {
+                width: 53px;
+                height: 53px;
+                filter: brightness(80%);
+            }
+
+            h1 {
+                margin: 0;
+                height: 53px;
+                line-height: 54px;
+                font-size: 30px;
+                font-weight: bold;
+                background: -webkit-linear-gradient(#0cb6e8, #18d66c);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        nav {
+            height: 75px;
+            line-height: 80px;
+            padding-right: 20px;
+
+            a {
+                font-size: 19px;
+                font-weight: 700;
+                text-decoration: none;
+                color: $nav-color;
+                margin: 13px;
+            }
+        
+            a:hover{
+                color: $nav-color-hover;
+            }
+        }
+    }
+}
 
 #content {
     font-family: $font-stack;
@@ -10,19 +66,11 @@ $nav-color-hover: #0044ff;
     border-radius: 6px;
     margin: auto;
     margin-bottom: 10px;
+}
 
-    a {
-        font-size: 1.1em;
-        font-weight: bold;
-        text-decoration: none;
-        color: $nav-color;
-        margin: 0 13px;
-        font-family: arial;
-    }
-
-    a:hover{
-        color: $nav-color-hover;
-        text-shadow: 0 0 4px rgba(0,0,0,0.2);
+@media only screen and (max-width: 600px) {
+    #logo-wrapper h1 {
+        display: none;
     }
 }
 
@@ -49,3 +97,4 @@ $nav-color-hover: #0044ff;
         width: 1242px;
     }
 }
+
