@@ -22,7 +22,7 @@
     
     <div class="movie" *ngFor="let movie of _movieArray" myMovieHighlight>
         <div class="movie-img" (click)="openModal('custom-modal-2', movie)">
-            <images-directive [posterPath]="movie.poster_path ? 'http://image.tmdb.org/t/p/w185' + movie.poster_path : '../assets/images/movie_not_found.jpg'" [altText]="movie.original_title"></images-directive>
+            <images-directive [posterPath]="movie.poster_path ? 'https://image.tmdb.org/t/p/w185' + movie.poster_path : '../assets/images/movie_not_found.jpg'" [altText]="movie.original_title"></images-directive>
         </div>
         <div class="movie-description">
             <div class="movie-header">
