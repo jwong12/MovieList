@@ -5,9 +5,9 @@
     
     <div class="pagination">
         <div id="selection-container">
-            <select name="_genreArray" [(ngModel)]='genreSelect' (change)="selectGenre(genreSelect)">
+            <select name="genreArray" [(ngModel)]='genreSelect' (change)="selectGenre(genreSelect)">
                 <option 
-                    *ngFor="let genre of _genreArray" 
+                    *ngFor="let genre of genreArray" 
                     [ngValue]="genre"
                 >{{genre.name}}</option>
             </select>
@@ -20,7 +20,7 @@
         </div>
     </div>
     
-    <div class="movie" *ngFor="let movie of _movieArray" myMovieHighlight>
+    <div class="movie" *ngFor="let movie of movieArray" myMovieHighlight>
         <div class="movie-img" (click)="openModal('custom-modal-2', movie)">
             <images-directive [posterPath]="movie.poster_path ? 'https://image.tmdb.org/t/p/w185' + movie.poster_path : '../assets/images/movie_not_found.jpg'" [altText]="movie.original_title"></images-directive>
         </div>

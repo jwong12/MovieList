@@ -16,19 +16,15 @@ class genre {
 })
 
 export class HomeComponent {
-    _movieArray: Array<any>;
-    _genreArray: Array<genre>;
-    _http: HttpClient;
-    movieAPI: MovieURLService;
+    movieArray: Array<any>;
+    genreArray: Array<genre>;
     genreSelect: genre;
     title: string;
     currentPage: number;
     totalPages: number;
     totalMovies: number;
 
-    constructor(private http: HttpClient, movieService: MovieURLService, private modalService: ModalService) {
-        this._http = http;
-        this.movieAPI = movieService;
+    constructor(private _http: HttpClient, private movieAPI: MovieURLService, private modalService: ModalService) {
         this.title = "Recent Movies";
     }
 
@@ -40,7 +36,7 @@ export class HomeComponent {
     getMovies(URL: string) {
         this._http.get<any>(URL)
           .subscribe(data => {
-            this._movieArray  = data.results;
+            this.movieArray  = data.results;
             this.currentPage = data.page;
             this.totalPages = data.total_pages;
             this.totalMovies = data.total_results;
@@ -53,12 +49,11 @@ export class HomeComponent {
 
     getGenres(URL: string) {
         this.genreSelect = { id: 1, name: "Recent Movies" };
-        this._genreArray = [this.genreSelect];
+        this.genreArray = [this.genreSelect];
 
         this._http.get<any>(URL)
         .subscribe(data => {
-            this._genreArray = [...this._genreArray, ...data.genres];
-            console.log(this._genreArray);
+            this.genreArray = [...this.genreArray, ...data.genres];
         }, 
         error =>{
           alert(error);
@@ -67,7 +62,7 @@ export class HomeComponent {
     }
 
     openModal(id: string, movie) {
-        this.modalService.open(id, movie, this._genreArray);
+        this.modalService.open(id, movie, this.genreArray);
     }
 
     closeModal(id: string) {

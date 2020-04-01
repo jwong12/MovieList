@@ -1,14 +1,11 @@
-import { Component } from '@angular/core';
-
 const API_KEY  = '0920ab6465d4820a807193b5d5056ece';
 
 const GENRE_URL = 'https://api.themoviedb.org/3/genre/movie/list?api_key='
                 + API_KEY
                 + '&language=en-US';
 
-const MOVIES_URL  = 'http://api.themoviedb.org/3/discover/movie?api_key='
+const MOVIES_URL  = 'https://api.themoviedb.org/3/discover/movie?api_key='
                 + API_KEY;  
-
 
 export class MovieURLService {
 
