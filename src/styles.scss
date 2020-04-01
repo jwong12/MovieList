@@ -1,15 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-@font-face {
-    font-family: 'franklin medium';
-    src: url('assets/fonts/Franklin Gothic Medium Regular.ttf') format("opentype");
-    font-family: franklin;
-    src: url('assets/fonts/FRABK.TTF') format("opentype");
-}
 
 html, body {
     margin: 5px 0px 5px 0px;
-    background-color: #2f2f2f;
+    background-color: #eae8e8;
+    // background-color: #2f2f2f;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+    margin: 0; 
+    height: 100%; 
+    font-family: 'Source Sans Pro', arial, sans-serif;
+}

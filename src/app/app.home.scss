@@ -1,12 +1,9 @@
 #movie-content {
     padding: 0px;
-    
-    h1{
-        text-align: center;
-        color: #8e239a;
-        text-shadow: 2px 1px 3px rgb(0,0,0,0.2);
-        margin: 10px;
-        font-size: 2.5em;
+
+    #search-wrapper {
+        display: flex;
+        justify-content: center;
     }
 
     .pagination {
@@ -114,7 +111,6 @@
 
                     h3 {
                         display:inline;
-                        font-family: sans-serif;
                         color: #0820a8de;
                         margin: 0px;
                         text-align: center;
