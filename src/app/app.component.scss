@@ -58,43 +58,8 @@ $nav-color-hover: #909090;
     }
 }
 
-#content {
-    font-family: $font-stack;
-    background-color: #eae8e8;
-    padding: 5px;  
-    width: 414px;
-    border-radius: 6px;
-    margin: auto;
-    margin-bottom: 10px;
-}
-
 @media only screen and (max-width: 600px) {
     #logo-wrapper h1 {
         display: none;
     }
 }
-
-@media only screen and (min-width: 660px) {
-    #content {
-        width: 621px;
-    }
-}
-
-@media only screen and (min-width: 865px) {
-    #content {
-        width: 828px;
-    }
-}
-
-@media only screen and (min-width: 1075px) {
-    #content {
-        width: 1035px;
-    }
-}
-
-@media only screen and (min-width: 1285px) {
-    #content {
-        width: 1242px;
-    }
-}
-
