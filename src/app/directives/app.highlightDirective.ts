@@ -18,6 +18,7 @@ export class HighlightDirective {
     }
 
     private highlight(attr: string, margin: string, shadow: string, color: string) {
+        console.log(this.el.nativeElement);
         this.el.nativeElement.style.boxShadow = shadow;
         this.el.nativeElement.style.border = attr;
         this.el.nativeElement.style.margin = margin;

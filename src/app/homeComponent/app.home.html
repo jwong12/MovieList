@@ -19,21 +19,21 @@
                 <a class="modal next unselectable" (click)=nextPage()>&raquo;</a>
             </div>
         </div>
-        
-        <div class="movie" *ngFor="let movie of movieArray" myMovieHighlight>
-            <div class="movie-img" (click)="openModal('custom-modal-2', movie)">
-                <images-directive [posterPath]="movie.poster_path ? 'https://image.tmdb.org/t/p/w185' + movie.poster_path : '../assets/images/movie_not_found.jpg'" [altText]="movie.original_title"></images-directive>
-            </div>
-            <div class="movie-description">
-                <div class="movie-header">
-                    <div class="movie-title">
-                        <h3 (click)="openModal('custom-modal-2', movie)">{{movie.title}}</h3>
-                    </div>
-                    <div>Release Date: {{movie.release_date}}</div>
-                    <div>Rating: <span id="rating">{{movie.vote_average}}</span> Likes: <span id="likes">{{movie.vote_count}}</span></div>
+        <div class="movie-wrapper" *ngFor="let movie of movieArray" >
+            <div class="movie" myMovieHighlight (click)="openModal('custom-modal-2', movie)">
+                <div class="movie-img">
+                    <images-directive class="img-directive" [posterPath]="movie.poster_path ? 'https://image.tmdb.org/t/p/w185' + movie.poster_path : '../assets/images/movie_not_found.jpg'" [altText]="movie.original_title"></images-directive>
                 </div>
-                <p>{{movie.overview}}</p>
-            </div> 
+                <div class="movie-description">
+                    <div class="movie-header">
+                        <div class="title-wrapper">
+                            <h3 class="movie-title">{{this.formatDescription(movie.title)}}</h3>
+                        </div>
+                        <div class="release">{{this.formatDate(movie.release_date)}}</div>
+                        <div class="rating">Rating: <span id="rating">{{movie.vote_average}}</span> Likes: <span id="likes">{{movie.vote_count}}</span></div>
+                    </div>
+                </div> 
+            </div>
         </div>
         <div class="pagination pag-bottom">
             <div class="paginator">

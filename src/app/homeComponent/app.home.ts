@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { MovieURLService } from '../apiService/app.movieURLService';
 import { ModalService } from '../movieModal';
 
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 class genre {
     constructor(public id: number, public name: string) {}
 }
@@ -59,6 +61,40 @@ export class HomeComponent {
         })
     }
 
+    formatDescription(title) {
+        if (title.length > 40) {
+            const movieTitles = document.querySelectorAll('.movie-title') as NodeListOf<HTMLElement>;
+
+            for(let i = 0; i < movieTitles.length; i++) {
+                if(movieTitles[i].textContent === title) {
+                    movieTitles[i].style.fontSize = '14px';
+                }
+            }
+        } else if (title.length > 32) {
+            const movieTitles = document.querySelectorAll('.movie-title') as NodeListOf<HTMLElement>;
+
+            for(let i = 0; i < movieTitles.length; i++) {
+                if(movieTitles[i].textContent === title) {
+                    movieTitles[i].style.fontSize = '15px';
+                }
+            }
+        } else if (title.length > 21) {
+            const movieTitles = document.querySelectorAll('.movie-title') as NodeListOf<HTMLElement>;
+
+            for(let i = 0; i < movieTitles.length; i++) {
+                if(movieTitles[i].textContent === title) {
+                    movieTitles[i].style.fontSize = '16px';
+                }
+            }
+        }
+        return title;
+    }
+
+    formatDate(date) {
+        const month = MONTHS[parseInt(date.slice(5,7))-1];
+        return month + ' ' + date.slice(8) + ', ' + date.slice(0,4);
+    }
+
     openModal(id: string, movie) {
         this.modalService.open(id, movie, this.genreArray);
     }
@@ -71,6 +107,7 @@ export class HomeComponent {
         if(this.currentPage !== this.totalPages) {
             if(this.genreSelect.id === 1) {
                 this.getMovies(this.movieAPI.getRecentMoviesURL(++this.currentPage));
+
             } else {
                 this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, ++this.currentPage));
             }
@@ -81,6 +118,7 @@ export class HomeComponent {
         if(this.currentPage !== 1) {
             if(this.genreSelect.id === 1) {
                 this.getMovies(this.movieAPI.getRecentMoviesURL(--this.currentPage));
+
             } else {
                 this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, --this.currentPage));
             }

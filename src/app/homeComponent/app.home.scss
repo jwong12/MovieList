@@ -113,73 +113,68 @@
         }
     }
 
-    .movie{
-        display: inline-block;
-        margin: 6px 10px;
-        width: 185px;
-        height: 559px;
-        border: 1px solid rgb(167, 165, 165);
-        box-shadow: 0 3px 5px 0 rgb(0, 0, 0, 0.2);
+    .movie-wrapper {
+        display: inline-flex;
+        height: 388px;
 
-        .movie-img {
+        .movie { 
+            display: inline-grid;
             width: 185px;
-            height: 277px;
+            margin: 6px 10px;
+            border: 1px solid rgb(167, 165, 165);
+            box-shadow: 0 3px 5px 0 rgb(0, 0, 0, 0.2);
+            border-radius: 0 0 9px 9px;
             cursor: pointer;
-            filter: brightness(75%);
-        }
 
-        .movie-img:hover {
-            filter: brightness(100%);
-        }
-    
-        .movie-description{
-            margin: 0px;
-            padding: 7px;
-            height: 268px;
-            overflow: hidden;
-            background-color:white;
-            
-            .movie-header{
-                margin-bottom: 3px;
-
-                .movie-title {
-                    align-content: center;
-                    margin-bottom: 2px;
-
-                    h3 {
-                        display:inline;
-                        color: #0820a8de;
-                        margin: 0px;
-                        text-align: center;
-                        font-size: 17px;
-                        cursor: pointer;
-                    }
-
-                    h3:hover{
-                        color: #1584ce;
-                    }
-                }
-    
-                div {
-                    margin: 0px;
-                    padding-bottom: 3px;
-                    text-align: center;
-                    font-size: 13px;
-
-                    #rating{
-                        color: Chocolate;
-                    }
-    
-                    #likes {
-                        color: dodgerblue;
-                    }
-                }
+            .movie-img {
+                width: 185px;
+                height: 277px;
+                filter: brightness(75%);          
             }
 
-            p {
+            .movie-img:hover {
+                filter: brightness(100%);
+            }
+        
+            .movie-description{
                 margin: 0px;
-                font-size: 14px;
-                line-height: 16px;
+                padding: 3px 5px 8px 8px;
+                
+                .movie-header{
+                    margin-bottom: 3px;
+
+                    .title-wrapper {
+                        padding-bottom: 2px;
+
+                        h3 {
+                            display:inline;
+                            color: #0820a8de;
+                            font-size: 17px;
+                        }
+
+                        h3:hover{
+                            color: #1584ce;
+                        }
+                    }
+        
+                    .release {
+                        font-size: 16px;
+                        padding-bottom: 2px;
+                    }
+
+                    .rating {
+                        font-size: 16px;
+                        padding-bottom: 3px;
+
+                        #rating{
+                            color: Chocolate;
+                        }
+        
+                        #likes {
+                            color: dodgerblue;
+                        }
+                    }
+                }
             }
         }
     }
