@@ -2,6 +2,7 @@ import { Component, HostBinding, AfterViewInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { fromEvent } from 'rxjs';
 import { throttleTime, map, pairwise, distinctUntilChanged, share, filter } from 'rxjs/operators';
+import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 
 enum VisibilityState {
     Visible = 'visible',
@@ -25,7 +26,7 @@ enum Direction {
           ),
           state(
             VisibilityState.Visible,
-            style({ opacity: 1, transform: 'translateY(0)' })
+            style({  opacity: 1, transform: 'translateY(0)' })
           ),
           transition('* => *', animate('200ms ease-in'))
         ])
