@@ -1,53 +1,56 @@
-<div id="movie-content"><br/>    
-    <div id="search-wrapper">
-        <input type="text" id="searchbar"><span>button</span>
-    </div>
-    <div class="pagination">
-        <div id="selection-container">
-            <select name="genreArray" [(ngModel)]='genreSelect' (change)="selectGenre(genreSelect)">
-                <option 
-                    *ngFor="let genre of genreArray" 
-                    [ngValue]="genre"
-                >{{genre.name}}</option>
-            </select>
-            <div id="total-results">Latest movies: {{totalMovies}}</div>
-        </div>
-        <div class="paginator pag-top">
-            <a class="modal prev unselectable" (click)=prevPage()>&laquo;</a>
-            <div class="modal pages">{{currentPage}} / {{totalPages}}</div>
-            <a class="modal next unselectable" (click)=nextPage()>&raquo;</a>
-        </div>
-    </div>
-    
-    <div class="movie" *ngFor="let movie of movieArray" myMovieHighlight>
-        <div class="movie-img" (click)="openModal('custom-modal-2', movie)">
-            <images-directive [posterPath]="movie.poster_path ? 'https://image.tmdb.org/t/p/w185' + movie.poster_path : '../assets/images/movie_not_found.jpg'" [altText]="movie.original_title"></images-directive>
-        </div>
-        <div class="movie-description">
-            <div class="movie-header">
-                <div class="movie-title">
-                    <h3 (click)="openModal('custom-modal-2', movie)">{{movie.title}}</h3>
-                </div>
-                <div>Release Date: {{movie.release_date}}</div>
-                <div>Rating: <span id="rating">{{movie.vote_average}}</span> Likes: <span id="likes">{{movie.vote_count}}</span></div>
+<div id="feature">  
+            
+</div> 
+<div id="content-wrapper">
+    <div id="movie-content"><br/>   
+        <div class="pagination">
+            <div id="selection-container">
+                <select name="genreArray" [(ngModel)]='genreSelect' (change)="selectGenre(genreSelect)">
+                    <option 
+                        *ngFor="let genre of genreArray" 
+                        [ngValue]="genre"
+                    >{{genre.name}}</option>
+                </select>
+                <div id="total-results">Latest movies: {{totalMovies}}</div>
             </div>
-            <p>{{movie.overview}}</p>
-        </div> 
-    </div>
-    <div class="pagination pag-bottom">
-        <div class="paginator">
-            <a class="modal prev unselectable" (click)=prevPage()>&laquo;</a>
-            <div class="modal pages">{{currentPage}} / {{totalPages}}</div>
-            <a class="modal next unselectable" (click)=nextPage()>&raquo;</a>
+            <div class="paginator pag-top">
+                <a class="modal prev unselectable" (click)=prevPage()>&laquo;</a>
+                <div class="modal pages">{{currentPage}} / {{totalPages}}</div>
+                <a class="modal next unselectable" (click)=nextPage()>&raquo;</a>
+            </div>
         </div>
+        
+        <div class="movie" *ngFor="let movie of movieArray" myMovieHighlight>
+            <div class="movie-img" (click)="openModal('custom-modal-2', movie)">
+                <images-directive [posterPath]="movie.poster_path ? 'https://image.tmdb.org/t/p/w185' + movie.poster_path : '../assets/images/movie_not_found.jpg'" [altText]="movie.original_title"></images-directive>
+            </div>
+            <div class="movie-description">
+                <div class="movie-header">
+                    <div class="movie-title">
+                        <h3 (click)="openModal('custom-modal-2', movie)">{{movie.title}}</h3>
+                    </div>
+                    <div>Release Date: {{movie.release_date}}</div>
+                    <div>Rating: <span id="rating">{{movie.vote_average}}</span> Likes: <span id="likes">{{movie.vote_count}}</span></div>
+                </div>
+                <p>{{movie.overview}}</p>
+            </div> 
+        </div>
+        <div class="pagination pag-bottom">
+            <div class="paginator">
+                <a class="modal prev unselectable" (click)=prevPage()>&laquo;</a>
+                <div class="modal pages">{{currentPage}} / {{totalPages}}</div>
+                <a class="modal next unselectable" (click)=nextPage()>&raquo;</a>
+            </div>
+        </div>
+        <span id="bottom">bottom</span>
+        <jw-modal id="custom-modal-1">
+            <h1>A Custom Modal!</h1>
+            <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+            <button (click)="closeModal('custom-modal-1');">Close</button>
+        </jw-modal>
+        
+        <jw-modal id="custom-modal-2">
+            <button (click)="closeModal('custom-modal-2');">Close</button>
+        </jw-modal>
     </div>
-    <jw-modal id="custom-modal-1">
-        <h1>A Custom Modal!</h1>
-        <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
-        <button (click)="closeModal('custom-modal-1');">Close</button>
-    </jw-modal>
-    
-    <jw-modal id="custom-modal-2">
-        <button (click)="closeModal('custom-modal-2');">Close</button>
-    </jw-modal>
 </div>

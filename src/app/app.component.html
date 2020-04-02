@@ -1,16 +1,29 @@
-<div id="header">
+<header>
     <div id="nav-bar">
         <div id="logo-wrapper">
             <img src="../assets/images/oscar.png" alt="Website Icon" />
             <h1>Movie Reviews</h1>
         </div>
+        <div id="search-wrapper">
+            <div id="search">
+                <input type="text" id="search-bar" placeholder="Search...">
+                <button id="search-btn">
+                    <img src="../assets/images/search.svg" alt="search icon">
+                </button>
+            </div>
+        </div>
         <nav>
-            <a routerLink="/home" routerLinkActive="active">Home</a>
+            <a routerLink="/home" routerLinkActive="active" href="home#content-wrapper">Home</a>
             <a routerLink="/watchlist" routerLinkActive="active">Watch List</a>
-            <a routerLink="/about" routerLinkActive="active">About</a>
+            <a routerLink="/about" routerLinkActive="active" >About</a>
         </nav>  
+        
     </div> 
-</div>
+</header>
 <div id="content">
+    <div id="route-container">
+        <a href="home#content-wrapper">Scroll to top</a>
+        <a href="home#bottom">Scroll to top</a>
+    </div> 
     <router-outlet></router-outlet>
 </div>
