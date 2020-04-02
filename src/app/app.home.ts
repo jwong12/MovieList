@@ -1,9 +1,7 @@
 import { Component, Directive, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MovieURLService } from './app.movieURLService';
+import { MovieURLService } from './apiService/app.movieURLService';
 import { ModalService } from './movieModal';
-
-const movieLink = "http://image.tmdb.org/t/p/w185";
 
 class genre {
     constructor(public id: number, public name: string) {}

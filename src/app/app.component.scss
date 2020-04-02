@@ -1,14 +1,18 @@
 $font-stack: 'Source Sans Pro', arial, sans-serif;
-$nav-bg: #032541f2;
+$nav-bg: #032541;
 $nav-color: #f1f1f1;
-$nav-color-hover: #909090;
+$nav-color-hover: #b14545;
 
-#header {
+header {
     display: flex;
     justify-content: center;
     height: 75px;
     background-color: $nav-bg;
-    color: white;
+    color: $nav-color;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 990;
     
     #nav-bar{
         display: flex;
@@ -28,7 +32,7 @@ $nav-color-hover: #909090;
             h1 {
                 margin: 0;
                 height: 53px;
-                line-height: 54px;
+                line-height: 53px;
                 font-size: 30px;
                 font-weight: bold;
                 background: -webkit-linear-gradient(#0cb6e8, #18d66c);
@@ -37,10 +41,53 @@ $nav-color-hover: #909090;
                 -webkit-text-fill-color: transparent;
             }
         }
+        #search-wrapper {
+            margin: 20px;
+
+            #search {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                width: 250px;
+
+                #search-bar {
+                    height: 31px;
+                    line-height: 27px;
+                    width: 100%;
+                    border: none;
+                    border-radius: 30px;
+                    padding: 2px 10px;
+                    font-size: 14px;
+                    color: rgb(75, 74, 74);
+                    outline: none;
+                }
+    
+                #search-btn {
+                    display: inline-flex;
+                    height: 35px;
+                    border: none;
+                    border-radius: 30px;
+                    padding: 8px 20px;
+                    background: linear-gradient(to right, #63bcf1 0%, #33a5a5 100%);
+                    color: rgba(255,255,255, 1);
+                    outline: none;
+                    z-index: 991;
+                    position: absolute;
+                    top: 0;
+                    right: -1px;
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(251deg) brightness(105%) contrast(101%);
+                    }
+                }
+            }
+        }
 
         nav {
             height: 75px;
-            line-height: 80px;
+            line-height: 75px;
             padding-right: 20px;
 
             a {

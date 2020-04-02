@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
@@ -27,6 +28,7 @@ import { MovieImages }      from './app.movieImages';
   ],
   imports: [
     BrowserModule, 
+    BrowserAnimationsModule,
     AppRoutingModule, 
     HttpClientModule, 
     AppRoutingModule, 
@@ -34,7 +36,9 @@ import { MovieImages }      from './app.movieImages';
     AmplifyAngularModule,
     ModalModule
   ],
-  providers: [AmplifyService],
+  providers: [
+    AmplifyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
