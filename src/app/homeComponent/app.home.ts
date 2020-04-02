@@ -1,7 +1,7 @@
 import { Component, Directive, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MovieURLService } from './apiService/app.movieURLService';
-import { ModalService } from './movieModal';
+import { MovieURLService } from '../apiService/app.movieURLService';
+import { ModalService } from '../movieModal';
 
 class genre {
     constructor(public id: number, public name: string) {}

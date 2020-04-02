@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -19,11 +19,10 @@
     "@angular/platform-browser": "~8.2.7",
     "@angular/platform-browser-dynamic": "~8.2.7",
     "@angular/router": "~8.2.7",
+    "@ngtools/webpack": "^9.1.0",
     "aws-amplify": "^2.2.6",
     "aws-amplify-angular": "^4.1.7",
-    "rxjs": "^6.3.3",
-    "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "rxjs": "^6.3.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.5",
