@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-    template: `<h2>Watch List</h2>`
+    templateUrl: 'app.watchList.html',
+    styleUrls: ['app.watchList.scss'],
+    providers: []
 })
 
 export class WatchListComponent { }

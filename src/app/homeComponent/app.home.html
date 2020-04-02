@@ -42,7 +42,7 @@
                 <a class="modal next unselectable" (click)=nextPage()>&raquo;</a>
             </div>
         </div>
-        <span id="bottom">bottom</span>
+        
         <jw-modal id="custom-modal-1">
             <h1>A Custom Modal!</h1>
             <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
@@ -50,7 +50,7 @@
         </jw-modal>
         
         <jw-modal id="custom-modal-2">
-            <button (click)="closeModal('custom-modal-2');">Close</button>
+            <span (click)="closeModal('custom-modal-2')" id="close-icon"><img src="../../assets/images/close.png" alt="close button"></span>
         </jw-modal>
     </div>
 </div>
