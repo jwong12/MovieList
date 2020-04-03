@@ -105,6 +105,44 @@ header {
     }
 }
 
+footer {
+    display: grid;
+    width: 100vw;
+    background-color: #272727;
+    color:rgb(243, 243, 243);
+    justify-content: center;
+    padding: 30px;
+
+    #main-footer {
+        display: flex;
+        justify-content: center;
+        width: 880px;
+
+        h2 {
+            margin: 5px 0;
+        }
+
+        #footer-content {
+            max-width: 550px;
+            padding: 20px;
+        }
+
+        #footer-contact {
+            padding: 20px;
+
+            .contact-links {
+                color:rgb(243, 243, 243);
+                text-decoration: none;
+            }
+        }
+    }
+
+    #trademark {
+        margin: auto;
+        padding: 10px 0;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     #logo-wrapper h1 {
         display: none;

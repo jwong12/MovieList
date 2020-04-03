@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    template: `<h2>Created by James Wong</h2>`
+    template: `<div id="content"><h2>Created by James Wong</h2></div>`,
+    styleUrls: ['app.about.scss']
 })
 
 export class AboutComponent { }

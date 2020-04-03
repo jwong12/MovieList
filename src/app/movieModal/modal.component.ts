@@ -57,7 +57,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     open(movie, genreArray): void {
         this.element.style.display = 'block';
         document.body.classList.add('jw-modal-open');
-        console.log(movie);
+        // console.log(movie);
         this.imgSrc = posterLink + movie.poster_path;
         this.title = movie.title;
         this.year = parseInt(movie.release_date.slice(0, 4));

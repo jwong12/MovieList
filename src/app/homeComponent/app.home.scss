@@ -129,11 +129,7 @@
             .movie-img {
                 width: 185px;
                 height: 277px;
-                filter: brightness(75%);          
-            }
-
-            .movie-img:hover {
-                filter: brightness(100%);
+                filter: brightness(80%);          
             }
         
             .movie-description{
@@ -150,10 +146,6 @@
                             display:inline;
                             color: #0820a8de;
                             font-size: 17px;
-                        }
-
-                        h3:hover{
-                            color: #1584ce;
                         }
                     }
         
@@ -202,10 +194,8 @@
 
     img {
         position: absolute;
-        width: 38px;
-        top: -15px;
-        right: -15px;
-        filter: invert(29%) sepia(99%) saturate(1208%) hue-rotate(190deg) brightness(103%) contrast(91%);
+        cursor: pointer;
+        padding: 5px;
     }
 }
 
@@ -222,6 +212,12 @@
         }
     }
 
+    #close-icon img {
+        width: 12px;
+        top: 20px;
+        right: 20px;
+    }
+
     .pag-top{
         margin-top: 25px;
     }
@@ -231,17 +227,34 @@
     .pagination {
         width: 602px;
     }
+
+    #close-icon img {
+        width: 14px;
+        top: 25px;
+        right: 25px;
+    }
 }
 
 @media only screen and (min-width: 865px) {
     .pagination {
         width: 808px;
     }
+
+    #close-icon img {
+        top: 30px;
+        right: 30px;
+    }
 }
 
 @media only screen and (min-width: 1075px) {
     .pagination {
         width: 1014px;
+    }
+
+    #close-icon img {
+        top: 35px;
+        right: 35px;
+        width: 16px;
     }
 }
 
