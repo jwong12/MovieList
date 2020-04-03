@@ -2,7 +2,6 @@ import { Component, HostBinding, AfterViewInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { fromEvent } from 'rxjs';
 import { throttleTime, map, pairwise, distinctUntilChanged, share, filter } from 'rxjs/operators';
-import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 
 enum VisibilityState {
     Visible = 'visible',
@@ -59,7 +58,21 @@ export class AppComponent implements AfterViewInit {
             filter(direction => direction === Direction.Down)
         );
 
-        scrollUp$.subscribe(() => (this.isVisible = true));
-        scrollDown.subscribe(() => (this.isVisible = false));
+        scrollUp$.subscribe(() => (
+                this.isVisible = true,
+                console.log('scroll up'),
+                this.changeHeaderPointerEvents('initial')
+            ));
+        scrollDown.subscribe(() => (
+                this.isVisible = false, 
+                console.log('scroll down'),
+                this.changeHeaderPointerEvents('none')
+            ));
+    }
+
+    changeHeaderPointerEvents(value: string) {
+        const headerHtml = document.getElementById('nav-bar') as HTMLElement;
+        headerHtml.style.pointerEvents = value;
+        console.log(headerHtml.style.pointerEvents);
     }
 }

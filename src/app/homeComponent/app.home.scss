@@ -135,6 +135,7 @@
             .movie-description{
                 margin: 0px;
                 padding: 3px 5px 8px 8px;
+                z-index: 989;
                 
                 .movie-header{
                     margin-bottom: 3px;
@@ -176,6 +177,7 @@
     display:flex;
     vertical-align: middle;
     padding: 3px 0 0 20px;
+    z-index: 989;
 
     select {
         width: 130px;
@@ -206,7 +208,7 @@
 
     #selection-container {
         display: initial;
-
+        
         #total-results {
             margin: 6px 4px;
         }

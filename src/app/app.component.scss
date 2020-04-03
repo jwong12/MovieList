@@ -9,8 +9,8 @@ header {
     height: 75px;
     background-color: $nav-bg;
     color: $nav-color;
-    position: fixed;
-    top: 0;
+    position: fixed; // Used for reactive header
+    top: 0; // Used for reactive header
     width: 100%;
     z-index: 990;
     
