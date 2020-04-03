@@ -8,11 +8,11 @@
 #content-wrapper {
     font-family: 'Source Sans Pro', arial, sans-serif;
     background-color: #eae8e8;
-    padding: 5px;  
+    padding: 15px;  
     width: 414px;
     border-radius: 6px;
     margin: auto;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 @media only screen and (min-width: 660px) {
@@ -116,7 +116,8 @@
     .movie-wrapper {
         display: inline-flex;
         height: 388px;
-
+        margin: 10px 0;
+        
         .movie { 
             display: inline-grid;
             width: 185px;

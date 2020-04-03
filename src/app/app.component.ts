@@ -60,12 +60,10 @@ export class AppComponent implements AfterViewInit {
 
         scrollUp$.subscribe(() => (
                 this.isVisible = true,
-                console.log('scroll up'),
                 this.changeHeaderPointerEvents('initial')
             ));
         scrollDown.subscribe(() => (
                 this.isVisible = false, 
-                console.log('scroll down'),
                 this.changeHeaderPointerEvents('none')
             ));
     }
@@ -73,6 +71,5 @@ export class AppComponent implements AfterViewInit {
     changeHeaderPointerEvents(value: string) {
         const headerHtml = document.getElementById('nav-bar') as HTMLElement;
         headerHtml.style.pointerEvents = value;
-        console.log(headerHtml.style.pointerEvents);
     }
 }
