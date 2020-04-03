@@ -3,18 +3,21 @@ $nav-bg: #032541;
 $nav-color: #f1f1f1;
 $nav-color-hover: #b14545;
 
-header {
+app-sticky-header {
+    z-index: 990;
+    pointer-events: none;
+}
+
+#header {
     display: flex;
     justify-content: center;
     height: 75px;
     background-color: $nav-bg;
     color: $nav-color;
-    position: fixed; // Used for reactive header
-    top: 0; // Used for reactive header
     width: 100%;
     z-index: 990;
     
-    #nav-bar{
+    #nav-bar {
         display: flex;
         justify-content: space-between;
         width: 1200px; 

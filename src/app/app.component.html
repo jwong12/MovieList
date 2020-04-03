@@ -1,24 +1,26 @@
-<header>
-    <div id="nav-bar">
-        <div id="logo-wrapper">
-            <img src="../assets/images/oscar.png" alt="Website Icon" />
-            <h1>Movie Reviews</h1>
-        </div>
-        <div id="search-wrapper">
-            <div id="search">
-                <input type="text" id="search-bar" placeholder="Search...">
-                <button id="search-btn">
-                    <img src="../assets/images/search.svg" alt="search icon">
-                </button>
+<app-sticky-header>
+    <div id="header">
+        <div id="nav-bar">
+            <div id="logo-wrapper">
+                <img src="../assets/images/oscar.png" alt="Website Icon" />
+                <h1>Movie Reviews</h1>
             </div>
-        </div>
-        <nav>
-            <a routerLink="/" routerLinkActive="active">Home</a>
-            <a routerLink="/watchlist" routerLinkActive="active">Watch List</a>
-            <a routerLink="/about" routerLinkActive="active">Logout</a>
-        </nav>  
-    </div> 
-</header>
+            <div id="search-wrapper">
+                <div id="search">
+                    <input type="text" id="search-bar" placeholder="Search...">
+                    <button id="search-btn">
+                        <img src="../assets/images/search.svg" alt="search icon">
+                    </button>
+                </div>
+            </div>
+            <nav>
+                <a routerLink="/" routerLinkActive="active">Home</a>
+                <a routerLink="/watchlist" routerLinkActive="active">Watch List</a>
+                <a routerLink="/about" routerLinkActive="active">Logout</a>
+            </nav>  
+        </div> 
+    </div>
+</app-sticky-header>
 <div id="content">
     <router-outlet></router-outlet>
 </div>

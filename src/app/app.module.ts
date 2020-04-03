@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent }    from './homeComponent/app.home';
 import { WatchListComponent } from './watchListComponent/app.watchList';
 import { AboutComponent }   from './app.about';
+import { StickyHeaderComponent } from './headerComponent/app.stickyHeader';
 import { PageDefault }      from './app.pagedefault';
 import { MovieImages }      from './app.movieImages';
 
@@ -22,13 +23,14 @@ import { MovieImages }      from './app.movieImages';
     HomeComponent, 
     WatchListComponent,
     AboutComponent, 
+    StickyHeaderComponent,
     PageDefault, 
     MovieImages, 
     HighlightDirective
   ],
   imports: [
-    BrowserModule, 
     BrowserAnimationsModule,
+    BrowserModule,
     AppRoutingModule, 
     HttpClientModule, 
     AppRoutingModule, 
