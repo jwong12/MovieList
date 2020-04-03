@@ -1,5 +1,6 @@
 import { Component, Directive, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ViewportScroller } from '@angular/common';
 import { MovieURLService } from '../apiService/app.movieURLService';
 import { ModalService } from '../movieModal';
 
@@ -24,7 +25,7 @@ export class HomeComponent {
     totalPages: number;
     totalMovies: number;
 
-    constructor(private _http: HttpClient, private movieAPI: MovieURLService, private modalService: ModalService) {
+    constructor(private _http: HttpClient, private scroller: ViewportScroller, private movieAPI: MovieURLService, private modalService: ModalService) {
         this.title = "Recent Movies";
     }
 
@@ -103,7 +104,7 @@ export class HomeComponent {
         this.modalService.close(id);
     }
 
-    nextPage() {
+    nextPage(isBottom: boolean) {
         if(this.currentPage !== this.totalPages) {
             if(this.genreSelect.id === 1) {
                 this.getMovies(this.movieAPI.getRecentMoviesURL(++this.currentPage));
@@ -111,16 +112,24 @@ export class HomeComponent {
             } else {
                 this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, ++this.currentPage));
             }
+
+            if(isBottom) {
+                this.scroller.scrollToAnchor('content-wrapper');
+            }
         }
     }
 
-    prevPage() {
+    prevPage(isBottom: boolean) {
         if(this.currentPage !== 1) {
             if(this.genreSelect.id === 1) {
                 this.getMovies(this.movieAPI.getRecentMoviesURL(--this.currentPage));
 
             } else {
                 this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, --this.currentPage));
+            }
+
+            if(isBottom) {
+                this.scroller.scrollToAnchor('content-wrapper');
             }
         }
     }

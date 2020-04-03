@@ -14,9 +14,9 @@
                 <div id="total-results">Latest movies: {{totalMovies}}</div>
             </div>
             <div class="paginator pag-top">
-                <a class="modal prev unselectable" (click)=prevPage()>&laquo;</a>
+                <a class="modal prev unselectable" (click)=prevPage(false)>&laquo;</a>
                 <div class="modal pages">{{currentPage}} / {{totalPages}}</div>
-                <a class="modal next unselectable" (click)=nextPage()>&raquo;</a>
+                <a class="modal next unselectable" (click)=nextPage(false)>&raquo;</a>
             </div>
         </div>
         <div class="movie-wrapper" *ngFor="let movie of movieArray" >
@@ -37,9 +37,9 @@
         </div>
         <div class="pagination pag-bottom">
             <div class="paginator">
-                <a class="modal prev unselectable" (click)=prevPage() routerLink="./" [fragment]="'content-wrapper'">&laquo;</a>
+                <a class="modal prev unselectable" (click)=prevPage(true)>&laquo;</a>
                 <div class="modal pages">{{currentPage}} / {{totalPages}}</div>
-                <a class="modal next unselectable" (click)=nextPage() routerLink="./" [fragment]="'content-wrapper'">&raquo;</a>
+                <a class="modal next unselectable" (click)=nextPage(true)>&raquo;</a>
             </div>
         </div>
         
