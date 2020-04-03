@@ -37,9 +37,9 @@
         </div>
         <div class="pagination pag-bottom">
             <div class="paginator">
-                <a class="modal prev unselectable" (click)=prevPage() href="#content-wrapper">&laquo;</a>
+                <a class="modal prev unselectable" (click)=prevPage() routerLink="./" [fragment]="'content-wrapper'">&laquo;</a>
                 <div class="modal pages">{{currentPage}} / {{totalPages}}</div>
-                <a class="modal next unselectable" (click)=nextPage() href="#content-wrapper">&raquo;</a>
+                <a class="modal next unselectable" (click)=nextPage() routerLink="./" [fragment]="'content-wrapper'">&raquo;</a>
             </div>
         </div>
         
