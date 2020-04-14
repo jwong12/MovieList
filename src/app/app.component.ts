@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-    
+    searchKeywords: string;
+
+    search() {
+        console.log(this.searchKeywords.trim());
+    }
 }

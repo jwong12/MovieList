@@ -16,6 +16,7 @@ app-sticky-header {
     color: $nav-color;
     width: 100%;
     z-index: 990;
+    pointer-events: initial;
     
     #nav-bar {
         display: flex;

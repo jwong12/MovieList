@@ -7,9 +7,9 @@
             </div>
             <div id="search-wrapper">
                 <div id="search">
-                    <input type="text" id="search-bar" placeholder="Search...">
+                    <input type="text" id="search-bar" placeholder="Search..." [(ngModel)]="searchKeywords">
                     <button id="search-btn">
-                        <img src="../assets/images/search.svg" alt="search icon">
+                        <img src="../assets/images/search.svg" alt="search icon" (click)="this.search()">
                     </button>
                 </div>
             </div>
