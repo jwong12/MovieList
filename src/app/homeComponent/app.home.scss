@@ -91,8 +91,8 @@
     }
 
     .movie-wrapper {
-        display: inline-flex;
-        height: 388px;
+        display: inline-block;
+        height: 363px;
         margin: 10px 0;
         
         .movie { 
@@ -107,12 +107,13 @@
             .movie-img {
                 width: 185px;
                 height: 277px;
-                filter: brightness(80%);    
+                filter: brightness(80%);
             }
         
             .movie-description{
+                height: 65px;
                 margin: 0px;
-                padding: 3px 5px 8px 8px;
+                padding: 5px 5px 8px 8px;
                 z-index: 989;
                 
                 .movie-header{
@@ -131,19 +132,6 @@
                     .release {
                         font-size: 16px;
                         padding-bottom: 2px;
-                    }
-
-                    .rating {
-                        font-size: 16px;
-                        padding-bottom: 3px;
-
-                        #rating{
-                            color: Chocolate;
-                        }
-        
-                        #likes {
-                            color: dodgerblue;
-                        }
                     }
                 }
             }
