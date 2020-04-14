@@ -15,7 +15,7 @@ import { WatchListComponent } from './watchListComponent/app.watchList';
 import { AboutComponent }   from './app.about';
 import { StickyHeaderComponent } from './headerComponent/app.stickyHeader';
 import { PageDefault }      from './app.pagedefault';
-import { MovieImages }      from './app.movieImages';
+import { MovieImages }      from './directives/app.movieImages';
 
 @NgModule({
   declarations: [
