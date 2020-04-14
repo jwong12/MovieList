@@ -41,6 +41,7 @@ export class HomeComponent {
             this.currentPage = data.page;
             this.totalPages = data.total_pages;
             this.totalMovies = data.total_results;
+            this.formatDescription();
           }, 
           error =>{
             alert(error);
@@ -62,33 +63,29 @@ export class HomeComponent {
         })
     }
 
-    formatDescription(title) {
-        if (title.length > 40) {
-            const movieTitles = document.querySelectorAll('.movie-title') as NodeListOf<HTMLElement>;
+    formatDescription() {
+        for(let i = 0; i < this.movieArray.length; i++) {
+            const titleLength = this.movieArray[i].title.length;
 
-            for(let i = 0; i < movieTitles.length; i++) {
-                if(movieTitles[i].textContent === title) {
-                    movieTitles[i].style.fontSize = '14px';
-                }
-            }
-        } else if (title.length > 32) {
-            const movieTitles = document.querySelectorAll('.movie-title') as NodeListOf<HTMLElement>;
+            if (titleLength > 53) {
+                this.movieArray[i].titleFontSize = '12px';
+                    
+            } else if (titleLength > 50) {
+                this.movieArray[i].titleFontSize = '13px';
+                    
+            } else if (titleLength > 40) {
+                this.movieArray[i].titleFontSize = '14px';
+                    
+            } else if (titleLength > 32) {
+                this.movieArray[i].titleFontSize = '15px';
 
-            for(let i = 0; i < movieTitles.length; i++) {
-                if(movieTitles[i].textContent === title) {
-                    movieTitles[i].style.fontSize = '15px';
-                }
-            }
-        } else if (title.length > 21) {
-            const movieTitles = document.querySelectorAll('.movie-title') as NodeListOf<HTMLElement>;
+            } else if (titleLength > 21) {
+                this.movieArray[i].titleFontSize = '16px';
 
-            for(let i = 0; i < movieTitles.length; i++) {
-                if(movieTitles[i].textContent === title) {
-                    movieTitles[i].style.fontSize = '16px';
-                }
+            } else {
+                this.movieArray[i].titleFontSize = '17px';
             }
         }
-        return title;
     }
 
     formatDate(date) {

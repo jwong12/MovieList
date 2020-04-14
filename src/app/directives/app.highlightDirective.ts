@@ -14,7 +14,7 @@ export class HighlightDirective {
 
     @HostListener('mouseleave') 
     onMouseLeave() {
-        this.highlight("1px solid rgb(167, 165, 165)", "6px 10px", "0 3px 5px 0 rgb(0, 0, 0, 0.2)", "#0820a8de", "brightness(90%)");
+        this.highlight("1px solid rgb(167, 165, 165)", "6px 10px", "0 3px 5px 0 rgb(0, 0, 0, 0.2)", "rgba(19, 33, 113, 0.93)", "brightness(90%)");
     }
 
     private highlight(attr: string, margin: string, shadow: string, color: string, brightness: string) {
