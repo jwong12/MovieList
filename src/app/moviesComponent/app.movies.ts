@@ -26,25 +26,25 @@ export class MoviesComponent {
     totalPages: number;
     totalMovies: number;
     _searchText: string;
+    isSearched: boolean;
 
     @Input() set searchText(value: string) {
-        this._searchText = value;
+        this._searchText = value.toUpperCase();
         if(this.searchText !== null && this.searchText !== undefined) {
             let param = '';
 
-            [...this._searchText].forEach(char => {
+            [...value].forEach(char => {
                 if(char === ' ') {
                     param += '-'
                 } else {
                     param += char;
                 }
             });
+
             const searchURL = this.movieAPI.getSearchURL() + param;
             this.getMovies(searchURL);
             this.getGenres(this.movieAPI.getGenreURL());
-            
-            console.log("child: " + this._searchText);
-            console.log(searchURL);
+            this.isSearched = true; 
         }
     }
 
@@ -54,12 +54,14 @@ export class MoviesComponent {
 
     constructor(private _http: HttpClient, private scroller: ViewportScroller, private movieAPI: MovieURLService, private modalService: ModalService) {
         this.title = "Recent Movies";
+        this.movieArray = [];
     }
 
     ngOnInit() {
         if(this.searchText === null || this.searchText === undefined) {
             this.getMovies(this.movieAPI.getRecentMoviesURL());
             this.getGenres(this.movieAPI.getGenreURL());
+            this.isSearched = false; 
         }
     }    
 
@@ -96,11 +98,14 @@ export class MoviesComponent {
         for(let i = 0; i < this.movieArray.length; i++) {
             const titleLength = this.movieArray[i].title.length;
 
-            if (titleLength > 53) {
-                this.movieArray[i].titleFontSize = '12px';
-                    
-            } else if (titleLength > 50) {
-                this.movieArray[i].titleFontSize = '13px';
+            if (titleLength > 46) {
+                for(let j = 43; j < this.movieArray[i].title.length; j++) {
+                    if(this.movieArray[i].title.charAt(j).match(/ /g)) {
+                        this.movieArray[i].title = this.movieArray[i].title.slice(0, j) + '...';
+                        break;
+                    }
+                }
+                this.movieArray[i].titleFontSize = '14px';
                     
             } else if (titleLength > 40) {
                 this.movieArray[i].titleFontSize = '14px';
@@ -112,7 +117,7 @@ export class MoviesComponent {
                 this.movieArray[i].titleFontSize = '16px';
 
             } else {
-                this.movieArray[i].titleFontSize = '17px';
+                this.movieArray[i].titleFontSize = '16px';
             }
         }
     }
@@ -168,10 +173,10 @@ export class MoviesComponent {
 
         } else {
             this.genreSelect = genreSel;
-            console.log(genreSel)
-            console.log(this.genreSelect)
             this.title = this.genreSelect.name;
             this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, 1));
         }
+
+        this.isSearched = false; 
     }
  }

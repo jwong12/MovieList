@@ -8,7 +8,6 @@ import { ActivatedRoute  } from '@angular/router';
 })
 
 export class ResultsComponent implements OnInit { 
-    keyword: string;
     query: string;
 
     constructor(private route: ActivatedRoute) {}
@@ -16,7 +15,6 @@ export class ResultsComponent implements OnInit {
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.query = params['search'];
-            this.keyword = this.query.toUpperCase();
         });
     }
 }
