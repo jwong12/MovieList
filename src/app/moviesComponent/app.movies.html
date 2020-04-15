@@ -1,3 +1,8 @@
+<div [ngStyle]="{'display':isSearched === true ? 'initial' : 'none'}">
+    <h2>SEARCH RESULTS FOR {{_searchText}}</h2>
+    <hr class="line">
+</div>
+
 <div id="content-wrapper">
     <div id="movie-content"><br/>   
         <div class="pagination">
@@ -8,12 +13,14 @@
                         [ngValue]="genre"
                     >{{genre.name}}</option>
                 </select>
-                <div id="total-results">Latest movies: {{totalMovies}}</div>
+                <div id="total-results">Results: {{totalMovies}} movies</div>
             </div>
-            <div class="paginator pag-top">
-                <a class="modal prev unselectable" (click)=prevPage(false)>&laquo;</a>
-                <div class="modal pages">{{currentPage}} / {{totalPages}}</div>
-                <a class="modal next unselectable" (click)=nextPage(false)>&raquo;</a>
+            <div [ngStyle]="{'display':this.movieArray.length === 0 ? 'none' : 'initial'}">
+                <div class="paginator pag-top">
+                    <a class="modal prev unselectable" (click)=prevPage(false)>&laquo;</a>
+                    <div class="modal pages">{{currentPage}} / {{totalPages}}</div>
+                    <a class="modal next unselectable" (click)=nextPage(false)>&raquo;</a>
+                </div>
             </div>
         </div>
         <div class="movie-wrapper" *ngFor="let movie of movieArray" >
@@ -34,11 +41,13 @@
                 </div> 
             </div>
         </div>
-        <div class="pagination pag-bottom">
-            <div class="paginator">
-                <a class="modal prev unselectable" (click)=prevPage(true)>&laquo;</a>
-                <div class="modal pages">{{currentPage}} / {{totalPages}}</div>
-                <a class="modal next unselectable" (click)=nextPage(true)>&raquo;</a>
+        <div [ngStyle]="{'display':this.movieArray.length === 0 ? 'none' : 'initial'}">
+            <div class="pagination pag-bottom">
+                <div class="paginator">
+                    <a class="modal prev unselectable" (click)=prevPage(true)>&laquo;</a>
+                    <div class="modal pages">{{currentPage}} / {{totalPages}}</div>
+                    <a class="modal next unselectable" (click)=nextPage(true)>&raquo;</a>
+                </div>
             </div>
         </div>
         

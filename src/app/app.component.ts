@@ -20,7 +20,9 @@ export class AppComponent {
 
     searchOnClick() {
         if(this.searchKeywords !== undefined && this.searchKeywords.trim() !== '') {
-            this.router.navigate(['/results', this.searchKeywords.trim()]);
+            let keyword = this.searchKeywords.trim();
+            this.router.navigate(['/results', keyword]);
+            this.searchKeywords = '';
         } 
     }
 }
