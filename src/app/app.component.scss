@@ -45,6 +45,7 @@ app-sticky-header {
                 -webkit-text-fill-color: transparent;
             }
         }
+
         #search-wrapper {
             margin: 20px;
 
@@ -79,6 +80,7 @@ app-sticky-header {
                     position: absolute;
                     top: 0;
                     right: -1px;
+                    cursor: pointer;
 
                     img {
                         width: 20px;

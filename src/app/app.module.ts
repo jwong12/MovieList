@@ -12,6 +12,7 @@ import { ModalModule } from './movieModal';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent }    from './homeComponent/app.home';
 import { WatchListComponent } from './watchListComponent/app.watchList';
+import { ResultsComponent }   from './resultsComponent/app.results';
 import { AboutComponent }   from './app.about';
 import { StickyHeaderComponent } from './headerComponent/app.stickyHeader';
 import { PageDefault }      from './app.pagedefault';
@@ -22,6 +23,7 @@ import { MovieImages }      from './directives/app.movieImages';
     AppComponent, 
     HomeComponent, 
     WatchListComponent,
+    ResultsComponent,
     AboutComponent, 
     StickyHeaderComponent,
     PageDefault, 

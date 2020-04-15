@@ -7,15 +7,22 @@
             </div>
             <div id="search-wrapper">
                 <div id="search">
-                    <input type="text" id="search-bar" placeholder="Search..." [(ngModel)]="searchKeywords">
-                    <button id="search-btn">
-                        <img src="../assets/images/search.svg" alt="search icon" (click)="this.search()">
+                    <input 
+                        type="text" 
+                        id="search-bar" 
+                        placeholder="Search..." 
+                        [(ngModel)]="searchKeywords"
+                        (keypress)="this.searchOnKeyPress($event)"
+                    >
+                    <button id="search-btn" (click)="this.searchOnClick()">
+                        <img src="../assets/images/search.svg" alt="search icon">
                     </button>
                 </div>
             </div>
             <nav>
                 <a routerLink="/" routerLinkActive="active">Home</a>
                 <a routerLink="/watchlist" routerLinkActive="active">Watch List</a>
+                <a routerLink="/results" routerLinkActive="active">Results</a>
                 <a routerLink="/about" routerLinkActive="active">Logout</a>
             </nav>  
         </div> 

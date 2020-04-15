@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-  
+import { Router } from "@angular/router";
+
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
@@ -9,7 +10,17 @@ import { Component } from '@angular/core';
 export class AppComponent {
     searchKeywords: string;
 
-    search() {
-        console.log(this.searchKeywords.trim());
+    constructor(private router: Router) {}
+
+    searchOnKeyPress(e: KeyboardEvent) {
+        if(e.key === "Enter") {
+            this.searchOnClick();
+        }        
+    }
+
+    searchOnClick() {
+        if(this.searchKeywords !== undefined && this.searchKeywords.trim() !== '') {
+            this.router.navigate(['/results', this.searchKeywords.trim()]);
+        } 
     }
 }
