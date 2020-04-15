@@ -145,7 +145,7 @@ export class MoviesComponent {
             }
 
             if(isBottom) {
-                this.scroller.scrollToAnchor('content-wrapper');
+                this.scroller.scrollToAnchor('goto-block');
             }
         }
     }
@@ -160,7 +160,7 @@ export class MoviesComponent {
             }
 
             if(isBottom) {
-                this.scroller.scrollToAnchor('content-wrapper');
+                this.scroller.scrollToAnchor('goto-block');
             }
         }
     }
