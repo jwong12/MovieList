@@ -105,6 +105,7 @@
             cursor: pointer;
 
             .movie-img {
+                position: relative;
                 width: 185px;
                 height: 277px;
                 filter: brightness(80%);
@@ -124,14 +125,14 @@
 
                         h3 {
                             display:inline;
-                            color: rgba(19, 33, 113, 0.93);
+                            color: rgba(43, 54, 115, 0.93);
                             font-size: 17px;
                         }
                     }
         
                     .release {
+                        color: #333333;
                         font-size: 16px;
-                        padding-bottom: 2px;
                     }
                 }
             }
@@ -159,11 +160,12 @@
 
 #close-icon {
     position: relative;
+    z-index: 1001;
+    padding: 5px;
+    cursor: pointer;
 
     img {
         position: absolute;
-        cursor: pointer;
-        padding: 5px;
     }
 }
 
@@ -180,11 +182,17 @@
         }
     }
 
-    #close-icon img {
+    #close-icon {
         width: 12px;
+        height: 12px;
         top: 20px;
         right: 20px;
+
+        img {
+            width: 12px;
+        }
     }
+     
 
     .pag-top{
         margin-top: 25px;
@@ -200,10 +208,15 @@
         width: 602px;
     }
 
-    #close-icon img {
+    #close-icon {
         width: 14px;
+        height: 14px;
         top: 25px;
         right: 25px;
+
+        img {
+            width: 14px;
+        }
     }
 }
 
@@ -216,7 +229,7 @@
         width: 808px;
     }
 
-    #close-icon img {
+    #close-icon {
         top: 30px;
         right: 30px;
     }
@@ -231,10 +244,15 @@
         width: 1014px;
     }
 
-    #close-icon img {
+    #close-icon {
+        width: 16px;
+        height: 16px;
         top: 35px;
         right: 35px;
-        width: 16px;
+
+        img {
+            width: 16px;
+        }
     }
 }
 

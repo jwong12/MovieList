@@ -1,4 +1,4 @@
-import { Component, Directive, ElementRef, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ViewportScroller } from '@angular/common';
 import { MovieURLService } from '../apiService/app.movieURLService';

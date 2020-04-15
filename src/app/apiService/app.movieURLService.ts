@@ -7,6 +7,10 @@ const GENRE_URL = 'https://api.themoviedb.org/3/genre/movie/list?api_key='
 const MOVIES_URL  = 'https://api.themoviedb.org/3/discover/movie?api_key='
                 + API_KEY;  
 
+const SEARCH_MOVIES_URL =  'https://api.themoviedb.org/3/search/movie?api_key='
+                + API_KEY
+                + '&query=';
+
 export class MovieURLService {
 
     constructor() {}
@@ -38,5 +42,9 @@ export class MovieURLService {
 
     getRecentMoviesURL(pageNumber: number = 1) {
         return MOVIES_URL + '&primary_release_date.gte=' + this.getDaysPassedDate() + '&primary_release_date.lte=' + this.getTodaysDate() + '&page=' + pageNumber;
+    }
+
+    getSearchURL() {
+        return SEARCH_MOVIES_URL;
     }
 }
