@@ -26,6 +26,7 @@ export class MoviesComponent {
     totalPages: number;
     totalMovies: number;
     _searchText: string;
+    parameter: string;
     isSearched: boolean;
 
     @Input() set searchText(value: string) {
@@ -45,6 +46,7 @@ export class MoviesComponent {
             this.getMovies(searchURL);
             this.getGenres(this.movieAPI.getGenreURL());
             this.isSearched = true; 
+            this.parameter = param;
         }
     }
 
@@ -137,7 +139,11 @@ export class MoviesComponent {
 
     nextPage(isBottom: boolean) {
         if(this.currentPage !== this.totalPages) {
-            if(this.genreSelect.id === 1) {
+            if(this.isSearched) {
+                const searchURL = this.movieAPI.getSearchURL() + this.parameter + '&page=' + ++this.currentPage;
+                this.getMovies(searchURL);
+
+            } else if(this.genreSelect.id === 1) {
                 this.getMovies(this.movieAPI.getRecentMoviesURL(++this.currentPage));
 
             } else {
@@ -152,7 +158,11 @@ export class MoviesComponent {
 
     prevPage(isBottom: boolean) {
         if(this.currentPage !== 1) {
-            if(this.genreSelect.id === 1) {
+            if(this.isSearched) {
+                const searchURL = this.movieAPI.getSearchURL() + this.parameter + '&page=' + --this.currentPage;
+                this.getMovies(searchURL);
+
+            } else if(this.genreSelect.id === 1) {
                 this.getMovies(this.movieAPI.getRecentMoviesURL(--this.currentPage));
 
             } else {
