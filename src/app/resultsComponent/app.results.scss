@@ -1,10 +1,18 @@
 
 #results-content{
-    height: 98vh;
-    background: rgba($color: #585858, $alpha: 1.0);
+    font-family: 'Source Sans Pro', arial, sans-serif;
+    min-height: 100vh;
+    background: #eae8e8;
     margin: 0;
 
+    #header-block {
+        height: 70px;
+    }
+
     h2 {
-        padding: 100px;
+        margin: 0;
+        padding-top: 30px;
+        color: #383838;
+        text-align: center;
     }
 }
