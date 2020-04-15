@@ -16,6 +16,7 @@ import { ResultsComponent }   from './resultsComponent/app.results';
 import { AboutComponent }   from './app.about';
 import { StickyHeaderComponent } from './headerComponent/app.stickyHeader';
 import { PageDefault }      from './app.pagedefault';
+import { MoviesComponent } from './moviesComponent/app.movies';
 import { MovieImages }      from './directives/app.movieImages';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { MovieImages }      from './directives/app.movieImages';
     AboutComponent, 
     StickyHeaderComponent,
     PageDefault, 
+    MoviesComponent,
     MovieImages, 
     HighlightDirective
   ],

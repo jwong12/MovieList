@@ -1,7 +1,11 @@
-#content {
-    height: 92vh;
+#watchlist-content {
+    height: 100vh;
+
+    #header-block {
+        height: 70px;
+    }
 
     h2 {
-        margin: 400px;
+        margin: 0;
     }
 }
