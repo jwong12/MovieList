@@ -125,8 +125,10 @@ export class MoviesComponent {
     }
 
     formatDate(date) {
-        const month = MONTHS[parseInt(date.slice(5,7))-1];
-        return month + ' ' + date.slice(8) + ', ' + date.slice(0,4);
+        if(date !== undefined) {
+            const month = MONTHS[parseInt(date.slice(5,7))-1];
+            return month + ' ' + date.slice(8) + ', ' + date.slice(0,4);
+        }
     }
 
     openModal(id: string, movie) {
