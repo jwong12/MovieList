@@ -45,7 +45,7 @@ enum Direction {
     
         scrollUp$.subscribe(() => (
             this.isVisible = true,
-            this.changeVisibility()
+            this.changeVisibility()            
         ));
         scrollDown.subscribe(() => (
             this.isVisible = false,
@@ -55,7 +55,7 @@ enum Direction {
 
     changeVisibility() {
         const headerHtml = document.getElementById('header') as HTMLElement;
-        
+
         if(!this.isVisible) {
             headerHtml.style.pointerEvents = 'none';
             headerHtml.style.opacity = '0';
@@ -65,12 +65,14 @@ enum Direction {
             headerHtml.style.transitionTimingFunction = 'ease-in';
 
         } else {
+            const links = document.getElementById("hidden-links") as HTMLElement;
+            links.style.display = "none";
             headerHtml.style.pointerEvents = 'initial';
             headerHtml.style.opacity = '1';
             headerHtml.style.transform = 'translateY(0)';
             headerHtml.style.transitionProperty = 'opacity, transform';
             headerHtml.style.transitionDuration = '200ms';
             headerHtml.style.transitionTimingFunction = 'ease-in';
-        }
+        }        
     }
 }

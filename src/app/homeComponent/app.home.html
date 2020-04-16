@@ -1,4 +1,16 @@
 <div id="feature">  
-            
+    <slideshow 
+            #slideshow
+            [height]="height"
+            [minHeight]="'525px'"
+            [autoPlay]="true"
+            [autoPlayInterval]="15000"
+            [showArrows]="true"
+            [showDots]="true"
+            [imageUrls]="imageUrls"
+            [lazyLoad]="imageUrls?.length > 1"
+            [autoPlayWaitForLazyLoad]="true"
+    >
+    </slideshow>
 </div> 
 <movies-directive></movies-directive>
