@@ -1,6 +1,6 @@
 $font-stack: 'Source Sans Pro', arial, sans-serif;
 $nav-bg: #032541;
-$nav-font: #f1f1f1;
+$nav-font: rgba(202, 130, 55, 0.93);
 $nav-font-hover: #b14545;
 $screen-sm-min: 576px;
 $screen-md-min: 768px;
@@ -58,17 +58,17 @@ app-sticky-header {
         width: 1200px; 
         
         #logo-wrapper {
-            margin-left: 5px;
+            margin-left: 2px;
             padding: 16px 0;
             
             @include sm {
                 display: flex;
                 padding: 11px 0;
-                margin-left: 10px;
+                margin-left: 5px;
             }
 
             @include lg {
-                margin-left: 15px;
+                margin-left: 12px;
             }
 
             @include xl {
@@ -142,13 +142,17 @@ app-sticky-header {
         }
 
         #search-wrapper {
-            margin: 20px;
+            margin: 20px 0 20px 8px;
 
             #search {
                 position: relative;
                 display: flex;
                 justify-content: center;
                 width: 250px;
+
+                @include lg {
+                    width: 350px;
+                }
 
                 #search-bar {
                     height: 31px;
@@ -187,43 +191,68 @@ app-sticky-header {
         }
 
         .topnav {
+            text-align: right;
+
             .icon {
-                color: $nav-font;
-                display: block;
-                padding: 22px;
+                margin-left: 39px;
 
                 @include rwd(829) {
                     display: none;
+                }
+
+                .fa-bars{
+                    color: rgba(195, 195, 195, 0.93);
+                    padding: 21px;
+                }
+
+                .fa-bars:hover {
+                    color: $nav-font;
                 }
             }            
 
             #hidden-links {
                 display: none;
-            }
+                text-align: left;
+                background-color: $nav-bg;
+
+                a {
+                    display: block;
+                    text-decoration: none;
+                    color: $nav-font;
+                    font-size: 16px;
+                    font-weight: 700;
+                    padding: 12px 18px;
+                    border-top: 1px solid rgba(209, 209, 209, 0.47);
+                }
+
+                a:hover{
+                    color: $nav-font-hover;
+                }
+            }            
+        }  
+
+        #routes {
+            display: none;
+
+            @include rwd(829) {
+                display: initial;
+                height: 75px;
+                line-height: 75px;
+                padding-right: 15px;
+
+                a {
+                    font-size: 18px;
+                    font-weight: 700;
+                    text-decoration: none;
+                    color: $nav-font;
+                    margin: 10px;
+                }
             
-            #routes {
-                display: none;
-
-                @include rwd(829) {
-                    display: initial;
-                    height: 75px;
-                    line-height: 75px;
-                    padding-right: 20px;
-
-                    a {
-                        font-size: 19px;
-                        font-weight: 700;
-                        text-decoration: none;
-                        color: $nav-font;
-                        margin: 13px;
-                    }
-                
-                    a:hover{
-                        color: $nav-font-hover;
-                    }
-                }   
-            }
-        }       
+                a:hover{
+                    color: $nav-font-hover;
+                }
+            }   
+        }     
     }
 }
 
