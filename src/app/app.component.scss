@@ -1,7 +1,41 @@
 $font-stack: 'Source Sans Pro', arial, sans-serif;
 $nav-bg: #032541;
-$nav-color: #f1f1f1;
-$nav-color-hover: #b14545;
+$nav-font: rgba(202, 130, 55, 0.93);
+$nav-font-hover: #b14545;
+$screen-sm-min: 576px;
+$screen-md-min: 768px;
+$screen-lg-min: 992px;
+$screen-xl-min: 1200px;
+
+@mixin sm {
+    @media (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+ }
+ 
+@mixin md {
+    @media (min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+ 
+@mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+ 
+@mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+}
+
+@mixin rwd($screen) {
+    @media (min-width: $screen+'px') {
+        @content;
+    }
+}
 
 app-sticky-header {
     z-index: 990;
@@ -13,7 +47,7 @@ app-sticky-header {
     justify-content: center;
     height: 75px;
     background-color: $nav-bg;
-    color: $nav-color;
+    color: $nav-font;
     width: 100%;
     z-index: 990;
     pointer-events: initial;
@@ -24,36 +58,101 @@ app-sticky-header {
         width: 1200px; 
         
         #logo-wrapper {
-            display: flex;
-            padding: 11px 22px;
+            margin-left: 2px;
+            padding: 16px 0;
+            
+            @include sm {
+                display: flex;
+                padding: 11px 0;
+                margin-left: 5px;
+            }
+
+            @include lg {
+                margin-left: 12px;
+            }
+
+            @include xl {
+                margin-left: 5px;
+            }
+            
+            @include rwd(1284) {
+                margin-left: 0;
+            }
 
             img {
-                width: 53px;
-                height: 53px;
+                vertical-align: middle;
+                width: 41px;
+                height: 41px;
+                margin: auto;
                 filter: brightness(80%);
+
+                @include sm {
+                    width: 43px;
+                    height: 43px;
+                }
+
+                @include rwd(829) {
+                    width: 46px;
+                    height: 46px;
+                }
+
+                @include lg {
+                    width: 50px;
+                    height: 50px;
+                }
             }
 
             h1 {
+                display:inline-block;
+                vertical-align: middle;
+                width: 73px;
+                font-size: 20px;
+                line-height: 21px;
                 margin: 0;
-                height: 53px;
-                line-height: 53px;
-                font-size: 30px;
                 font-weight: bold;
-                background: -webkit-linear-gradient(#0cb6e8, #18d66c);
+                background: -webkit-linear-gradient(180deg, #15b38b, #0cb6e8);
                 background-clip: text;
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
+
+                @include sm {
+                    display: initial;
+                    width: 100%;
+                    font-size: 22px;
+                    height: 52px;
+                    line-height: 52px;
+                    background: -webkit-linear-gradient(45deg,#0cb6e8, #15b38b);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+
+                @include md {
+                    font-size: 24px;
+                }
+
+                @include rwd(829) {
+                    font-size: 26px;
+                }
+
+                @include lg {
+                    font-size: 28px;
+                }                
             }
         }
 
         #search-wrapper {
-            margin: 20px;
+            margin: 20px 0 20px 8px;
 
             #search {
                 position: relative;
                 display: flex;
                 justify-content: center;
                 width: 250px;
+
+                @include lg {
+                    width: 350px;
+                }
 
                 #search-bar {
                     height: 31px;
@@ -91,23 +190,69 @@ app-sticky-header {
             }
         }
 
-        nav {
-            height: 75px;
-            line-height: 75px;
-            padding-right: 20px;
+        .topnav {
+            text-align: right;
 
-            a {
-                font-size: 19px;
-                font-weight: 700;
-                text-decoration: none;
-                color: $nav-color;
-                margin: 13px;
-            }
-        
-            a:hover{
-                color: $nav-color-hover;
-            }
-        }
+            .icon {
+                margin-left: 39px;
+
+                @include rwd(829) {
+                    display: none;
+                }
+
+                .fa-bars{
+                    color: rgba(195, 195, 195, 0.93);
+                    padding: 21px;
+                }
+
+                .fa-bars:hover {
+                    color: $nav-font;
+                }
+            }            
+
+            #hidden-links {
+                display: none;
+                text-align: left;
+                background-color: $nav-bg;
+
+                a {
+                    display: block;
+                    text-decoration: none;
+                    color: $nav-font;
+                    font-size: 16px;
+                    font-weight: 700;
+                    padding: 12px 18px;
+                    border-top: 1px solid rgba(209, 209, 209, 0.47);
+                }
+
+                a:hover{
+                    color: $nav-font-hover;
+                }
+            }            
+        }  
+
+        #routes {
+            display: none;
+
+            @include rwd(829) {
+                display: initial;
+                height: 75px;
+                line-height: 75px;
+                padding-right: 15px;
+
+                a {
+                    font-size: 18px;
+                    font-weight: 700;
+                    text-decoration: none;
+                    color: $nav-font;
+                    margin: 10px;
+                }
+            
+                a:hover{
+                    color: $nav-font-hover;
+                }
+            }   
+        }     
     }
 }
 
@@ -145,11 +290,5 @@ footer {
     #trademark {
         margin: auto;
         padding: 10px 0;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    #logo-wrapper h1 {
-        display: none;
     }
 }

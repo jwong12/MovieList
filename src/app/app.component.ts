@@ -25,4 +25,26 @@ export class AppComponent {
             this.searchKeywords = '';
         } 
     }
+
+    openNav() {
+        const links = document.getElementById("hidden-links") as HTMLElement;
+
+        if (links.style.display === "block") {
+            links.style.display = "none";
+        } else {
+            links.style.display = "block";
+        }
+    }
+
+    closeNav() {
+        const links = document.getElementById("hidden-links") as HTMLElement;
+        links.style.display = "none";
+    }
+
+    onResize(event: any) {
+        if(event.target.innerWidth > 817) {
+            const links = document.getElementById("hidden-links") as HTMLElement;
+            links.style.display = "none";
+        }
+    }
 }

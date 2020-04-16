@@ -19,11 +19,21 @@
                     </button>
                 </div>
             </div>
-            <nav>
+            <div class="topnav">
+                <a href="javascript:void(0);" class="icon" (click)="openNav()">
+                    <i class="fa fa-bars fa-2x"></i>
+                </a>
+                <nav id="hidden-links" (window:resize)="onResize($event)">
+                    <a routerLink="/" routerLinkActive="active" (click)="closeNav()">Home</a>
+                    <a routerLink="/watchlist" routerLinkActive="active" (click)="closeNav()">Watch List</a>
+                    <a routerLink="/about" routerLinkActive="active" (click)="closeNav()">Log Out</a>
+                </nav> 
+            </div> 
+            <nav id="routes">
                 <a routerLink="/" routerLinkActive="active">Home</a>
                 <a routerLink="/watchlist" routerLinkActive="active">Watch List</a>
-                <a routerLink="/about" routerLinkActive="active">Logout</a>
-            </nav>  
+                <a routerLink="/about" routerLinkActive="active">Log Out</a>
+            </nav> 
         </div> 
     </div>
 </app-sticky-header>
