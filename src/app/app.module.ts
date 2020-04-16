@@ -5,9 +5,10 @@ import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule }   from '@angular/forms';
-import { HighlightDirective }   from './directives/app.highlightDirective';
+import { FormsModule } from '@angular/forms';
+import { HighlightDirective } from './directives/app.highlightDirective';
 import { ModalModule } from './movieModal';
+import { SlideshowModule } from 'ng-simple-slideshow';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent }    from './homeComponent/app.home';
@@ -40,7 +41,8 @@ import { MovieImages }      from './directives/app.movieImages';
     AppRoutingModule, 
     FormsModule,
     AmplifyAngularModule,
-    ModalModule
+    ModalModule,
+    SlideshowModule
   ],
   providers: [
     AmplifyService

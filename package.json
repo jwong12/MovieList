@@ -21,6 +21,7 @@
     "@angular/router": "~8.2.7",
     "aws-amplify": "^2.2.6",
     "aws-amplify-angular": "^4.1.7",
+    "ng-simple-slideshow": "^1.2.9",
     "rxjs": "^6.3.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

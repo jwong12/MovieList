@@ -201,11 +201,11 @@ app-sticky-header {
                 }
 
                 .fa-bars{
-                    color: rgba(195, 195, 195, 0.93);
+                    color: rgba(232, 232, 232, 0.9);
                     padding: 21px;
                 }
 
-                .fa-bars:hover {
+                .fa-bars:active {
                     color: $nav-font;
                 }
             }            
@@ -222,10 +222,10 @@ app-sticky-header {
                     font-size: 16px;
                     font-weight: 700;
                     padding: 12px 18px;
-                    border-top: 1px solid rgba(209, 209, 209, 0.47);
+                    border-top: 1px solid rgba(93, 93, 93, 0.45);
                 }
 
-                a:hover{
+                a:active{
                     color: $nav-font-hover;
                 }
             }            
