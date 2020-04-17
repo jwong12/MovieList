@@ -1,13 +1,10 @@
 <div id="feature">  
     <div #imageShow class="slideshow">
-        
         {{getUrl(imageShow)}}
     </div>
-
     <div id="image-description">
         <h2 class="description">LATEST</h2>
         <h2 id="image-title">{{this.currentMovie.title}}</h2>
-        
     </div>
     <div class="left-arrow" (click)="previousSlide()">
         <img src="../../assets/images/arrow.svg" alt="Left arrow for slideshow"> 

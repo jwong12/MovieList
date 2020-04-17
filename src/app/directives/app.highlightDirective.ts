@@ -17,13 +17,13 @@ export class HighlightDirective {
         this.highlight("1px solid rgb(167, 165, 165)", "0 3px 5px 0 rgb(0, 0, 0, 0.2)", "rgba(43, 54, 115, 0.93)", "brightness(90%)", "rgba(220, 220, 220, 0.7)");
     }
 
-    private highlight(attr: string, shadow: string, color: string, brightness: string, starBackground: string) {
+    private highlight(border: string, shadow: string, color: string, brightness: string, starBackground: string) {
         const imgHtml = this.el.nativeElement.children[0].children[0].children[0] as HTMLElement;
         const starHtml = this.el.nativeElement.children[0].children[0].children[1] as HTMLElement;
         const titleHtml = this.el.nativeElement.children[1].children[0].children[0].children[0] as HTMLElement;
 
+        this.el.nativeElement.style.border = border;
         this.el.nativeElement.style.boxShadow = shadow;
-        this.el.nativeElement.style.border = attr;
         titleHtml.style.color = color;
         imgHtml.style.filter = brightness;
         starHtml.style.background = starBackground;

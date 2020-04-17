@@ -62,15 +62,24 @@ h2 {
 #content-wrapper {
     font-family: 'Source Sans Pro', arial, sans-serif;
     background-color: #eae8e8;
-    padding: 10px;  
-    width: 414px;
+    padding: 0;  
     border-radius: 6px;
     margin: auto;
     margin-bottom: 15px;
+
+    @include rwd(500) {
+        padding: 10px;  
+        width: 414px;
+    }
 }
 
 #movie-content {
+    text-align: center;
     padding: 0px;
+
+    @include rwd(500) {
+        text-align: unset;
+    }
 
     .pagination {
         display: flex;
@@ -145,6 +154,7 @@ h2 {
     }
 
     .movie-wrapper {
+        text-align: left;
         display: inline-block;
         height: 362px;
         margin: 10px 0;
@@ -233,7 +243,8 @@ h2 {
         display: initial;
         
         #total-results {
-            margin: 6px 4px;
+            margin: 6px 0px;
+            padding-left: 4px;
         }
     }
 
@@ -254,13 +265,23 @@ h2 {
     }
 }
 
-@media only screen and (min-width: 660px) {
+@media only screen and (max-width: 499px) {
+    .pagination {
+        width: 95%;
+    }
+}
+
+@include rwd(660) {
     #content-wrapper {
         width: 621px;
     }
 
     .pagination {
         width: 602px;
+    }
+
+    #total-results {
+        padding-left: 0;
     }
 
     #close-icon {
@@ -275,7 +296,7 @@ h2 {
     }
 }
 
-@media only screen and (min-width: 865px) {
+@include rwd(865) {
     #content-wrapper {
         width: 828px;
     }
@@ -290,7 +311,7 @@ h2 {
     }
 }
 
-@media only screen and (min-width: 1075px) {
+@include rwd(1075) {
     #content-wrapper {
         width: 1035px;
     }
@@ -311,7 +332,7 @@ h2 {
     }
 }
 
-@media only screen and (min-width: 1285px) {
+@include rwd(1285) {
     #content-wrapper {
         width: 1242px;
     }

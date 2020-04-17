@@ -59,8 +59,12 @@ app-sticky-header {
 
         #logo-wrapper {
             display: flex;
-            margin-left: 2px;
+            margin-left: 8px;
             padding: 16px 0;
+
+            @include rwd(500) {
+                margin-left: 2px;
+            }
 
             @include sm {
                 padding: 11px 0;
@@ -146,7 +150,11 @@ app-sticky-header {
         }
 
         #search-wrapper {
-            margin: 20px 0 20px 5px;
+            margin: 20px 0 20px 8px;
+
+            @include rwd(500) {
+                margin: 20px 0 20px 5px;
+            }
 
             #search {
                 position: relative;
@@ -159,7 +167,7 @@ app-sticky-header {
                 } 
 
                 @include lg {
-                    width: 350px;
+                    width: 330px;
                 }
 
                 #search-bar {
