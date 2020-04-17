@@ -55,14 +55,18 @@ app-sticky-header {
     #nav-bar {
         display: flex;
         justify-content: space-between;
-        width: 1200px; 
-        
+        width: 100%; 
+
         #logo-wrapper {
-            margin-left: 2px;
+            display: flex;
+            margin-left: 8px;
             padding: 16px 0;
-            
+
+            @include rwd(500) {
+                margin-left: 2px;
+            }
+
             @include sm {
-                display: flex;
                 padding: 11px 0;
                 margin-left: 5px;
             }
@@ -72,11 +76,11 @@ app-sticky-header {
             }
 
             @include xl {
-                margin-left: 5px;
+                margin-left: 20px;
             }
             
             @include rwd(1284) {
-                margin-left: 0;
+                margin-left: 30px;
             }
 
             img {
@@ -103,17 +107,21 @@ app-sticky-header {
             }
 
             h1 {
-                display:inline-block;
-                vertical-align: middle;
-                width: 73px;
-                font-size: 20px;
-                line-height: 21px;
-                margin: 0;
-                font-weight: bold;
-                background: -webkit-linear-gradient(180deg, #15b38b, #0cb6e8);
-                background-clip: text;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
+                display:none;
+
+                @include rwd(500) {
+                    display:inline-block;
+                    vertical-align: middle;
+                    width: 73px;
+                    font-size: 20px;
+                    line-height: 21px;
+                    margin: 0;
+                    font-weight: bold;
+                    background: -webkit-linear-gradient(180deg, #15b38b, #0cb6e8);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
 
                 @include sm {
                     display: initial;
@@ -142,16 +150,24 @@ app-sticky-header {
         }
 
         #search-wrapper {
-            margin: 20px 0 20px 5px;
+            margin: 20px 0 20px 8px;
+
+            @include rwd(500) {
+                margin: 20px 0 20px 5px;
+            }
 
             #search {
                 position: relative;
                 display: flex;
                 justify-content: center;
-                width: 250px;
+                width: 200px;
+
+                @include rwd(500) {
+                    width: 250px;
+                } 
 
                 @include lg {
-                    width: 350px;
+                    width: 330px;
                 }
 
                 #search-bar {
@@ -251,7 +267,15 @@ app-sticky-header {
                 a:hover{
                     color: $nav-font-hover;
                 }
-            }   
+            }  
+
+            @include lg {
+                padding-right: 20px;
+            }
+
+            @include xl {
+                padding-right: 30px;
+            }
         }     
     }
 }

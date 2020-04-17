@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MovieURLService } from '../apiService/app.movieURLService';
 
@@ -12,7 +12,12 @@ export class HomeComponent {
     moviesArray: Array<any>;
     movieUrls: Array<any>;
     currentMovie: any;
-    isImageLoaded: Boolean;
+    currentIndex: number;
+    isImageLoaded: boolean;
+
+    @ViewChild('currentImage', {static: false}) currentEl:ElementRef;
+    @ViewChild('prevImage', {static: false}) prevEl:ElementRef;
+    @ViewChild('nextImage', {static: false}) nextEl:ElementRef;
 
     constructor(private _http: HttpClient, private movieAPI: MovieURLService) {}
 
@@ -20,17 +25,14 @@ export class HomeComponent {
         this.currentMovie = {};
         this.getMovies(this.movieAPI.getRecentMoviesURL());
         this.isImageLoaded = false;
-        // this.currentMovie = {};
-        // this.currentMovie['url'] = 'https://image.tmdb.org/t/p/original/vw3zNfzvnVNF7nIjpiEgcdznfeC.jpg';
     } 
 
-    getUrl(div) {
+    getUrl() {
         if(!this.isImageLoaded && this.currentMovie.url !== undefined) {
             console.log(this.currentMovie);
-            console.log(div.style);
-            div.style.backgroundImage = "url(" + this.currentMovie.url + ")";
+            console.log(this.currentEl.nativeElement.style);
+            this.currentEl.nativeElement.style.backgroundImage = "url(" + this.currentMovie.url + ")";
             this.isImageLoaded = true;
-
         } 
     }
 
@@ -46,12 +48,14 @@ export class HomeComponent {
                     let obj = {};
                     obj['url'] = 'https://image.tmdb.org/t/p/original' + movie.backdrop_path;
                     obj['title'] = movie.title;
+                    obj['type'] = 'LATEST';
                     this.movieUrls.push(obj);
-                    // console.log(obj); //
                 }
             });
-            this.currentMovie = this.movieUrls[0];
-            // console.log(this.currentMovie); // 
+            if(this.movieUrls.length > 0) {
+                this.currentMovie = this.movieUrls[0];
+                this.currentIndex = 0;
+            }  
           }, 
           error =>{
             alert(error);
@@ -60,11 +64,26 @@ export class HomeComponent {
     }
 
     previousSlide() {
-        console.log('previous')
+        if(this.currentIndex === 0) {
+            this.currentIndex = this.movieUrls.length - 1;
+
+        } else {
+            this.currentIndex--;
+        }
+
+        this.currentMovie = this.movieUrls[this.currentIndex];
+        this.currentEl.nativeElement.style.backgroundImage = "url(" + this.currentMovie.url + ")";
     }
 
     nextSlide() {
-        console.log('next')
+        if(this.currentIndex === this.movieUrls.length - 1) {
+            this.currentIndex = 0;
 
+        } else {
+            this.currentIndex++;
+        }
+
+        this.currentMovie = this.movieUrls[this.currentIndex];
+        this.currentEl.nativeElement.style.backgroundImage = "url(" + this.currentMovie.url + ")";
     }
  }

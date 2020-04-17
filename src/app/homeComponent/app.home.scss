@@ -105,17 +105,98 @@ $screen-xl-min: 1200px;
     } 
     
     .slideshow {
-        height: 100vh;
-        width: 100%;
-        position:relative;
-        // background-image: url(https://image.tmdb.org/t/p/original/vw3zNfzvnVNF7nIjpiEgcdznfeC.jpg);
-        background-size: cover;
-        resize: both;
-        background-position: center;
-        background-repeat: no-repeat;
-        filter: brightness(0.5);
-        -webkit-filter:brightness(0.5);  
-        opacity: 0.9;          
+        overflow: hidden; 
+        // height: 50vh;
+        // width: 20%;
+        // position:relative;
+        // background-size: cover;
+        // resize: both;
+        // background-position: center;
+        // background-repeat: no-repeat;
+        // filter: brightness(0.5);
+        // -webkit-filter:brightness(0.5);  
+        // opacity: 0.9;   
+
+        // .class {
+        //     width: 50%; 
+        //     float: left;
+        // }
+
+        #slider {
+            display: flex;
+            position: relative;
+            width: 300%;
+            -webkit-animation: bubble 1.0s forwards; 
+            animation: 3s slideright forwards; 
+
+            #currImage {
+                height: 100vh;
+                width: 100%;
+                position:relative;
+                background-size: cover;
+                resize: both;
+                background-position: center;
+                background-repeat: no-repeat;
+                filter: brightness(0.5);
+                -webkit-filter:brightness(0.5);  
+                opacity: 0.9;  
+            }
+    
+            #prevImage {
+                height: 100vh;
+                width: 100%;
+                position:relative;
+                background-color: #404344;
+                background-size: cover;
+                resize: both;
+                background-position: center;
+                background-repeat: no-repeat;
+                filter: brightness(0.5);
+                -webkit-filter:brightness(0.5);  
+                opacity: 0.9; 
+            }
+    
+            #nextImage {
+                height: 100vh;
+                width: 100%;
+                position:relative;
+                background-color: #49e6c4;
+                background-size: cover;
+                resize: both;
+                background-position: center;
+                background-repeat: no-repeat;
+                filter: brightness(0.5);
+                -webkit-filter:brightness(0.5);  
+                opacity: 0.9; 
+            }
+        }
+
+        @keyframes slideleft {
+            0% { left: -100%; }
+            33% { left: -100%; }
+            66% { left: 0%; }
+            100% { left: 0%; }
+        }
+        @keyframes slideright {
+            0% { left: -100%; }
+            33% { left: -100%; }
+            66% { left: -200%; }
+            100% { left: -200%; }
+            // 80% { left: -200%; }
+            // 90% { left: -200%; }
+        }
+
+        // @keyframes slidy {
+        //     0% { left: 0%; }
+        //     20% { left: 0%; }
+        //     25% { left: -100%; }
+        //     45% { left: -100%; }
+        //     50% { left: -200%; }
+        //     70% { left: -200%; }
+        //     75% { left: -300%; }
+        //     95% { left: -300%; }
+        //     100% { left: -400%; }
+        // }        
     }
 
 }
