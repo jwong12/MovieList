@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HighlightDirective } from './directives/app.highlightDirective';
 import { ModalModule } from './movieModal';
-import { SlideshowModule } from 'ng-simple-slideshow';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent }    from './homeComponent/app.home';
@@ -41,8 +40,7 @@ import { MovieImages }      from './directives/app.movieImages';
     AppRoutingModule, 
     FormsModule,
     AmplifyAngularModule,
-    ModalModule,
-    SlideshowModule
+    ModalModule
   ],
   providers: [
     AmplifyService

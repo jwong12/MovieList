@@ -1,5 +1,121 @@
+$screen-sm-min: 576px;
+$screen-md-min: 768px;
+$screen-lg-min: 992px;
+$screen-xl-min: 1200px;
+
+@mixin sm {
+    @media (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+ 
+@mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+ 
+@mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+}
+
+@mixin rwd($screen) {
+    @media (min-width: $screen+'px') {
+        @content;
+    }
+}
+
 #feature {
-    //background: linear-gradient(rgba(230, 230, 230, 0.6), rgba(100, 102, 169, 0.6)) center center no-repeat, url(https://image.tmdb.org/t/p/original/xFxk4vnirOtUxpOEWgA1MCRfy6J.jpg) center top no-repeat rgb(255, 255, 255);
-    height: 100vh;
-    width: 100%;
+    #image-description {
+        position: absolute;
+        top: 75vh;
+        left: 5vw;
+        max-width: 345px;
+        color: #eae8e8;
+        background-color: #1784a5;
+        padding: 10px;
+
+        @include sm {
+            max-width: 345px;
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        .description {
+            font-weight:500;
+            font-size:16px;
+
+            @include lg {
+                font-size:22px;
+            }
+        }
+
+        #image-title {
+            font-weight: bold;
+            font-size:20px;
+
+            @include lg {
+                font-size:26px;
+            }
+        }
+    }
+
+    .left-arrow {
+        // background-color: aquamarine;
+        position: absolute;
+        top: 0vh;
+        left: 0vw;
+        width: 35px;
+        height: 100%;
+        cursor: pointer;
+
+        img{
+            position: absolute;
+            top: 50%;
+            filter: invert(100%) sepia(2%) saturate(119%) hue-rotate(282deg) brightness(113%) contrast(82%);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        } 
+    }
+
+    .right-arrow {
+        // background-color: aquamarine;
+        position: absolute;
+        top: 0vh;
+        right: 0vw;
+        width: 35px;
+        height: 100%;
+        cursor: pointer;
+
+        img {
+            position: absolute;
+            top: 50%;
+            filter: invert(100%) sepia(2%) saturate(119%) hue-rotate(282deg) brightness(113%) contrast(82%);   
+        }
+    } 
+    
+    .slideshow {
+        height: 100vh;
+        width: 100%;
+        position:relative;
+        // background-image: url(https://image.tmdb.org/t/p/original/vw3zNfzvnVNF7nIjpiEgcdznfeC.jpg);
+        background-size: cover;
+        resize: both;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: brightness(0.5);
+        -webkit-filter:brightness(0.5);  
+        opacity: 0.9;          
+    }
+
 }

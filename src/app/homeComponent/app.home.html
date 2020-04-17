@@ -1,16 +1,19 @@
 <div id="feature">  
-    <slideshow 
-            #slideshow
-            [height]="height"
-            [minHeight]="'525px'"
-            [autoPlay]="true"
-            [autoPlayInterval]="15000"
-            [showArrows]="true"
-            [showDots]="true"
-            [imageUrls]="imageUrls"
-            [lazyLoad]="imageUrls?.length > 1"
-            [autoPlayWaitForLazyLoad]="true"
-    >
-    </slideshow>
+    <div #imageShow class="slideshow">
+        
+        {{getUrl(imageShow)}}
+    </div>
+
+    <div id="image-description">
+        <h2 class="description">LATEST</h2>
+        <h2 id="image-title">{{this.currentMovie.title}}</h2>
+        
+    </div>
+    <div class="left-arrow" (click)="previousSlide()">
+        <img src="../../assets/images/arrow.svg" alt="Left arrow for slideshow"> 
+    </div>
+    <div class="right-arrow" (click)="nextSlide()">
+        <img src="../../assets/images/arrow.svg" alt="Right arrow for slideshow"> 
+    </div>
 </div> 
 <movies-directive></movies-directive>
