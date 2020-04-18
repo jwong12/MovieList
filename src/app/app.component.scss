@@ -174,13 +174,17 @@ app-sticky-header {
                 #search-bar {
                     height: 31px;
                     line-height: 27px;
-                    width: 70%;
+                    width: 68%;
                     border: none;
                     border-radius: 30px;
                     padding: 2px 60px 2px 10px;
                     font-size: 14px;
                     color: rgb(75, 74, 74);
                     outline: none;
+
+                    @include rwd(500) {
+                        width: 70%;
+                    } 
                 }
     
                 #search-btn {

@@ -39,12 +39,12 @@ export class HomeComponent {
           .subscribe(data => {
             this.movieUrls = [];
             this.moviesArray = data.results;
-            // console.log(this.moviesArray); // 
+            console.log(this.moviesArray); // 
 
             this.moviesArray.forEach((movie,index) =>{
                 if (this.movieUrls.length < 5 && movie.backdrop_path !== null && movie.vote_average > 4) {
-                    let obj = {};
-                    obj['url'] = 'https://image.tmdb.org/t/p/original' + movie.backdrop_path;
+                    let obj = {}; 
+                    obj['url'] = 'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path;
                     obj['title'] = movie.title;
                     obj['type'] = 'LATEST';
                     this.movieUrls.push(obj);
