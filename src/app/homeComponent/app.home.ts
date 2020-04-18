@@ -13,7 +13,6 @@ export class HomeComponent {
     movieUrls: Array<any>;
     currentMovie: any;
     currentIndex: number;
-    // isImageLoaded: boolean;
 
     @ViewChild('slider', {static: false}) sliderEl:ElementRef;
     @ViewChild('firstImage', {static: false}) firstEl:ElementRef;
@@ -27,24 +26,14 @@ export class HomeComponent {
     ngOnInit() {
         this.currentMovie = {};
         this.getMovies(this.movieAPI.getRecentMoviesURL());
-        // this.isImageLoaded = false;
     } 
-
-    getUrl() {
-        // if(!this.isImageLoaded && this.currentMovie.url !== undefined) {
-            // console.log(this.currentMovie);
-            // console.log(this.firstEl.nativeElement.style);
-            // this.currentEl.nativeElement.style.backgroundImage = "url(" + this.currentMovie.url + ")";
-            // this.isImageLoaded = true;
-        // } 
-    }
 
     getMovies(URL: string) {
         this._http.get<any>(URL)
           .subscribe(data => {
             this.movieUrls = [];
             this.moviesArray = data.results;
-            console.log(this.moviesArray); // 
+            // console.log(this.moviesArray); // 
 
             this.moviesArray.forEach((movie,index) =>{
                 if (this.movieUrls.length < 5 && movie.backdrop_path !== null && movie.vote_average > 4) {
@@ -80,53 +69,60 @@ export class HomeComponent {
     }
 
     previousSlide() {
-        if(this.currentIndex > 0) {
-            this.currentIndex--;
-
-        } else {
-            this.currentIndex = this.movieUrls.length - 1;
+        switch(this.currentIndex) {
+            case 0:
+                this.sliderEl.nativeElement.style.animation = "1s lslide-to-five forwards";
+                this.currentIndex = 4;
+                break;
+            case 1:
+                this.sliderEl.nativeElement.style.animation = "2s lslide-to-one forwards";
+                this.currentIndex--;
+                break;
+            case 2:
+                this.sliderEl.nativeElement.style.animation = "2s lslide-to-two forwards";
+                this.currentIndex--;
+                break;
+            case 3:
+                this.sliderEl.nativeElement.style.animation = "2s lslide-to-three forwards";
+                this.currentIndex--;
+                break;
+            case 4:
+                this.sliderEl.nativeElement.style.animation = "2s lslide-to-four forwards";
+                this.currentIndex--;
+                break;
+            default:
+                break;
         }
 
         this.currentMovie = this.movieUrls[this.currentIndex];
-
-        // if(this.currentIndex === 0) {
-        //     this.currentIndex = this.movieUrls.length - 1;
-
-        // } else {
-        //     this.currentIndex--;
-        // }
-
-        // this.currentMovie = this.movieUrls[this.currentIndex];
-        // this.currentEl.nativeElement.style.backgroundImage = "url(" + this.currentMovie.url + ")";
     }
 
     nextSlide() {
-        if(this.currentIndex < 4) {
-            this.currentIndex++;
-
-        } else {
-            this.currentIndex = 0;
+        switch(this.currentIndex) {
+            case 0:
+                this.sliderEl.nativeElement.style.animation = "2s rslide-to-two forwards";
+                this.currentIndex++;
+                break;
+            case 1:
+                this.sliderEl.nativeElement.style.animation = "2s rslide-to-three forwards";
+                this.currentIndex++;
+                break;
+            case 2:
+                this.sliderEl.nativeElement.style.animation = "2s rslide-to-four forwards";
+                this.currentIndex++;
+                break;
+            case 3:
+                this.sliderEl.nativeElement.style.animation = "2s rslide-to-five forwards";
+                this.currentIndex++;
+                break;
+            case 4:
+                this.sliderEl.nativeElement.style.animation = "1s rslide-to-one forwards";
+                this.currentIndex = 0;
+                break;
+            default:
+                break;
         }
 
-        this.currentMovie = this.movieUrls[this.currentIndex];
-
-        // this.sliderEl.nativeElement.style.animation = "2s slideright forwards";
-        // console.log(this.sliderEl.nativeElement.style.animation)
-        // const originalIndex = this.currentIndex;
-
-        // if(this.currentIndex === this.movieUrls.length - 1) {
-        //     this.currentIndex = 0;
-
-        // } else {
-        //     this.currentIndex++;
-        // }
-
-        // this.currentMovie = this.movieUrls[this.currentIndex];
-
-        // setTimeout(()=> {
-        //     // l
-
-        //     this.currentEl.nativeElement.style.backgroundImage = "url(" + this.currentMovie.url + ")";
-        // }, 2000);        
+        this.currentMovie = this.movieUrls[this.currentIndex];      
     }
  }
