@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MovieURLService } from '../apiService/app.movieURLService';
 
@@ -13,6 +13,12 @@ export class HomeComponent {
     movieUrls: Array<any>;
     currentMovie: any;
     currentIndex: number;
+    innerWidth: any;
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        this.innerWidth = window.innerWidth;
+    }
 
     @ViewChild('slider', {static: false}) sliderEl:ElementRef;
     @ViewChild('firstImage', {static: false}) firstEl:ElementRef;
@@ -75,19 +81,19 @@ export class HomeComponent {
                 this.currentIndex = 4;
                 break;
             case 1:
-                this.sliderEl.nativeElement.style.animation = "2s lslide-to-one forwards";
+                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s lslide-to-one forwards" : "2s lslide-to-one forwards");
                 this.currentIndex--;
                 break;
             case 2:
-                this.sliderEl.nativeElement.style.animation = "2s lslide-to-two forwards";
+                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s lslide-to-two forwards" : "2s lslide-to-two forwards");
                 this.currentIndex--;
                 break;
             case 3:
-                this.sliderEl.nativeElement.style.animation = "2s lslide-to-three forwards";
+                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s lslide-to-three forwards" : "2s lslide-to-three forwards");
                 this.currentIndex--;
                 break;
             case 4:
-                this.sliderEl.nativeElement.style.animation = "2s lslide-to-four forwards";
+                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s lslide-to-four forwards" : "2s lslide-to-four forwards");
                 this.currentIndex--;
                 break;
             default:
@@ -100,19 +106,19 @@ export class HomeComponent {
     nextSlide() {
         switch(this.currentIndex) {
             case 0:
-                this.sliderEl.nativeElement.style.animation = "2s rslide-to-two forwards";
+                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s rslide-to-two forwards" : "2s rslide-to-two forwards");
                 this.currentIndex++;
                 break;
             case 1:
-                this.sliderEl.nativeElement.style.animation = "2s rslide-to-three forwards";
+                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s rslide-to-three forwards" : "2s rslide-to-three forwards");
                 this.currentIndex++;
                 break;
             case 2:
-                this.sliderEl.nativeElement.style.animation = "2s rslide-to-four forwards";
+                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s rslide-to-four forwards" : "2s rslide-to-four forwards");
                 this.currentIndex++;
                 break;
             case 3:
-                this.sliderEl.nativeElement.style.animation = "2s rslide-to-five forwards";
+                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s rslide-to-five forwards" : "2s rslide-to-five forwards");
                 this.currentIndex++;
                 break;
             case 4:
