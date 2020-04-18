@@ -39,8 +39,8 @@ $screen-xl-min: 1200px;
         top: 75vh;
         left: 5vw;
         max-width: 345px;
-        color: #eae8e8;
-        background-color: #1784a5;
+        color: rgba(255, 255, 255, 0.95);
+        // background-color: #1784a5;
         padding: 10px;
 
         @include sm {
@@ -86,6 +86,10 @@ $screen-xl-min: 1200px;
             -webkit-transform: scaleX(-1);
             transform: scaleX(-1);
         } 
+
+        img::selection {
+            background: transparent;
+        }
     }
 
     .right-arrow {
@@ -102,20 +106,16 @@ $screen-xl-min: 1200px;
             top: 50%;
             filter: invert(100%) sepia(2%) saturate(119%) hue-rotate(282deg) brightness(113%) contrast(82%);   
         }
+
+        img::selection {
+            background: transparent;
+        }
     } 
     
     .slideshow {
         overflow: hidden; 
         // height: 50vh;
         // width: 20%;
-        // position:relative;
-        // background-size: cover;
-        // resize: both;
-        // background-position: center;
-        // background-repeat: no-repeat;
-        // filter: brightness(0.5);
-        // -webkit-filter:brightness(0.5);  
-        // opacity: 0.9;   
 
         // .class {
         //     width: 50%; 
@@ -125,11 +125,10 @@ $screen-xl-min: 1200px;
         #slider {
             display: flex;
             position: relative;
-            width: 300%;
-            -webkit-animation: bubble 1.0s forwards; 
-            animation: 3s slideright forwards; 
+            width: 500%;
+            animation: 20s slidy infinite; 
 
-            #currImage {
+            .image {
                 height: 100vh;
                 width: 100%;
                 position:relative;
@@ -137,66 +136,59 @@ $screen-xl-min: 1200px;
                 resize: both;
                 background-position: center;
                 background-repeat: no-repeat;
-                filter: brightness(0.5);
-                -webkit-filter:brightness(0.5);  
-                opacity: 0.9;  
+                filter: brightness(0.45);
+                -webkit-filter:brightness(0.4);  
+                opacity: 0.95; 
             }
+
+            // #firstImage {
+            // }
+
+            // #secondImage {
+            // }
     
-            #prevImage {
-                height: 100vh;
-                width: 100%;
-                position:relative;
-                background-color: #404344;
-                background-size: cover;
-                resize: both;
-                background-position: center;
-                background-repeat: no-repeat;
-                filter: brightness(0.5);
-                -webkit-filter:brightness(0.5);  
-                opacity: 0.9; 
-            }
+            // #thirdImage {
+            // }
     
-            #nextImage {
-                height: 100vh;
-                width: 100%;
-                position:relative;
-                background-color: #49e6c4;
-                background-size: cover;
-                resize: both;
-                background-position: center;
-                background-repeat: no-repeat;
-                filter: brightness(0.5);
-                -webkit-filter:brightness(0.5);  
-                opacity: 0.9; 
-            }
+            // #fourthImage {
+            // }
+
+            // #fifthImage {
+            // }
+        }
+
+        @keyframes neutralize {
+            0% { left: 0%; }
+            100% { left: -100%; }
         }
 
         @keyframes slideleft {
             0% { left: -100%; }
-            33% { left: -100%; }
-            66% { left: 0%; }
+            40% { left: -100%; }
+            60% { left: -200%; }
             100% { left: 0%; }
         }
+
         @keyframes slideright {
             0% { left: -100%; }
-            33% { left: -100%; }
-            66% { left: -200%; }
+            40% { left: -100%; }
+            60% { left: -200%; }
             100% { left: -200%; }
-            // 80% { left: -200%; }
-            // 90% { left: -200%; }
         }
 
-        // @keyframes slidy {
-        //     0% { left: 0%; }
-        //     20% { left: 0%; }
-        //     25% { left: -100%; }
-        //     45% { left: -100%; }
-        //     50% { left: -200%; }
-        //     70% { left: -200%; }
-        //     75% { left: -300%; }
-        //     95% { left: -300%; }
-        //     100% { left: -400%; }
-        // }        
+        @keyframes slidy {
+            0% { left: 0%; }
+            20% { left: 0%; }
+            33% { left: -100%; }
+            66% { left: -200%; }
+            25% { left: -100%; }
+            45% { left: -100%; }
+            50% { left: -200%; }
+            70% { left: -200%; }
+            75% { left: -300%; }
+            95% { left: -300%; }
+            100% { left: -400%; }
+        }        
     }
 
 }
