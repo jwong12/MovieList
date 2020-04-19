@@ -9,6 +9,7 @@ import { MovieURLService } from '../apiService/app.movieURLService';
 })
 
 export class HomeComponent {
+    genres: Array<any>
     moviesArray: Array<any>;
     movieUrls: Array<any>;
     currentMovie: any;
@@ -31,8 +32,20 @@ export class HomeComponent {
         this.currentMovie = {};
         this.leftArrowAnimToggle = false;
         this.rightArrowAnimToggle = false;
-        this.getMovies(this.movieAPI.getRecentMoviesURL());
+        this.getGenres(this.movieAPI.getGenreURL());
     } 
+
+    getGenres(URL: string) {
+        this._http.get<any>(URL)
+        .subscribe(data => {
+            this.genres = [...data.genres];
+            this.getMovies(this.movieAPI.getRecentMoviesURL());
+        }, 
+        error =>{
+          alert(error);
+          console.error(error)
+        })
+    }
 
     getMovies(URL: string) {
         this._http.get<any>(URL)
@@ -47,6 +60,16 @@ export class HomeComponent {
                     obj['url'] = 'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path;
                     obj['title'] = movie.title;
                     obj['type'] = 'LATEST';
+
+                    if(movie.genre_ids.length >= 0) {
+                        this.genres.forEach((item) => {
+                            if(item.id === movie.genre_ids[0]) {
+                                obj['caption'] = item.name + ' | ' + movie.vote_average + ' Rating';
+                                return;
+                            }
+                        });
+                    }
+
                     this.movieUrls.push(obj);
                 }
             });

@@ -42,29 +42,54 @@ $screen-xl-min: 1200px;
         color: rgba(255, 255, 255, 0.95);
         padding: 10px;
 
-        @include sm {
-            max-width: 345px;
+        @include md {
+            top: 66vh;
+            left: 8vw;
+            max-width: 440px;
+        }
+
+        @include lg {
+            top: 67vh;
+            left: 10vw;
+            max-width: 510px;
         }
 
         h2 {
             margin: 0;
+            padding: 4px 0;
+            
+            @include md {
+                padding: 5px 0;
+            }
+
+            @include lg {
+                padding: 6px 0;
+            }
         }
 
         .description {
             font-weight:500;
             font-size:16px;
 
+            @include md {
+                font-size:18px;
+            }
+
             @include lg {
-                font-size:22px;
+                font-size:20px;
             }
         }
 
         #image-title {
             font-weight: bold;
-            font-size:20px;
+            font-size:24px;
+
+            @include md {
+                font-size:26px;
+            }
 
             @include lg {
-                font-size:26px;
+                font-size:28px;
             }
         }
     }
