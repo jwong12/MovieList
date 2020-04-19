@@ -37,21 +37,23 @@ $screen-xl-min: 1200px;
     #image-description {
         position: absolute;
         top: 65vh;
-        left: 6vw;
+        left: 7vw;
         max-width: 345px;
-        color: rgba(255, 255, 255, 0.95);
-        padding: 10px;
+        color: rgba(255, 255, 255, 0.9);
+        padding: 10px 18px;
 
         @include md {
             top: 66vh;
             left: 8vw;
             max-width: 440px;
+            padding: 11px 19px;
         }
 
         @include lg {
             top: 67vh;
             left: 10vw;
             max-width: 510px;
+            padding: 12px 20px;
         }
 
         h2 {
@@ -77,6 +79,13 @@ $screen-xl-min: 1200px;
             @include md { font-size:26px; }
             @include lg { font-size:28px; }
         }
+    }
+
+    #image-description:hover {
+        background: rgba(45, 45, 45, 0.45);
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+        border-radius: 7px;
+        cursor: pointer;
     }
 
     .left-arrow {
@@ -107,8 +116,7 @@ $screen-xl-min: 1200px;
     }
 
     .left-arrow:hover {
-        background: rgba(59, 59, 59, 0.4);
-        backdrop-filter: blur(1px);
+        background: rgba(59, 59, 59, 0.2);
         border-radius: 15px;
     }
 
@@ -128,20 +136,17 @@ $screen-xl-min: 1200px;
             top: 46%;
             filter: invert(98%) sepia(1%) saturate(304%) hue-rotate(195deg) brightness(114%) contrast(82%);
             opacity: 0.5;
+
             @include sm { top: 45%; }
         }
 
-        img:hover{
-            opacity: 1;
-        }
         img::selection {
             background: transparent;
         }
     } 
 
     .right-arrow:hover {
-        background: rgba(59, 59, 59, 0.4);
-        backdrop-filter: blur(1px);
+        background: rgba(59, 59, 59, 0.2);
         border-radius: 15px;
     }
     
@@ -176,8 +181,8 @@ $screen-xl-min: 1200px;
                 backdrop-filter: blur(10px);
             }
             100% { 
-                background: rgba(59, 59, 59, 0.4);
-                backdrop-filter: blur(1px);
+                background: rgba(59, 59, 59, 0.2);
+                backdrop-filter: blur(0);
             }
         }
 
@@ -187,9 +192,19 @@ $screen-xl-min: 1200px;
                 backdrop-filter: blur(10px);
             }
             100% { 
-                background: rgba(59, 59, 59, 0.4);
-                backdrop-filter: blur(1px);
+                background: rgba(59, 59, 59, 0.2);
+                backdrop-filter: blur(0);
             }
+        }
+
+        @keyframes arrow-opacity-1 {
+            0% { opacity: 0.9; }
+            100% { opacity: 0.5; }
+        }
+
+        @keyframes arrow-opacity-2 {
+            0% { opacity: 0.9; }
+            100% { opacity: 0.5; }
         }
 
         @keyframes rslide-to-two {

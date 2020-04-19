@@ -13,11 +13,11 @@
         <h2 id="image-title">{{currentMovie.title}}</h2>
         <h2 class="description">{{currentMovie.caption}}</h2>
     </div>
-    <div #leftArrow class="left-arrow" (click)="previousSlide()">
-        <img src="../../assets/images/arrow.svg" alt="Left arrow for slideshow"> 
+    <div #leftArrowDiv class="left-arrow" (click)="previousSlide()">
+        <img #leftArrow src="../../assets/images/arrow.svg" alt="Left arrow for slideshow"> 
     </div>
-    <div #rightArrow class="right-arrow" (click)="nextSlide()">
-        <img src="../../assets/images/arrow.svg" alt="Right arrow for slideshow"> 
+    <div #rightArrowDiv class="right-arrow" (click)="nextSlide()">
+        <img #rightArrow src="../../assets/images/arrow.svg" alt="Right arrow for slideshow"> 
     </div>
 </div> 
 <movies-directive></movies-directive>

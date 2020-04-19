@@ -23,6 +23,8 @@ export class HomeComponent {
     @ViewChild('thirdImage', {static: false}) thirdEl:ElementRef;
     @ViewChild('fourthImage', {static: false}) fourthEl:ElementRef;
     @ViewChild('fifthImage', {static: false}) fifthEl:ElementRef;
+    @ViewChild('leftArrowDiv', {static: false}) leftArrowDivEl:ElementRef;
+    @ViewChild('rightArrowDiv', {static: false}) rightArrowDivEl:ElementRef;
     @ViewChild('leftArrow', {static: false}) leftArrowEl:ElementRef;
     @ViewChild('rightArrow', {static: false}) rightArrowEl:ElementRef;
 
@@ -52,7 +54,6 @@ export class HomeComponent {
           .subscribe(data => {
             this.movieUrls = [];
             this.moviesArray = data.results;
-            console.log(this.moviesArray); // 
 
             this.moviesArray.forEach((movie,index) =>{
                 if (this.movieUrls.length < 5 && movie.backdrop_path !== null && movie.vote_average > 4) {
@@ -78,8 +79,6 @@ export class HomeComponent {
                 let j = Math.floor(Math.random() * (i + 1));
                 [this.movieUrls[i], this.movieUrls[j]] = [this.movieUrls[j], this.movieUrls[i]];
             }
-
-            console.log(this.movieUrls); // 
 
             if(this.movieUrls.length === 5) {
                 this.currentIndex = 0;
@@ -127,11 +126,13 @@ export class HomeComponent {
         this.currentMovie = this.movieUrls[this.currentIndex];
 
         if(this.leftArrowAnimToggle) {
-            this.leftArrowEl.nativeElement.style.animation = "arrow-effect-1 500ms 1";
+            this.leftArrowDivEl.nativeElement.style.animation = "arrow-effect-1 500ms 1";
+            this.leftArrowEl.nativeElement.style.animation = "arrow-opacity-1 500ms 1";
             this.leftArrowAnimToggle = false;
 
         } else {
-            this.leftArrowEl.nativeElement.style.animation = "arrow-effect-2 500ms 1";
+            this.leftArrowDivEl.nativeElement.style.animation = "arrow-effect-2 500ms 1";
+            this.leftArrowEl.nativeElement.style.animation = "arrow-opacity-2 500ms 1";
             this.leftArrowAnimToggle = true;
         }
     }
@@ -166,11 +167,13 @@ export class HomeComponent {
         this.currentMovie = this.movieUrls[this.currentIndex];     
         
         if(this.rightArrowAnimToggle) {
-            this.rightArrowEl.nativeElement.style.animation = "arrow-effect-1 500ms 1";
+            this.rightArrowDivEl.nativeElement.style.animation = "arrow-effect-1 500ms 1";
+            this.rightArrowEl.nativeElement.style.animation = "arrow-opacity-1 500ms 1";
             this.rightArrowAnimToggle = false;
 
         } else {
-            this.rightArrowEl.nativeElement.style.animation = "arrow-effect-2 500ms 1";
+            this.rightArrowDivEl.nativeElement.style.animation = "arrow-effect-2 500ms 1";
+            this.rightArrowEl.nativeElement.style.animation = "arrow-opacity-2 500ms 1";
             this.rightArrowAnimToggle = true;
         }
     }
