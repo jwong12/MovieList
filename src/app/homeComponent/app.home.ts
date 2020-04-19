@@ -9,16 +9,13 @@ import { MovieURLService } from '../apiService/app.movieURLService';
 })
 
 export class HomeComponent {
+    genres: Array<any>
     moviesArray: Array<any>;
     movieUrls: Array<any>;
     currentMovie: any;
     currentIndex: number;
-    innerWidth: any;
-
-    @HostListener('window:resize', ['$event'])
-    onResize(event) {
-        this.innerWidth = window.innerWidth;
-    }
+    leftArrowAnimToggle: boolean;
+    rightArrowAnimToggle: boolean;
 
     @ViewChild('slider', {static: false}) sliderEl:ElementRef;
     @ViewChild('firstImage', {static: false}) firstEl:ElementRef;
@@ -26,13 +23,29 @@ export class HomeComponent {
     @ViewChild('thirdImage', {static: false}) thirdEl:ElementRef;
     @ViewChild('fourthImage', {static: false}) fourthEl:ElementRef;
     @ViewChild('fifthImage', {static: false}) fifthEl:ElementRef;
+    @ViewChild('leftArrow', {static: false}) leftArrowEl:ElementRef;
+    @ViewChild('rightArrow', {static: false}) rightArrowEl:ElementRef;
 
     constructor(private _http: HttpClient, private movieAPI: MovieURLService) {}
 
     ngOnInit() {
         this.currentMovie = {};
-        this.getMovies(this.movieAPI.getRecentMoviesURL());
+        this.leftArrowAnimToggle = false;
+        this.rightArrowAnimToggle = false;
+        this.getGenres(this.movieAPI.getGenreURL());
     } 
+
+    getGenres(URL: string) {
+        this._http.get<any>(URL)
+        .subscribe(data => {
+            this.genres = [...data.genres];
+            this.getMovies(this.movieAPI.getRecentMoviesURL());
+        }, 
+        error =>{
+          alert(error);
+          console.error(error)
+        })
+    }
 
     getMovies(URL: string) {
         this._http.get<any>(URL)
@@ -47,6 +60,16 @@ export class HomeComponent {
                     obj['url'] = 'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path;
                     obj['title'] = movie.title;
                     obj['type'] = 'LATEST';
+
+                    if(movie.genre_ids.length >= 0) {
+                        this.genres.forEach((item) => {
+                            if(item.id === movie.genre_ids[0]) {
+                                obj['caption'] = item.name + ' | ' + movie.vote_average + ' Rating';
+                                return;
+                            }
+                        });
+                    }
+
                     this.movieUrls.push(obj);
                 }
             });
@@ -77,23 +100,24 @@ export class HomeComponent {
     previousSlide() {
         switch(this.currentIndex) {
             case 0:
-                this.sliderEl.nativeElement.style.animation = "1s lslide-to-five forwards";
+                this.sliderEl.nativeElement.style.animationName = "lslide-to-five";
+                this.sliderEl.nativeElement.style.animationDuration = "300ms";
                 this.currentIndex = 4;
                 break;
             case 1:
-                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s lslide-to-one forwards" : "2s lslide-to-one forwards");
+                this.sliderEl.nativeElement.style.animationName = "lslide-to-one";
                 this.currentIndex--;
                 break;
             case 2:
-                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s lslide-to-two forwards" : "2s lslide-to-two forwards");
+                this.sliderEl.nativeElement.style.animationName = "lslide-to-two";
                 this.currentIndex--;
                 break;
             case 3:
-                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s lslide-to-three forwards" : "2s lslide-to-three forwards");
+                this.sliderEl.nativeElement.style.animationName = "lslide-to-three";
                 this.currentIndex--;
                 break;
             case 4:
-                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s lslide-to-four forwards" : "2s lslide-to-four forwards");
+                this.sliderEl.nativeElement.style.animationName = "lslide-to-four";
                 this.currentIndex--;
                 break;
             default:
@@ -101,34 +125,53 @@ export class HomeComponent {
         }
 
         this.currentMovie = this.movieUrls[this.currentIndex];
+
+        if(this.leftArrowAnimToggle) {
+            this.leftArrowEl.nativeElement.style.animation = "arrow-effect-1 500ms 1";
+            this.leftArrowAnimToggle = false;
+
+        } else {
+            this.leftArrowEl.nativeElement.style.animation = "arrow-effect-2 500ms 1";
+            this.leftArrowAnimToggle = true;
+        }
     }
 
     nextSlide() {
         switch(this.currentIndex) {
             case 0:
-                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s rslide-to-two forwards" : "2s rslide-to-two forwards");
+                this.sliderEl.nativeElement.style.animationName = "rslide-to-two";
                 this.currentIndex++;
                 break;
             case 1:
-                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s rslide-to-three forwards" : "2s rslide-to-three forwards");
+                this.sliderEl.nativeElement.style.animationName = "rslide-to-three";
                 this.currentIndex++;
                 break;
             case 2:
-                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s rslide-to-four forwards" : "2s rslide-to-four forwards");
+                this.sliderEl.nativeElement.style.animationName = "rslide-to-four";
                 this.currentIndex++;
                 break;
             case 3:
-                this.sliderEl.nativeElement.style.animation = (this.innerWidth < 768 ? "1s rslide-to-five forwards" : "2s rslide-to-five forwards");
+                this.sliderEl.nativeElement.style.animationName = "rslide-to-five";
                 this.currentIndex++;
                 break;
             case 4:
-                this.sliderEl.nativeElement.style.animation = "1s rslide-to-one forwards";
+                this.sliderEl.nativeElement.style.animationName = "rslide-to-one";
+                this.sliderEl.nativeElement.style.animationDuration = "300ms";
                 this.currentIndex = 0;
                 break;
             default:
                 break;
         }
 
-        this.currentMovie = this.movieUrls[this.currentIndex];      
+        this.currentMovie = this.movieUrls[this.currentIndex];     
+        
+        if(this.rightArrowAnimToggle) {
+            this.rightArrowEl.nativeElement.style.animation = "arrow-effect-1 500ms 1";
+            this.rightArrowAnimToggle = false;
+
+        } else {
+            this.rightArrowEl.nativeElement.style.animation = "arrow-effect-2 500ms 1";
+            this.rightArrowAnimToggle = true;
+        }
     }
  }

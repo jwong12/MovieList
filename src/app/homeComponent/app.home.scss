@@ -37,53 +37,68 @@ $screen-xl-min: 1200px;
     #image-description {
         position: absolute;
         top: 65vh;
-        left: 5vw;
+        left: 6vw;
         max-width: 345px;
         color: rgba(255, 255, 255, 0.95);
         padding: 10px;
 
-        @include sm {
-            max-width: 345px;
+        @include md {
+            top: 66vh;
+            left: 8vw;
+            max-width: 440px;
+        }
+
+        @include lg {
+            top: 67vh;
+            left: 10vw;
+            max-width: 510px;
         }
 
         h2 {
             margin: 0;
+            padding: 4px 0;
+            
+            @include md { padding: 5px 0; }
+            @include lg { padding: 6px 0; }
         }
 
         .description {
             font-weight:500;
             font-size:16px;
 
-            @include lg {
-                font-size:22px;
-            }
+            @include md { font-size:18px; }
+            @include lg { font-size:20px; }
         }
 
         #image-title {
             font-weight: bold;
-            font-size:20px;
+            font-size:24px;
 
-            @include lg {
-                font-size:26px;
-            }
+            @include md { font-size:26px; }
+            @include lg { font-size:28px; }
         }
     }
 
     .left-arrow {
-        // background-color: aquamarine;
         position: absolute;
-        top: 0vh;
+        top: 9vh;
         left: 0vw;
         width: 35px;
-        height: 100%;
+        height: 90vh;
         cursor: pointer;
+
+        @include sm { width: 40px; }
+        @include md { width: 45px; }
 
         img{
             position: absolute;
-            top: 50%;
-            filter: invert(100%) sepia(2%) saturate(119%) hue-rotate(282deg) brightness(113%) contrast(82%);
+            top: 46%;
+            filter: invert(98%) sepia(1%) saturate(304%) hue-rotate(195deg) brightness(114%) contrast(82%);
+            opacity: 0.5;
             -webkit-transform: scaleX(-1);
             transform: scaleX(-1);
+
+            @include sm { top: 45%; }
         } 
 
         img::selection {
@@ -91,25 +106,44 @@ $screen-xl-min: 1200px;
         }
     }
 
+    .left-arrow:hover {
+        background: rgba(59, 59, 59, 0.4);
+        backdrop-filter: blur(1px);
+        border-radius: 15px;
+    }
+
     .right-arrow {
-        // background-color: aquamarine;
         position: absolute;
-        top: 0vh;
+        top: 9vh;
         right: 0vw;
         width: 35px;
-        height: 100%;
+        height: 90vh;
         cursor: pointer;
+
+        @include sm { width: 40px;}
+        @include md { width: 45px; }
 
         img {
             position: absolute;
-            top: 50%;
-            filter: invert(100%) sepia(2%) saturate(119%) hue-rotate(282deg) brightness(113%) contrast(82%);   
+            top: 46%;
+            filter: invert(98%) sepia(1%) saturate(304%) hue-rotate(195deg) brightness(114%) contrast(82%);
+            opacity: 0.5;
+            @include sm { top: 45%; }
         }
 
+        img:hover{
+            opacity: 1;
+        }
         img::selection {
             background: transparent;
         }
     } 
+
+    .right-arrow:hover {
+        background: rgba(59, 59, 59, 0.4);
+        backdrop-filter: blur(1px);
+        border-radius: 15px;
+    }
     
     .slideshow {
         overflow: hidden; 
@@ -118,7 +152,10 @@ $screen-xl-min: 1200px;
             display: flex;
             position: relative;
             width: 500%;
-            // animation: 20s slidy infinite; 
+            animation-duration: 1100ms;
+            animation-timing-function: linear;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
 
             .image {
                 height: 100vh;
@@ -128,101 +165,103 @@ $screen-xl-min: 1200px;
                 resize: both;
                 background-position: center;
                 background-repeat: no-repeat;
-                filter: brightness(0.45);
-                -webkit-filter:brightness(0.4);  
+                filter: brightness(0.4);
                 opacity: 0.95; 
             }
         }
 
-        @keyframes neutralize {
-            0% { left: 0%; }
-            100% { left: -100%; }
+        @keyframes arrow-effect-1 {
+            0% { 
+                background: rgba(100, 100, 100, 0.4);
+                backdrop-filter: blur(10px);
+            }
+            100% { 
+                background: rgba(59, 59, 59, 0.4);
+                backdrop-filter: blur(1px);
+            }
+        }
+
+        @keyframes arrow-effect-2 {
+            0% { 
+                background: rgba(100, 100, 100, 0.4);
+                backdrop-filter: blur(10px);
+            }
+            100% { 
+                background: rgba(59, 59, 59, 0.4);
+                backdrop-filter: blur(1px);
+            }
         }
 
         @keyframes rslide-to-two {
             0% { left: 0%; }
-            35% { left: -100%; }
+            30% { left: -100%; }
             100% { left: -100%; }
         }
 
         @keyframes rslide-to-three {
             0% { left: -100%; }
-            35% { left: -200%; }
+            30% { left: -200%; }
             100% { left: -200%; }
         }
 
         @keyframes rslide-to-four {
             0% { left: -200%; }
-            35% { left: -300%; }
+            30% { left: -300%; }
             100% { left: -300%; }
         }
 
         @keyframes rslide-to-five {
             0% { left: -300%; }
-            35% { left: -400%; }
+            30% { left: -400%; }
             100% { left: -400%; }
         }
 
         @keyframes rslide-to-one {
             0% { 
                 left: -400%;
-                opacity: 0.7;
+                filter: brightness(0.35);
             }
             1% { left: 0%; }
             10% { 
                 left: 0%;
-                opacity: 0.95; 
+                filter: brightness(0.4);
             }
             100% { left: 0%; }
         }
 
         @keyframes lslide-to-five {
             0% { 
-                left: 0%; 
-                opacity: 0.7;
+                left: 0%;
+                filter: brightness(0.35);
             }
             1% { left: -400%; }
             10% { 
                 left: -400%; 
-                opacity: 0.95; 
+                filter: brightness(0.4);
             }
             100% { left: -400%; }
         }
 
         @keyframes lslide-to-four {
             0% { left: -400%; }
-            35% { left: -300%; }
+            30% { left: -300%; }
             100% { left: -300%; }
         }
         @keyframes lslide-to-three {
             0% { left: -300%; }
-            35% { left: -200%; }
+            30% { left: -200%; }
             100% { left: -200%; }
         }
         @keyframes lslide-to-two {
             0% { left: -200%; }
-            35% { left: -100%; }
+            30% { left: -100%; }
             100% { left: -100%; }
         }
         @keyframes lslide-to-one {
             0% { left: -100%; }
-            35% { left: 0%; }
+            30% { left: 0%; }
             100% { left: 0%; }
-        }
-
-        // @keyframes slidy {
-        //     0% { left: 0%; }
-        //     20% { left: 0%; }
-        //     33% { left: -100%; }
-        //     66% { left: -200%; }
-        //     25% { left: -100%; }
-        //     40% { left: -100%; }
-        //     50% { left: -200%; }
-        //     70% { left: -200%; }
-        //     75% { left: -300%; }
-        //     95% { left: -300%; }
-        //     100% { left: -400%; }
-        // }        
+        }       
     }
 
 }
