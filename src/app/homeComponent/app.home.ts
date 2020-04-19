@@ -13,12 +13,8 @@ export class HomeComponent {
     movieUrls: Array<any>;
     currentMovie: any;
     currentIndex: number;
-    innerWidth: any;
-
-    @HostListener('window:resize', ['$event'])
-    onResize(event) {
-        this.innerWidth = window.innerWidth;
-    }
+    leftArrowAnimToggle: boolean;
+    rightArrowAnimToggle: boolean;
 
     @ViewChild('slider', {static: false}) sliderEl:ElementRef;
     @ViewChild('firstImage', {static: false}) firstEl:ElementRef;
@@ -26,11 +22,15 @@ export class HomeComponent {
     @ViewChild('thirdImage', {static: false}) thirdEl:ElementRef;
     @ViewChild('fourthImage', {static: false}) fourthEl:ElementRef;
     @ViewChild('fifthImage', {static: false}) fifthEl:ElementRef;
+    @ViewChild('leftArrow', {static: false}) leftArrowEl:ElementRef;
+    @ViewChild('rightArrow', {static: false}) rightArrowEl:ElementRef;
 
     constructor(private _http: HttpClient, private movieAPI: MovieURLService) {}
 
     ngOnInit() {
         this.currentMovie = {};
+        this.leftArrowAnimToggle = false;
+        this.rightArrowAnimToggle = false;
         this.getMovies(this.movieAPI.getRecentMoviesURL());
     } 
 
@@ -78,6 +78,7 @@ export class HomeComponent {
         switch(this.currentIndex) {
             case 0:
                 this.sliderEl.nativeElement.style.animationName = "lslide-to-five";
+                this.sliderEl.nativeElement.style.animationDuration = "300ms";
                 this.currentIndex = 4;
                 break;
             case 1:
@@ -101,6 +102,15 @@ export class HomeComponent {
         }
 
         this.currentMovie = this.movieUrls[this.currentIndex];
+
+        if(this.leftArrowAnimToggle) {
+            this.leftArrowEl.nativeElement.style.animation = "arrow-effect-1 500ms 1";
+            this.leftArrowAnimToggle = false;
+
+        } else {
+            this.leftArrowEl.nativeElement.style.animation = "arrow-effect-2 500ms 1";
+            this.leftArrowAnimToggle = true;
+        }
     }
 
     nextSlide() {
@@ -123,12 +133,22 @@ export class HomeComponent {
                 break;
             case 4:
                 this.sliderEl.nativeElement.style.animationName = "rslide-to-one";
+                this.sliderEl.nativeElement.style.animationDuration = "300ms";
                 this.currentIndex = 0;
                 break;
             default:
                 break;
         }
 
-        this.currentMovie = this.movieUrls[this.currentIndex];      
+        this.currentMovie = this.movieUrls[this.currentIndex];     
+        
+        if(this.rightArrowAnimToggle) {
+            this.rightArrowEl.nativeElement.style.animation = "arrow-effect-1 500ms 1";
+            this.rightArrowAnimToggle = false;
+
+        } else {
+            this.rightArrowEl.nativeElement.style.animation = "arrow-effect-2 500ms 1";
+            this.rightArrowAnimToggle = true;
+        }
     }
  }
