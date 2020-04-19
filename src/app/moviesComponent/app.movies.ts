@@ -28,6 +28,7 @@ export class MoviesComponent {
     _searchText: string;
     parameter: string;
     isSearched: boolean;
+    isUsingPagination: boolean;
 
     @Input() set searchText(value: string) {
         this._searchText = value.toUpperCase();
@@ -57,6 +58,7 @@ export class MoviesComponent {
     constructor(private _http: HttpClient, private scroller: ViewportScroller, private movieAPI: MovieURLService, private modalService: ModalService) {
         this.title = "Recent Movies";
         this.movieArray = [];
+        this.isUsingPagination = false;
     }
 
     ngOnInit() {
@@ -70,11 +72,23 @@ export class MoviesComponent {
     getMovies(URL: string) {
         this._http.get<any>(URL)
           .subscribe(data => {
-            this.movieArray  = data.results;
+            this.movieArray = [];
             this.currentPage = data.page;
             this.totalPages = data.total_pages;
-            this.totalMovies = data.total_results;
+
+            if(!this.isUsingPagination) {
+                this.totalMovies = data.total_results;
+                data.results.forEach((movie) => {
+                    movie.poster_path !== null ? this.movieArray.push(movie) : this.totalMovies--;
+                });
+            } else {
+                data.results.forEach((movie) => {
+                    movie.poster_path !== null ? this.movieArray.push(movie) : null;
+                });
+            }
+
             this.formatDescription();
+            this.isUsingPagination = false;
           }, 
           error =>{
             alert(error);
@@ -100,8 +114,8 @@ export class MoviesComponent {
         for(let i = 0; i < this.movieArray.length; i++) {
             const titleLength = this.movieArray[i].title.length;
 
-            if (titleLength > 46) {
-                for(let j = 43; j < this.movieArray[i].title.length; j++) {
+            if (titleLength > 49) {
+                for(let j = 41; j < this.movieArray[i].title.length; j++) {
                     if(this.movieArray[i].title.charAt(j).match(/ /g)) {
                         this.movieArray[i].title = this.movieArray[i].title.slice(0, j) + '...';
                         break;
@@ -141,6 +155,8 @@ export class MoviesComponent {
 
     nextPage(isBottom: boolean) {
         if(this.currentPage !== this.totalPages) {
+            this.isUsingPagination = true;
+
             if(this.isSearched) {
                 const searchURL = this.movieAPI.getSearchURL() + this.parameter + '&page=' + ++this.currentPage;
                 this.getMovies(searchURL);
@@ -160,6 +176,8 @@ export class MoviesComponent {
 
     prevPage(isBottom: boolean) {
         if(this.currentPage !== 1) {
+            this.isUsingPagination = true;
+
             if(this.isSearched) {
                 const searchURL = this.movieAPI.getSearchURL() + this.parameter + '&page=' + --this.currentPage;
                 this.getMovies(searchURL);
