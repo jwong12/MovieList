@@ -295,32 +295,43 @@ footer {
     justify-content: center;
     padding: 30px;
 
-    #main-footer {
+    #footer-content {
         display: flex;
-        justify-content: center;
-        width: 880px;
+        justify-content: space-between;
+        max-width: 1200px;
 
-        h2 {
-            margin: 5px 0;
-        }
+        #footer-nav {
+            display: flex;
+            justify-content: space-between;
+            max-width: 400px;
 
-        #footer-content {
-            max-width: 550px;
-            padding: 20px;
-        }
-
-        #footer-contact {
-            padding: 20px;
-
-            .contact-links {
-                color:rgb(243, 243, 243);
-                text-decoration: none;
+            h2 {
+                margin: 0;
             }
         }
     }
 
-    #trademark {
-        margin: auto;
-        padding: 10px 0;
-    }
+    // #main-footer {
+    //     display: flex;
+    //     justify-content: center;
+    //     width: 880px;
+
+    //     h2 {
+    //         margin: 5px 0;
+    //     }
+
+    //     #footer-content {
+    //         max-width: 550px;
+    //         padding: 20px;
+    //     }
+
+    //     #footer-contact {
+    //         padding: 20px;
+
+    //         .contact-links {
+    //             color:rgb(243, 243, 243);
+    //             text-decoration: none;
+    //         }
+    //     }
+    // }
 }
