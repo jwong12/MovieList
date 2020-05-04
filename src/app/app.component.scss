@@ -303,10 +303,16 @@ footer {
         #footer-nav {
             display: flex;
             justify-content: space-between;
-            max-width: 400px;
+            max-width: 380px;
 
             h2 {
                 margin: 0;
+            }
+
+            a {
+                text-decoration: none;
+                color:rgb(243, 243, 243);
+                line-height: 35px;
             }
         }
     }
