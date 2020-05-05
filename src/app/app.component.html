@@ -47,22 +47,32 @@
         <div id="footer-top">
             <div id="footer-nav">
                 <h2>MOVIE REVIEWS</h2>
-                <a routerLink="/" routerLinkActive="active">Home</a>
-                <a routerLink="/watchlist" routerLinkActive="active">Watch List</a>
-                <a routerLink="/about" routerLinkActive="active">Account</a>
+                <div id="footer-links">
+                    <a routerLink="/" routerLinkActive="active">Home</a>
+                    <a routerLink="/watchlist" routerLinkActive="active">Watch List</a>
+                    <a routerLink="/about" routerLinkActive="active">Account</a>
+                </div>
             </div>
-
-            <p>Hello there! My name is James and I'm a Software Developer.</p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-            <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <p id="copyright">Copyright ©2020</p>
-            <p id="trademark">Code and design by James Wong</p>
+            <table>
+                <tr>
+                    <td>Email:</td>
+                    <td><a class="contact-links" href="mailto:jwong_li@hotmail.com">jwong_li@hotmail.com</a></td>
+                </tr>
+                <tr>
+                    <td>Phone number:</td>
+                    <td>604-518-3969</td>
+                </tr>
+            </table>
+            <div id="copyright-wrapper">
+                <p id="copyright">Copyright ©2020</p>
+                <p id="trademark">Code and design by James Wong</p>
+            </div>
         </div>
-        <div id="footer-bottom">
+        <!-- <div id="footer-bottom">
             <h2>Say hello:</h2>
             <p>Email: <a class="contact-links" href="mailto:jwong_li@hotmail.com">jwong_li@hotmail.com</a></p>
             <p>LinkedIn: <a class="contact-links" target="_blank" href="https://www.linkedin.com/in/jamesw12/">linkedin.com/in/jamesw12</a></p>
             <p>Phone: (604) 518-3969</p>
-        </div>
+        </div> -->
     </div>
 </footer>
