@@ -293,7 +293,15 @@ footer {
     background-color: #272727;
     color:rgb(243, 243, 243);
     justify-content: center;
-    padding: 40px 30px;
+    padding: 55px 30px;
+
+    @include rwd(660) {
+        padding: 68px 30px;
+    }
+
+    @include rwd(865) {
+        padding: 96px 30px;
+    }
 
     #footer-content {
         @include rwd(865) {
@@ -308,7 +316,17 @@ footer {
                 }
 
                 h2{
-                    margin: 15px 0;
+                    margin: 15px 0 5px;
+                    letter-spacing: 0.3rem;
+                    text-transform: uppercase;
+
+                    @include rwd(660) {
+                        margin: 15px 0 0 0;
+                    }
+
+                    @include rwd(1075) {
+                        font-size: 25px;
+                    }
                 }
 
                 #footer-links {
@@ -317,22 +335,26 @@ footer {
                     width: 235px;
 
                     @include rwd(660) {
-                        margin-left: 30px;
+                        margin-left: 25px;
                     }
 
                     @include rwd(716) {
-                        margin-left: 50px;
-                        width: 280px;
+                        margin-left: 40px;
+                        width: 270px;
                     }
 
                     @include rwd(865) {
-                        margin-left: 30px;
+                        margin-left: 25px;
                         width: 235px;
                     }
 
+                    @include rwd(1075) {
+                        width: 250px;
+                    }
+
                     @include rwd(1285) {
-                        margin-left: 50px;
-                        width: 280px;
+                        margin-left: 40px;
+                        width: 270px;
                     }
 
                     a {
@@ -344,6 +366,11 @@ footer {
 
                         @include rwd(660) {
                             line-height: 63px;
+                        }
+
+                        @include rwd(1075) {
+                            font-size: 19px;
+                            line-height: 64px;
                         }
                     }
                 }
@@ -357,19 +384,23 @@ footer {
                     padding: 5px 0;
 
                     @include rwd(660) {
-                        width: 193px;
+                        width: 252px;
                     }
 
                     @include rwd(716) {
-                        width: 215px;
+                        width: 267px;
                     }
 
                     @include rwd(865) {
-                        width: 193px;
+                        width: 252px;
+                    }
+
+                    @include rwd(1075) {
+                        width: 259px;
                     }
 
                     @include rwd(1285) {
-                        width: 215px;
+                        width: 274px;
                     }
 
                     .contact-links {
@@ -394,15 +425,15 @@ footer {
 
             @include rwd(865) {
                 display: block;
-                margin: 20px 0 0 160px;
+                margin: 20px 0 0 78px;
             }
 
             @include rwd(1075) {
-                margin: 20px 0 0 335px;
+                margin: 20px 0 0 248px;
             }   
             
             @include rwd(1285) {
-                margin: 20px 0 0 480px;
+                margin: 20px 0 0 418px;
             }
 
             #moviedb-logo {
@@ -411,12 +442,12 @@ footer {
 
                     @include rwd(865) {
                         width: 160px;
-                        margin-bottom: 140px;
+                        margin-bottom: 138px;
                     }
 
                     @include rwd(1075) {
                         width: 190px;
-                        margin-bottom: 120px;
+                        margin-bottom: 122px;
                     }
                 }
             }
