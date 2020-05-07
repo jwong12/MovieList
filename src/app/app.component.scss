@@ -330,6 +330,11 @@ footer {
                         width: 235px;
                     }
 
+                    @include rwd(1285) {
+                        margin-left: 50px;
+                        width: 280px;
+                    }
+
                     a {
                         text-decoration: none;
                         color:rgb(243, 243, 243);
@@ -363,6 +368,10 @@ footer {
                         width: 193px;
                     }
 
+                    @include rwd(1285) {
+                        width: 215px;
+                    }
+
                     .contact-links {
                         text-decoration: none;
                         color:rgb(243, 243, 243);
@@ -385,16 +394,29 @@ footer {
 
             @include rwd(865) {
                 display: block;
-                margin: 20px 0 0 140px;
+                margin: 20px 0 0 160px;
+            }
+
+            @include rwd(1075) {
+                margin: 20px 0 0 335px;
+            }   
+            
+            @include rwd(1285) {
+                margin: 20px 0 0 480px;
             }
 
             #moviedb-logo {
                 img {
-                    width: 120px;
+                    width: 130px;
 
                     @include rwd(865) {
-                        width: 150px;
-                        margin-bottom: 150px;
+                        width: 160px;
+                        margin-bottom: 140px;
+                    }
+
+                    @include rwd(1075) {
+                        width: 190px;
+                        margin-bottom: 120px;
                     }
                 }
             }
@@ -402,12 +424,20 @@ footer {
             #moviedb-social {
                 display: flex;
                 justify-content: space-between;
-                width: 150px;
+                width: 155px;
                 padding: 5px 0;
 
+                @include rwd(1075) {
+                    width: 180px;
+                }
+
                 a img {
-                    width: 35px;
+                    width: 37px;
                     filter: invert(61%) sepia(99%) saturate(10%) hue-rotate(30deg) brightness(93%) contrast(90%);                
+                    
+                    @include rwd(1075) {
+                        width: 40px;
+                    }
                 }
 
                 a img:hover {
