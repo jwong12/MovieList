@@ -166,9 +166,41 @@ app-sticky-header {
                     width: 250px;
                 } 
 
-                @include lg {
-                    width: 330px;
+                @include rwd(630) {
+                    width: 280px;
                 }
+
+                @include rwd(660) {
+                    width: 310px;
+                }
+
+                @include rwd(690) {
+                    width: 340px;
+                }
+
+                @include rwd(829) {
+                    width: 280px;
+                }
+
+                @include rwd(855) {
+                    width: 310px;
+                }
+
+                @include rwd(885) {
+                    width: 340px;
+                }
+
+                @include rwd(915) {
+                    width: 370px;
+                }
+
+                @include lg {
+                    width: 400px;
+                }
+
+                // @include rwd(1075) {
+                //     width: 400px;
+                // }
 
                 #search-bar {
                     height: 31px;
