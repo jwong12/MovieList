@@ -296,8 +296,17 @@ footer {
     padding: 40px 30px;
 
     #footer-content {
+        @include rwd(865) {
+            display: flex;
+        }
+
         #footer-top {
-            #footer-nav {    
+            #footer-nav {  
+                
+                @include rwd(660) {
+                    display: flex;
+                }
+
                 h2{
                     margin: 15px 0;
                 }
@@ -306,13 +315,31 @@ footer {
                     display: flex;
                     justify-content: space-between;
                     width: 235px;
-    
+
+                    @include rwd(660) {
+                        margin-left: 30px;
+                    }
+
+                    @include rwd(716) {
+                        margin-left: 50px;
+                        width: 280px;
+                    }
+
+                    @include rwd(865) {
+                        margin-left: 30px;
+                        width: 235px;
+                    }
+
                     a {
                         text-decoration: none;
                         color:rgb(243, 243, 243);
                         line-height: 35px;
                         font-weight: 600;
                         font-size: 18px;
+
+                        @include rwd(660) {
+                            line-height: 63px;
+                        }
                     }
                 }
             }
@@ -323,6 +350,18 @@ footer {
                 tr td {
                     width: 160px;
                     padding: 5px 0;
+
+                    @include rwd(660) {
+                        width: 193px;
+                    }
+
+                    @include rwd(716) {
+                        width: 215px;
+                    }
+
+                    @include rwd(865) {
+                        width: 193px;
+                    }
 
                     .contact-links {
                         text-decoration: none;
@@ -344,9 +383,19 @@ footer {
             display: flex;
             justify-content: space-between;
 
+            @include rwd(865) {
+                display: block;
+                margin: 20px 0 0 140px;
+            }
+
             #moviedb-logo {
                 img {
                     width: 120px;
+
+                    @include rwd(865) {
+                        width: 150px;
+                        margin-bottom: 150px;
+                    }
                 }
             }
 
