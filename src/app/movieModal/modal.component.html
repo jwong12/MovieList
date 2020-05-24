@@ -9,9 +9,9 @@
             </div>
             <div class="description">
                 <h2>{{title}} ({{year}})</h2>
-                <span>User Score: {{userScore}}</span><br><br>
-                <span>Popularity: {{popularity}}</span><br><br>
-                <span>{{genres}}</span><br><br>
+                <span>User Rating: {{userScore === 0 ? "Unrated" : userScore + "/10"}}</span><br><br>
+                <span>Popularity: {{popularity}}%</span><br><br>
+                <span>Genre: {{genres}}</span><br><br>
                 <h3>Overview</h3>
                 <p>{{overview}}</p>
             </div>
