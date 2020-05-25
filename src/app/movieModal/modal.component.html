@@ -10,7 +10,7 @@
             <div class="description">
                 <div class="title-wrapper">
                     <h2>{{title}} ({{year}})</h2>
-                    <span class="save-button">SAVE</span>
+                    <span class="save-button" (click)="addToWatchList(saveButton)" #saveButton>Save</span>
                 </div>
                 <p><b>Popularity:</b> {{popularity}}%</p>
                 <p><b>User Rating:</b> {{userRating === 0 ? "Unrated" : userRating + "%"}}</p>

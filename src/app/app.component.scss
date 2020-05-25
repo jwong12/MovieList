@@ -107,6 +107,7 @@ app-sticky-header {
 
             h1 {
                 display:none;
+                user-select:none;
 
                 @include rwd(500) {
                     display:inline-block;
@@ -285,6 +286,7 @@ app-sticky-header {
 
         #routes {
             display: none;
+            user-select:none;
 
             @include rwd(829) {
                 display: initial;
