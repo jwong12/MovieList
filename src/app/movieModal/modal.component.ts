@@ -15,7 +15,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     title: String;
     year: Number;
     genres: String;
-    userScore: Number;
+    userRating: Number;
     popularity: Number;
     overview: String;
 
@@ -62,7 +62,7 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.title = movie.title;
         this.year = parseInt(movie.release_date.slice(0, 4));
         this.genres = this.getGenre(movie.genre_ids, genreArray);
-        this.userScore = movie.vote_average;
+        this.userRating = movie.vote_average * 10;
         this.popularity = Math.round(movie.popularity);
         this.overview = movie.overview;
     }
