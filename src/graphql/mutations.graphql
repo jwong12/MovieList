@@ -1,0 +1,52 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateMovie(
+  $input: CreateMovieInput!
+  $condition: ModelMovieConditionInput
+) {
+  createMovie(input: $input, condition: $condition) {
+    id
+    title
+    year
+    genres
+    rating
+    popularity
+    overview
+    poster
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateMovie(
+  $input: UpdateMovieInput!
+  $condition: ModelMovieConditionInput
+) {
+  updateMovie(input: $input, condition: $condition) {
+    id
+    title
+    year
+    genres
+    rating
+    popularity
+    overview
+    poster
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteMovie(
+  $input: DeleteMovieInput!
+  $condition: ModelMovieConditionInput
+) {
+  deleteMovie(input: $input, condition: $condition) {
+    id
+    title
+    year
+    genres
+    rating
+    popularity
+    overview
+    poster
+    createdAt
+    updatedAt
+  }
+}
