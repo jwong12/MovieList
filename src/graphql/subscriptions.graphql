@@ -1,0 +1,43 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateMovie {
+  onCreateMovie {
+    id
+    title
+    year
+    genres
+    rating
+    popularity
+    overview
+    poster
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateMovie {
+  onUpdateMovie {
+    id
+    title
+    year
+    genres
+    rating
+    popularity
+    overview
+    poster
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteMovie {
+  onDeleteMovie {
+    id
+    title
+    year
+    genres
+    rating
+    popularity
+    overview
+    poster
+    createdAt
+    updatedAt
+  }
+}

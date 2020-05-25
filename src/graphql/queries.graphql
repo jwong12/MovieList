@@ -1,0 +1,36 @@
+# this is an auto generated file. This will be overwritten
+query GetMovie($id: ID!) {
+  getMovie(id: $id) {
+    id
+    title
+    year
+    genres
+    rating
+    popularity
+    overview
+    poster
+    createdAt
+    updatedAt
+  }
+}
+query ListMovies(
+  $filter: ModelMovieFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listMovies(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      year
+      genres
+      rating
+      popularity
+      overview
+      poster
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

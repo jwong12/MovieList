@@ -1,8 +1,8 @@
 ﻿import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
-
 import { ModalService } from './modal.service';
+import { APIService } from '../API.service';
 
-const posterLink = "https://image.tmdb.org/t/p/original/";
+const posterLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
 
 @Component({ 
     selector: 'jw-modal', 
@@ -11,19 +11,19 @@ const posterLink = "https://image.tmdb.org/t/p/original/";
     encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit, OnDestroy {
-    imgSrc: String; 
-    title: String;
-    year: Number;
-    genres: String;
-    userRating: Number;
-    popularity: Number;
-    overview: String;
+    imgSrc: string; 
+    title: string;
+    year: number;
+    genres: string;
+    userRating: number;
+    popularity: number;
+    overview: string;
     saveButton: HTMLElement;
 
     @Input() id: string;
     private element: any;
 
-    constructor(private modalService: ModalService, private el: ElementRef) {
+    constructor(private modalService: ModalService, private el: ElementRef, private api:APIService) {
         this.element = el.nativeElement;
     }
 
@@ -58,7 +58,6 @@ export class ModalComponent implements OnInit, OnDestroy {
     open(movie, genreArray): void {
         this.element.style.display = 'block';
         document.body.classList.add('jw-modal-open');
-        // console.log(movie);
         this.imgSrc = posterLink + movie.poster_path;
         this.title = movie.title;
         this.year = parseInt(movie.release_date.slice(0, 4));
@@ -82,9 +81,12 @@ export class ModalComponent implements OnInit, OnDestroy {
             genres: this.genres,
             rating: this.userRating,
             popularity: this.popularity,
-            overview: this.overview  
+            overview: this.overview,
+            poster: this.imgSrc
         }
-        //
+
+        this.api.CreateMovie(movie);
+        console.log(movie);
     }
 
     getGenre(genreId, genreArray) {
