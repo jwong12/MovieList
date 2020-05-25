@@ -15,9 +15,10 @@ export class ModalComponent implements OnInit, OnDestroy {
     title: String;
     year: Number;
     genres: String;
-    userScore: Number;
+    userRating: Number;
     popularity: Number;
     overview: String;
+    saveButton: HTMLElement;
 
     @Input() id: string;
     private element: any;
@@ -62,9 +63,28 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.title = movie.title;
         this.year = parseInt(movie.release_date.slice(0, 4));
         this.genres = this.getGenre(movie.genre_ids, genreArray);
-        this.userScore = movie.vote_average;
-        this.popularity = movie.popularity;
+        this.userRating = movie.vote_average * 10;
+        this.popularity = Math.round(movie.popularity);
         this.overview = movie.overview;
+    }
+
+    addToWatchList(spanHTML) {
+        spanHTML.textContent = "Added";
+        spanHTML.style.backgroundColor = "rgba(142, 142, 142, 0.93)";
+        spanHTML.style.border = "solid 1px rgba(142, 142, 142, 0.93)";
+        spanHTML.style.color = "#ffffff";
+        spanHTML.style.cursor = "initial";
+        this.saveButton = spanHTML;
+
+        const movie = {
+            title: this.title,
+            year: this.year,
+            genres: this.genres,
+            rating: this.userRating,
+            popularity: this.popularity,
+            overview: this.overview  
+        }
+        //
     }
 
     getGenre(genreId, genreArray) {
@@ -91,5 +111,13 @@ export class ModalComponent implements OnInit, OnDestroy {
     close(): void {
         this.element.style.display = 'none';
         document.body.classList.remove('jw-modal-open');
+
+        if(this.saveButton) {
+            this.saveButton.textContent = "Save";
+            this.saveButton.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
+            this.saveButton.style.border = "solid 1px rgba(204, 127, 46, 0.93)";
+            this.saveButton.style.color = "#fbfbfb";
+            this.saveButton.style.cursor = "pointer";
+        }
     }
 }

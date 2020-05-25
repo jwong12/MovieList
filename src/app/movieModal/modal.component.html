@@ -8,12 +8,14 @@
                 <ng-content></ng-content>
             </div>
             <div class="description">
-                <h2>{{title}} ({{year}})</h2>
-                <span>User Score: {{userScore}}</span><br><br>
-                <span>Popularity: {{popularity}}</span><br><br>
-                <span>{{genres}}</span><br><br>
-                <h3>Overview</h3>
-                <p>{{overview}}</p>
+                <div class="title-wrapper">
+                    <h2>{{title}} ({{year}})</h2>
+                    <span class="save-button" (click)="addToWatchList(saveButton)" #saveButton>Save</span>
+                </div>
+                <p><b>Popularity:</b> {{popularity}}%</p>
+                <p><b>User Rating:</b> {{userRating === 0 ? "Unrated" : userRating + "%"}}</p>
+                <p><b>Genre:</b> {{genres}}</p>
+                <p><b>Overview:</b> {{overview}}</p>
             </div>
         </div>
     </div>
