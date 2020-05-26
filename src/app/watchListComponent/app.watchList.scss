@@ -1,11 +1,69 @@
+$screen-sm-min: 576px;
+$screen-lg-min: 992px;
+
+@mixin sm {
+    @media (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+ }
+ 
+@mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+
 #watchlist-content {
-    height: 100vh;
+    min-height: 100vh;
 
     #header-block {
-        height: 70px;
+        height: 75px;
     }
 
-    h2 {
-        margin: 0;
-    }
+    .movie-div {
+        padding: 7px 10px;
+        margin: 7px 3px;
+        border: solid 1px #d0d0d0;
+        background-color: #f3f3f3;
+        max-width: 992px;
+        
+        @include sm {
+            display: flex;
+            justify-content: center;
+        }
+
+        @include lg {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .img-div {
+            text-align: center;
+        }
+    
+        .description-div {
+            padding: 0 10px;
+
+            @include sm {
+                padding: 0 10px 0 20px;
+            }
+
+            h3 {
+                color: #427fb5;
+                margin: 5px 0 0 0;                
+            }
+        
+            p {
+                display: table;
+                margin: 5px 0;
+                font-weight: 350;
+                color: black;
+
+                span {
+                    color: #464646;
+                    font-weight: 600;
+                }
+            }
+        }
+    }  
 }

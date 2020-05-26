@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AuthComponent } from './auth/auth.component';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HighlightDirective } from './directives/app.highlightDirective';
@@ -30,7 +31,8 @@ import { MovieImages }      from './directives/app.movieImages';
     PageDefault, 
     MoviesComponent,
     MovieImages, 
-    HighlightDirective
+    HighlightDirective, 
+    AuthComponent
   ],
   imports: [
     BrowserAnimationsModule,

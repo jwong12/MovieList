@@ -59,6 +59,7 @@ $screen-xl-min: 1200px;
         h2 {
             margin: 0;
             padding: 4px 0;
+            height: auto;
             
             @include md { padding: 5px 0; }
             @include lg { padding: 6px 0; }

@@ -12,16 +12,14 @@
             "AmplifyAppId": "d16wiixuisnu8n"
         },
         "categories": {
-            "auth": {
-                "moviereviewsac8ad40e": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"1122896174743839\",\"client_secret\":\"158a3d12865b3aaa5d951294b5c829ab\"},{\"ProviderName\":\"Google\",\"client_id\":\"597067790856-854j4ftvd0qrfe90o1jkh0mrff16hke4.apps.googleusercontent.com\",\"client_secret\":\"U0EPoKS8ovpWABKPBvLCgjZK\"}]"
-                }
-            },
             "hosting": {
                 "amplifyhosting": {
                     "appId": "d16wiixuisnu8n",
                     "type": "manual"
                 }
+            },
+            "auth": {
+                "moviereviewsbc87b50f": {}
             }
         }
     }
