@@ -8,13 +8,12 @@ import { AboutComponent }       from './app.about';
 import { PageDefault }          from './app.pagedefault';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'watchlist', component: WatchListComponent },
   { path: 'results/:search', component: ResultsComponent },
   { path: 'about', component: AboutComponent },
-  { path: '', component: AuthComponent },
-  { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: '**', component: PageDefault }
+  { path: 'login', component: AuthComponent },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
