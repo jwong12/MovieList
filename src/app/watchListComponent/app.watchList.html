@@ -1,4 +1,17 @@
 <div id="watchlist-content">
     <div id="header-block"></div>
-    <h2>Watch List</h2>
+    <div class="movie-div" *ngFor="let movie of allMovies">
+        <div class="img-div">
+            <img src={{movie.poster}} alt={{movie.title}}>
+        </div>
+        <div class="description-div">
+            <h3>{{movie.title}}</h3>
+            <p><span>Year Released:</span> {{movie.year}}</p>
+            <p><span>Popularity:</span> {{movie.popularity}}%</p>
+            <p><span>User Rating:</span> {{movie.rating}}%</p>
+            <p><span>Genre:</span> {{movie.genres}}</p>
+            <p><span>Overview:</span> {{movie.overview}}</p>
+        </div>
+        
+    </div>
 </div>

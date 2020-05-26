@@ -2,7 +2,8 @@
 import { ModalService } from './modal.service';
 import { APIService } from '../API.service';
 
-const posterLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
+const posterLink = "https://image.tmdb.org/t/p/w440_and_h660_face";
+const posterLinkLow = "https://image.tmdb.org/t/p/w220_and_h330_face";
 
 @Component({ 
     selector: 'jw-modal', 
@@ -12,6 +13,7 @@ const posterLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
 })
 export class ModalComponent implements OnInit, OnDestroy {
     imgSrc: string; 
+    imgSrcLow: string;
     title: string;
     year: number;
     genres: string;
@@ -59,6 +61,7 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.element.style.display = 'block';
         document.body.classList.add('jw-modal-open');
         this.imgSrc = posterLink + movie.poster_path;
+        this.imgSrcLow = posterLinkLow + movie.poster_path;
         this.title = movie.title;
         this.year = parseInt(movie.release_date.slice(0, 4));
         this.genres = this.getGenre(movie.genre_ids, genreArray);
@@ -67,7 +70,7 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.overview = movie.overview;
     }
 
-    addToWatchList(spanHTML) {
+    async addToWatchList(spanHTML) {
         spanHTML.textContent = "Added";
         spanHTML.style.backgroundColor = "rgba(142, 142, 142, 0.93)";
         spanHTML.style.border = "solid 1px rgba(142, 142, 142, 0.93)";
@@ -82,10 +85,10 @@ export class ModalComponent implements OnInit, OnDestroy {
             rating: this.userRating,
             popularity: this.popularity,
             overview: this.overview,
-            poster: this.imgSrc
+            poster: this.imgSrcLow
         }
 
-        this.api.CreateMovie(movie);
+        await this.api.CreateMovie(movie);
         console.log(movie);
     }
 

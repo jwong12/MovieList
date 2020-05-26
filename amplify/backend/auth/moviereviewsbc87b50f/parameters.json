@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "moviereviewsac8ad40e_identitypool_ac8ad40e",
+    "identityPoolName": "moviereviewsbc87b50f_identitypool_bc87b50f",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "movierac8ad40e",
-    "userPoolName": "moviereviewsac8ad40e_userpool_ac8ad40e",
+    "resourceNameTruncated": "movierbc87b50f",
+    "userPoolName": "moviereviewsbc87b50f_userpool_bc87b50f",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "movierac8ad40e_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "movierbc87b50f_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "moviereviewsac8ad40e",
+    "sharedId": "bc87b50f",
+    "resourceName": "moviereviewsbc87b50f",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -44,18 +45,7 @@
             "Arn"
         ]
     },
-    "useDefault": "defaultSocial",
-    "hostedUI": true,
-    "usernameAttributes": [
-        "email"
-    ],
-    "hostedUIDomainName": "movie-reviews",
-    "authProvidersUserPool": [
-        "Facebook",
-        "Google"
-    ],
-    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4200/\"],\"LogoutURLs\":[\"http://localhost:4200/\"]}",
+    "useDefault": "default",
     "userPoolGroupList": [],
     "dependsOn": []
 }

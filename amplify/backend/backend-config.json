@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"moviereviewsac8ad40e": {
+		"moviereviewsbc87b50f": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
@@ -15,7 +15,7 @@
 		}
 	},
 	"api": {
-		"movieReviews": {
+		"movieReviewsAPI": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
@@ -24,7 +24,7 @@
 					"defaultAuthentication": {
 						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
 						"userPoolConfig": {
-							"userPoolId": "authmoviereviewsac8ad40e"
+							"userPoolId": "authmoviereviewsbc87b50f"
 						}
 					}
 				}
