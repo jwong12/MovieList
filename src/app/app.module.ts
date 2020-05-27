@@ -14,11 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent }    from './homeComponent/app.home';
 import { WatchListComponent } from './watchListComponent/app.watchList';
 import { ResultsComponent }   from './resultsComponent/app.results';
-import { AboutComponent }   from './app.about';
 import { StickyHeaderComponent } from './headerComponent/app.stickyHeader';
-import { PageDefault }      from './app.pagedefault';
 import { MoviesComponent } from './moviesComponent/app.movies';
 import { MovieImages }      from './directives/app.movieImages';
+import { AccountComponent } from './accountComponent/account.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +25,12 @@ import { MovieImages }      from './directives/app.movieImages';
     HomeComponent, 
     WatchListComponent,
     ResultsComponent,
-    AboutComponent, 
     StickyHeaderComponent,
-    PageDefault, 
     MoviesComponent,
     MovieImages, 
     HighlightDirective, 
-    AuthComponent
+    AuthComponent, 
+    AccountComponent
   ],
   imports: [
     BrowserAnimationsModule,
