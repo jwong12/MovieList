@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MovieURLService } from '../apiService/app.movieURLService';
+import { ModalService } from '../movieModal';
 
 @Component({
     templateUrl: 'app.home.html',
@@ -9,7 +10,7 @@ import { MovieURLService } from '../apiService/app.movieURLService';
 })
 
 export class HomeComponent {
-    genres: Array<any>
+    genres: Array<any>;
     moviesArray: Array<any>;
     movieUrls: Array<any>;
     currentMovie: any;
@@ -28,7 +29,7 @@ export class HomeComponent {
     @ViewChild('leftArrow', {static: false}) leftArrowEl:ElementRef;
     @ViewChild('rightArrow', {static: false}) rightArrowEl:ElementRef;
 
-    constructor(private _http: HttpClient, private movieAPI: MovieURLService) {}
+    constructor(private _http: HttpClient, private movieAPI: MovieURLService, private modalService: ModalService) {}
 
     ngOnInit() {
         this.currentMovie = {};
@@ -37,6 +38,10 @@ export class HomeComponent {
         this.getGenres(this.movieAPI.getGenreURL());
     } 
 
+    openModal(id: string, movie) {
+        this.modalService.open(id, movie, this.genres);
+    }
+
     getGenres(URL: string) {
         this._http.get<any>(URL)
         .subscribe(data => {
@@ -44,8 +49,7 @@ export class HomeComponent {
             this.getMovies(this.movieAPI.getRecentMoviesURL());
         }, 
         error =>{
-          alert(error);
-          console.error(error)
+          console.error(error);
         })
     }
 
@@ -61,6 +65,7 @@ export class HomeComponent {
                     obj['url'] = 'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path;
                     obj['title'] = movie.title;
                     obj['type'] = 'LATEST';
+                    obj['movie'] = movie;
 
                     if(movie.genre_ids.length >= 0) {
                         this.genres.forEach((item) => {
@@ -91,8 +96,7 @@ export class HomeComponent {
             }  
           }, 
           error =>{
-            alert(error);
-            console.error(error)
+            console.error(error);
           })
     }
 

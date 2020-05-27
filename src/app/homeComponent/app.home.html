@@ -8,7 +8,7 @@
             <div #fifthImage class="image" id="fifthImage"></div>
         </div>
     </div>
-    <div id="image-description">
+    <div id="image-description" (click)="openModal('custom-modal-2', currentMovie.movie)">
         <h2 class="description">{{currentMovie.type}}</h2>
         <h2 id="image-title">{{currentMovie.title}}</h2>
         <h2 class="description">{{currentMovie.caption}}</h2>

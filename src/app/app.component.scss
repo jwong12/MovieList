@@ -375,7 +375,6 @@ footer {
 
         #footer-top {
             #footer-nav {  
-                
                 @include rwd(660) {
                     display: flex;
                 }
