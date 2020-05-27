@@ -91,7 +91,6 @@ export class MoviesComponent {
             this.isUsingPagination = false;
           }, 
           error =>{
-            alert(error);
             console.error(error)
           })
     }
@@ -105,7 +104,6 @@ export class MoviesComponent {
             this.genreArray = [...this.genreArray, ...data.genres];
         }, 
         error =>{
-          alert(error);
           console.error(error)
         })
     }
