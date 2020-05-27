@@ -17,25 +17,40 @@ $screen-lg-min: 992px;
     min-height: 100vh;
 
     #header-block {
-        height: 80px;
+        height: 75px;
+    }
+
+    h2 {
+        text-align: center;
+        margin: 15px 0;        
+        font-size: 22px;
+        font-weight: bold;
+        height: auto;
+        color: #313131;
     }
 
     #login-wrapper {
-        height: 200px;
+        height: 250px;
         display: flex;
         align-items: center;
         justify-content: center;
 
         #login-message {
-            padding: 8px;
+            padding: 10px 15px;
             border-radius: 5px;
             color: #313131;
             border: solid 1px #8e8e8e;
+
+            a {
+                text-decoration: none;
+                color: rgba(228, 121, 15);
+                font-weight: 600;
+            }
         }
     }
 
     .movie-div {
-        padding: 7px 10px;
+        padding: 10px;
         margin: 7px 3px;
         border: solid 1px #d0d0d0;
         background-color: #f3f3f3;
@@ -43,7 +58,6 @@ $screen-lg-min: 992px;
         
         @include sm {
             display: flex;
-            justify-content: center;
         }
 
         @include lg {
@@ -64,7 +78,11 @@ $screen-lg-min: 992px;
 
             h3 {
                 color: #427fb5;
-                margin: 5px 0 0 0;                
+                margin: 8px 0 4px 0;    
+                
+                @include sm {
+                    margin: 3px 0 4px 0;    
+                }
             }
         
             p {

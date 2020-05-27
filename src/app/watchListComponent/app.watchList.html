@@ -1,7 +1,8 @@
 <div id="watchlist-content">
     <div id="header-block"></div>
+    <h2>My Watch List</h2>
     <div *ngIf="!userAuthenticated" id="login-wrapper">
-        <div id="login-message">Please login to use this feature.</div>
+        <div id="login-message">Please <a routerLink="/account" routerLinkActive="active">sign in</a> to use this feature.</div>
     </div>
     <div class="movie-div" *ngFor="let movie of allMovies">
         <div class="img-div">
