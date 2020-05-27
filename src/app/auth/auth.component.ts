@@ -10,7 +10,6 @@ export class AuthComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    document.getElementById("header-wrapper").style.display = "none";
-    document.getElementById("footer-wrapper").style.display = "none";
+    
   }
 }
