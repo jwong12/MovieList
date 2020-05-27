@@ -11,6 +11,7 @@ import { APIService } from '../API.service';
 export class WatchListComponent implements OnInit { 
     allMovies:any = [];
     userAuthenticated:boolean = false;
+    isDbTableEmpty: boolean = false;
 
     constructor(private api: APIService) { }
 
@@ -30,7 +31,16 @@ export class WatchListComponent implements OnInit {
 
     async listMovies() {
         await this.api.ListMovies()
-        .then(result => this.allMovies = result.items)
+        .then(result => {
+            this.allMovies = result.items;
+
+            if(this.allMovies.length === 0) {
+                this.isDbTableEmpty = true;
+                
+            } else {
+                this.isDbTableEmpty = false;
+            }
+        })
         .catch(err => console.log(err));
     }
 }

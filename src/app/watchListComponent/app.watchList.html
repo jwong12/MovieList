@@ -16,6 +16,8 @@
             <p><span>Genre:</span> {{movie.genres}}</p>
             <p><span>Overview:</span> {{movie.overview}}</p>
         </div>
-        
+    </div>
+    <div *ngIf="isDbTableEmpty" id="empty-wrapper">
+        <div id="empty-list">You haven't added any movies on your watch list.</div>
     </div>
 </div>

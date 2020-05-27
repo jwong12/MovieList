@@ -49,6 +49,20 @@ $screen-lg-min: 992px;
         }
     }
 
+    #empty-wrapper {
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        #empty-list {
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: #313131;
+            border: solid 1px #8e8e8e;
+        }
+    }
+
     .movie-div {
         padding: 10px;
         margin: 7px 3px;
