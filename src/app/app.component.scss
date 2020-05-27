@@ -157,6 +157,41 @@ app-sticky-header {
                 margin: 20px 0 20px 5px;
             }
 
+            @include lg {
+                position: absolute;
+                left: 28%;
+            }
+
+            @include rwd(1130) {
+                position: absolute;
+                left: 30%;
+            }
+
+            @include rwd(1240) {
+                position: absolute;
+                left: 32%;
+            }
+
+            @include rwd(1380){
+                position: absolute;
+                left: 34%;
+            }
+
+            @include rwd(1550){
+                position: absolute;
+                left: 36%;
+            }
+
+            @include rwd(1770){
+                position: absolute;
+                left: 38%;
+            }
+
+            @include rwd(2040){
+                position: absolute;
+                left: 39%;
+            }
+
             #search {
                 position: relative;
                 display: flex;

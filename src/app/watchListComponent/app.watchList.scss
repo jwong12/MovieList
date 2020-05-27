@@ -17,7 +17,21 @@ $screen-lg-min: 992px;
     min-height: 100vh;
 
     #header-block {
-        height: 75px;
+        height: 80px;
+    }
+
+    #login-wrapper {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        #login-message {
+            padding: 8px;
+            border-radius: 5px;
+            color: #313131;
+            border: solid 1px #8e8e8e;
+        }
     }
 
     .movie-div {
