@@ -18,15 +18,11 @@ export class WatchListComponent implements OnInit {
         Auth.currentAuthenticatedUser({
             bypassCache: false
         }).then(async user => {
-            console.log(user);
+            console.log(user); //
             this.userAuthenticated = true;
-            console.log(this.userAuthenticated);
-            // this.userId = user.attributes.sub;
-            // this.userName = user.username;
 
         }).catch(err => {
-            console.log("err: " + err);
-            console.log(this.userAuthenticated);
+            console.log("err: " + err); //
         });
 
         this.listMovies();
@@ -36,6 +32,5 @@ export class WatchListComponent implements OnInit {
         await this.api.ListMovies()
         .then(result => this.allMovies = result.items)
         .catch(err => console.log(err));
-        // console.log("result: " + result);
     }
 }

@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: 'watchlist', component: WatchListComponent },
   { path: 'results/:search', component: ResultsComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'login', component: AuthComponent },
-  { path: '**', redirectTo: 'login', pathMatch: 'full' }
+  { path: 'account', component: AuthComponent },
+  { path: '**', redirectTo: 'account', pathMatch: 'full' }
 ];
 
 @NgModule({

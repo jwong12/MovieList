@@ -1,6 +1,8 @@
 ﻿import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
+import { Router } from "@angular/router"
 import { ModalService } from './modal.service';
 import { APIService } from '../API.service';
+import { Auth } from 'aws-amplify';
 
 const posterLink = "https://image.tmdb.org/t/p/w440_and_h660_face";
 const posterLinkLow = "https://image.tmdb.org/t/p/w220_and_h330_face";
@@ -21,11 +23,12 @@ export class ModalComponent implements OnInit, OnDestroy {
     popularity: number;
     overview: string;
     saveButton: HTMLElement;
+    userAuthenticated:boolean = false;
 
     @Input() id: string;
     private element: any;
 
-    constructor(private modalService: ModalService, private el: ElementRef, private api:APIService) {
+    constructor(private router: Router, private modalService: ModalService, private el: ElementRef, private api:APIService) {
         this.element = el.nativeElement;
     }
 
@@ -48,6 +51,11 @@ export class ModalComponent implements OnInit, OnDestroy {
 
         // add self (this modal instance) to the modal service so it's accessible from controllers
         this.modalService.add(this);
+
+        Auth.currentAuthenticatedUser({
+            bypassCache: false
+        }).then(() => this.userAuthenticated = true)
+        .catch(err => console.log(err));
     }
 
     // remove self from modal service when component is destroyed
@@ -67,29 +75,34 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.genres = this.getGenre(movie.genre_ids, genreArray);
         this.userRating = movie.vote_average * 10;
         this.popularity = Math.round(movie.popularity);
-        this.overview = movie.overview;
+        this.overview = movie.overview === "" ? "Unavailable" : movie.overview;
     }
 
     async addToWatchList(spanHTML) {
-        spanHTML.textContent = "Added";
-        spanHTML.style.backgroundColor = "rgba(142, 142, 142, 0.93)";
-        spanHTML.style.border = "solid 1px rgba(142, 142, 142, 0.93)";
-        spanHTML.style.color = "#ffffff";
-        spanHTML.style.cursor = "initial";
-        this.saveButton = spanHTML;
+        if(this.userAuthenticated && spanHTML.textContent !== "Added") {
+            spanHTML.textContent = "Added";
+            spanHTML.style.backgroundColor = "rgba(142, 142, 142, 0.93)";
+            spanHTML.style.border = "solid 1px rgba(142, 142, 142, 0.93)";
+            spanHTML.style.color = "#ffffff";
+            spanHTML.style.cursor = "initial";
+            this.saveButton = spanHTML;
 
-        const movie = {
-            title: this.title,
-            year: this.year,
-            genres: this.genres,
-            rating: this.userRating,
-            popularity: this.popularity,
-            overview: this.overview,
-            poster: this.imgSrcLow
-        }
+            const movie = {
+                title: this.title,
+                year: this.year,
+                genres: this.genres,
+                rating: this.userRating,
+                popularity: this.popularity,
+                overview: this.overview,
+                poster: this.imgSrcLow
+            }
 
-        await this.api.CreateMovie(movie);
-        console.log(movie);
+            await this.api.CreateMovie(movie).catch(err => console.log("User needs to sign in."));
+
+        } else if(!this.userAuthenticated) {
+            this.close();
+            this.router.navigate(['/account']);
+        }        
     }
 
     getGenre(genreId, genreArray) {
