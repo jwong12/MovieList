@@ -9,11 +9,12 @@
     <div id="movie-content"><br/>   
         <div class="pagination">
             <div id="selection-container">
-                <select name="genreArray" [(ngModel)]='genreSelect' (change)="selectGenre(genreSelect)">
-                    <option 
-                        *ngFor="let genre of genreArray" 
-                        [ngValue]="genre"
-                    >{{genre.name}}</option>
+                <select 
+                    name="genreArray" 
+                    [(ngModel)]='genreSelect' 
+                    (change)="selectGenre(genreSelect)"
+                >
+                    <option *ngFor="let genre of genreArray" [ngValue]="genre">{{genre.name}}</option>
                 </select>
                 <div id="total-results">Results: {{totalMovies}} movies</div>
             </div>

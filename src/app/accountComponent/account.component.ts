@@ -8,10 +8,18 @@ import { Hub } from 'aws-amplify';
 	styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-	userAuthenticated:boolean = false;
+	userAuthenticated: boolean = false;
 	username: string;
 	userEmail: string;
 	userPhone: string;
+	subjectSelect: any;
+	toggleUnavailableTextbox: boolean = false;
+	toggleTicketSystem: boolean = false;
+	isTicketSubmitted: boolean = false;
+	submissionSuccess: string;
+	submissionFail: string;
+	ticketItems: Array<string> = ["--Please choose an option--", "Account", "Plan details", "Website", "Technical issues", "Other"];
+	selectedTicket: string;
 
 	constructor() { 
 		Hub.listen('auth', (data) => {
@@ -42,10 +50,48 @@ export class AccountComponent implements OnInit {
 		}).catch(err => {
 			console.log(err);
 		});
+
+		this.selectedTicket = this.ticketItems[0];
 	}
 
 	formatPhoneNum(phone) {
 		return '(' + phone.substring(2, 5) + ') ' + phone.substring(5, 8) + '-' + phone.substring(8);
 	} 
 
+	openUnavailableTextbox() {
+		this.toggleUnavailableTextbox = true;
+	}
+
+	closeUnavailableTextbox() {
+		this.toggleUnavailableTextbox = false;
+	}
+
+	openTicket() {
+		this.toggleTicketSystem = true;
+	}
+
+	closeTicket() {
+		this.toggleTicketSystem = false;
+	}
+
+	submitTicket(ticketDescription) {
+		this.isTicketSubmitted = true;
+
+		if(this.selectedTicket === this.ticketItems[0]) {
+			this.submissionFail = "Please select a subject for your ticket.";
+			this.submissionSuccess = null;
+
+		} else if (ticketDescription.value.trim() === "") {
+			this.submissionFail = "Please include a description for your ticket.";
+			this.submissionSuccess = null;
+
+		} else {
+			this.submissionSuccess = "Your ticket has been submitted.";
+			this.submissionFail = null;
+		}
+	}
+
+	handleSelectChange() {
+		this.isTicketSubmitted = false;
+	}
 }
