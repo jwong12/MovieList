@@ -1,7 +1,116 @@
-#account-content {
+@mixin rwd($screen) {
+    @media (min-width: $screen+'px') {
+        @content;
+    }
+}
+
+#account-wrapper {
     min-height: 100vh;
 
     #div-block {
         height: 90px;
+    }
+
+    #account-content {
+        margin-bottom: 30px;
+    }
+
+    #account-section-container {
+        color: #313131;
+        margin: 10px 30px;
+        max-width: 750px;
+        
+        @include rwd(825) {
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        h2 {
+            height: auto;
+            font-weight: 600;
+            margin: 20px 0 10px;
+
+            @include rwd(740) {
+                font-size: 34px;
+                margin: 20px 0 20px;
+            }
+        }
+
+        .account-section-header {
+            font-size: 18px;
+            font-weight: 400;
+            margin: 15px 0 20px;
+            color: #757575;
+
+            @include rwd(740) {
+                display: inline-block;
+                position: absolute;
+            }
+        }
+
+        .account-section-item {
+            font-size: 16px;
+            margin: 0 0 15px;
+            color: #313131;
+        }
+
+        #user-section-container {
+            border-top: 1px solid #999;
+
+            @include rwd(740) {
+                #user-items-container {
+                    padding-left: 250px;
+                    margin-top: 15px;
+                }
+            }
+        }
+
+        #plan-section-container {
+            border-top: 1px solid #999;
+
+            .plan-section-item {
+                @include rwd(740) {
+                    padding-left: 250px;
+                }
+                
+                #plan-links-container {
+                    width: 100%;
+                }
+            }
+
+            #plan-selected {
+                float: left;
+                width: 50%;
+                font-weight: 700;
+
+                #plus-icon {
+                    color: #313131;
+                    border: solid 2px #313131;
+                    border-radius: 3px;
+                    padding: 0 2px;
+                }
+            }
+
+            .plan-section-link {
+                color: #0073e6;
+                text-align: right;
+            }
+        }
+
+        #support-section-container {
+            border-top: 1px solid #999;
+
+            #support-links-container {
+                @include rwd(740) {
+                    padding-left: 250px;
+                    margin-top: 15px;
+                    padding-top: 3px;
+                }
+
+                .support-section-link {
+                    color: #0073e6;
+                }
+            }
+        }
     }
 }

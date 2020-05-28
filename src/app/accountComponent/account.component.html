@@ -1,4 +1,47 @@
-<div id="account-content">
+<div id="account-wrapper">
     <div id="div-block"></div>
-    <app-auth></app-auth>
+    <div id="account-content">
+        <app-auth></app-auth>
+        <div *ngIf="userAuthenticated" id="account-section-container">
+            <h2>Account</h2>
+            <div id="user-section-container">
+                <div class="account-section-header">USER INFORMATION</div>
+                <div id="user-items-container">
+                    <div class="account-section-item">Username: {{username}}</div>
+                    <div class="account-section-item">Email: {{userEmail}}</div>
+                    <div class="account-section-item">Phone: {{userPhone}}</div>
+                </div>
+            </div>
+            <div id="plan-section-container">
+                <div class="account-section-header">PLAN DETAILS</div>
+                <div class="plan-section-item">
+                    <div class="account-section-item">
+                        <div id="plan-selected">Standard   <span id="plus-icon">PLUS</span></div>
+                    </div>  
+                    <div id="plan-links-container">
+                        <div class="account-section-item">
+                            <div class="plan-section-link">Change plan</div>
+                        </div>
+                        <div class="account-section-item">
+                            <div class="plan-section-link">Cancel plan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="support-section-container">
+                <div class="account-section-header">SUPPORT</div>
+                <div id="support-links-container">
+                    <div class="account-section-item">
+                        <div class="support-section-link">Contact Support</div>
+                    </div>
+                    <div class="account-section-item">
+                        <div class="support-section-link">Email Inquiry</div>
+                    </div>
+                    <div class="account-section-item">
+                        <div class="support-section-link">Send Ticket</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
