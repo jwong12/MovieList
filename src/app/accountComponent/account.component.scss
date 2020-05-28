@@ -4,11 +4,15 @@
     }
 }
 
-#account-content {
+#account-wrapper {
     min-height: 100vh;
 
     #div-block {
         height: 90px;
+    }
+
+    #account-content {
+        margin-bottom: 30px;
     }
 
     #account-section-container {

@@ -34,7 +34,7 @@ $screen-lg-min: 992px;
         height: auto;
         color: #313131;
 
-        @include rwd(740) {
+        @include rwd(829) {
             font-size: 32px;
         }
     }
@@ -74,7 +74,7 @@ $screen-lg-min: 992px;
     }
 
     #watchlist-container {
-        margin-bottom: 25px;
+        margin-bottom: 30px;
     }
 
     .movie-div {

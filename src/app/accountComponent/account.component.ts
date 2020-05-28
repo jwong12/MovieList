@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
+import { Hub } from 'aws-amplify';
 
 @Component({
 	selector: 'app-account-component',
@@ -8,22 +9,38 @@ import { Auth } from 'aws-amplify';
 })
 export class AccountComponent implements OnInit {
 	userAuthenticated:boolean = false;
+	username: string;
 	userEmail: string;
 	userPhone: string;
 
-	constructor() { }
+	constructor() { 
+		Hub.listen('auth', (data) => {
+			const { payload } = data;
+
+			if(payload.event === "signIn") {
+				this.userAuthenticated = true;
+				this.username = payload.data.username;
+				this.userEmail = payload.data.attributes.email;
+				this.userPhone = this.formatPhoneNum(payload.data.attributes.phone_number);
+
+			} else if(payload.event === "signOut") {
+				this.userAuthenticated = false;
+			}
+        })
+	}
 
 	ngOnInit() {
 		Auth.currentAuthenticatedUser({
 			bypassCache: false
+			
 		}).then(async user => {
-			console.log(user); //
+			this.username = user.username;
 			this.userAuthenticated = true;
 			this.userEmail = user.attributes.email;
 			this.userPhone = this.formatPhoneNum(user.attributes.phone_number);
 
 		}).catch(err => {
-			console.log("err: " + err); //
+			console.log(err);
 		});
 	}
 
