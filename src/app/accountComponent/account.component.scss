@@ -103,6 +103,18 @@
             .plan-section-link {
                 color: #0073e6;
                 text-align: right;
+                cursor: pointer;
+            }
+
+            #unavailable-feature {
+                text-align: right;
+
+                span {
+                    padding: 3px;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    filter: invert(0%) sepia(69%) saturate(2832%) hue-rotate(87deg) brightness(98%) contrast(84%);
+                }
             }
         }
 

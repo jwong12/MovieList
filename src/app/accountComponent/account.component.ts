@@ -12,6 +12,7 @@ export class AccountComponent implements OnInit {
 	username: string;
 	userEmail: string;
 	userPhone: string;
+	toggleUnavailableTextbox:boolean = false;
 
 	constructor() { 
 		Hub.listen('auth', (data) => {
@@ -48,4 +49,11 @@ export class AccountComponent implements OnInit {
 		return '(' + phone.substring(2, 5) + ') ' + phone.substring(5, 8) + '-' + phone.substring(8);
 	} 
 
+	openUnavailableTextbox() {
+		this.toggleUnavailableTextbox = true;
+	}
+
+	closeUnavailableTextbox() {
+		this.toggleUnavailableTextbox = false;
+	}
 }

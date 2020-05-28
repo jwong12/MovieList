@@ -20,10 +20,18 @@
                     </div>  
                     <div id="plan-links-container">
                         <div class="account-section-item">
-                            <div class="plan-section-link">Change plan</div>
+                            <div class="plan-section-link" (click)="openUnavailableTextbox()">Change plan</div>
                         </div>
                         <div class="account-section-item">
-                            <div class="plan-section-link">Cancel plan</div>
+                            <div class="plan-section-link" (click)="openUnavailableTextbox()">Cancel plan</div>
+                        </div>
+                        <div class="account-section-item" *ngIf="toggleUnavailableTextbox">
+                            <div id="unavailable-feature">
+                                This feature is unavailable at the moment.
+                                <span (click)="closeUnavailableTextbox()">
+                                    <img src="../../assets/images/close-unavailable.png" alt="close icon">
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
