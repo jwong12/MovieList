@@ -13,6 +13,12 @@ $screen-lg-min: 992px;
     }
 }
 
+@mixin rwd($screen) {
+    @media (min-width: $screen+'px') {
+        @content;
+    }
+}
+
 #watchlist-content {
     min-height: 100vh;
 
@@ -23,10 +29,14 @@ $screen-lg-min: 992px;
     h2 {
         text-align: center;
         margin: 15px 0;        
-        font-size: 22px;
-        font-weight: bold;
+        font-size: 24px;
+        font-weight: 600;
         height: auto;
         color: #313131;
+
+        @include rwd(740) {
+            font-size: 32px;
+        }
     }
 
     #login-wrapper {
@@ -61,6 +71,10 @@ $screen-lg-min: 992px;
             color: #313131;
             border: solid 1px #8e8e8e;
         }
+    }
+
+    #watchlist-container {
+        margin-bottom: 25px;
     }
 
     .movie-div {

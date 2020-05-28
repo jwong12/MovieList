@@ -4,17 +4,19 @@
     <div *ngIf="!userAuthenticated" id="login-wrapper">
         <div id="login-message">Please <a routerLink="/account" routerLinkActive="active">sign in</a> to use this feature.</div>
     </div>
-    <div class="movie-div" *ngFor="let movie of allMovies">
-        <div class="img-div">
-            <img src={{movie.poster}} alt={{movie.title}}>
-        </div>
-        <div class="description-div">
-            <h3>{{movie.title}}</h3>
-            <p><span>Year Released:</span> {{movie.year}}</p>
-            <p><span>Popularity:</span> {{movie.popularity}}%</p>
-            <p><span>User Rating:</span> {{movie.rating === 0 ? "Unrated" : movie.rating + "%"}}</p>
-            <p><span>Genre:</span> {{movie.genres}}</p>
-            <p><span>Overview:</span> {{movie.overview}}</p>
+    <div id="watchlist-container">
+        <div class="movie-div" *ngFor="let movie of allMovies">
+            <div class="img-div">
+                <img src={{movie.poster}} alt={{movie.title}}>
+            </div>
+            <div class="description-div">
+                <h3>{{movie.title}}</h3>
+                <p><span>Year Released:</span> {{movie.year}}</p>
+                <p><span>Popularity:</span> {{movie.popularity}}%</p>
+                <p><span>User Rating:</span> {{movie.rating === 0 ? "Unrated" : movie.rating + "%"}}</p>
+                <p><span>Genre:</span> {{movie.genres}}</p>
+                <p><span>Overview:</span> {{movie.overview}}</p>
+            </div>
         </div>
     </div>
     <div *ngIf="isDbTableEmpty" id="empty-wrapper">

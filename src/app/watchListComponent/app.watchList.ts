@@ -18,13 +18,8 @@ export class WatchListComponent implements OnInit {
     async ngOnInit() {
         Auth.currentAuthenticatedUser({
             bypassCache: false
-        }).then(async user => {
-            console.log(user); //
-            this.userAuthenticated = true;
-
-        }).catch(err => {
-            console.log("err: " + err); //
-        });
+        }).then(async user => this.userAuthenticated = true)
+        .catch(err => console.log(err));
 
         this.listMovies();
     }
