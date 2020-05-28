@@ -127,8 +127,47 @@
                     margin-top: 22px;
                 }
 
+                a {
+                    text-decoration: none;
+                    color: #0073e6;
+                }
+
                 .support-section-link {
                     color: #0073e6;
+                    cursor: pointer;
+                }
+
+                .ticket {
+                    display: grid;
+                    width: 60%;
+                    min-width: 310px;
+
+                    select {
+                        margin: 12px 0;
+                        height: 24px;
+                    }
+
+                    #ticket-buttons-container {
+                        text-align: right;
+                        margin: 10px 0;
+
+                        #cancel-button {
+                            margin-right: 10px;
+                        }
+                    }
+
+                    #ticket-submission {
+                        text-align: right;
+                        margin: 5px 0;
+
+                        #success {
+                            color: #0b820b;
+                        }
+
+                        #failure {
+                            color: #ec0000;
+                        }
+                    }
                 }
             }
         }

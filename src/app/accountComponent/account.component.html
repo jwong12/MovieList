@@ -40,13 +40,31 @@
                 <div class="account-section-header">SUPPORT</div>
                 <div id="support-links-container">
                     <div class="account-section-item">
-                        <div class="support-section-link">Contact Support</div>
+                        <a href="mailto:jwong_li@hotmail.com" class="support-section-link">Contact Support</a>
                     </div>
                     <div class="account-section-item">
-                        <div class="support-section-link">Email Inquiry</div>
+                        <a href="mailto:jwong_li@hotmail.com" class="support-section-link">Email Inquiry</a>
                     </div>
                     <div class="account-section-item">
-                        <div class="support-section-link">Send Ticket</div>
+                        <div class="support-section-link" (click)="openTicket()">Send Ticket</div>
+                    </div>
+                    <div class="account-section-item ticket" *ngIf="toggleTicketSystem">                    
+                        <select 
+                            name="subjects" 
+                            [(ngModel)]="selectedTicket" 
+                            (change)="handleSelectChange()"
+                        >
+                            <option *ngFor="let subject of ticketItems" [ngValue]="subject">{{subject}}</option>
+                        </select>
+                        <textarea name="ticket-text" cols="30" rows="8" #ticketDescription></textarea>
+                        <div id="ticket-buttons-container">
+                            <button id="cancel-button" (click)="closeTicket()">Cancel</button>
+                            <button (click)="submitTicket(ticketDescription)">Submit</button>
+                        </div>
+                        <div id="ticket-submission" *ngIf="isTicketSubmitted">
+                            <div id="success">{{submissionSuccess}}</div>
+                            <div id="failure">{{submissionFail}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
