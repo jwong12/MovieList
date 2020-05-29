@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { APIService } from '../API.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
     templateUrl: 'app.watchList.html',
@@ -13,7 +14,7 @@ export class WatchListComponent implements OnInit {
     userAuthenticated:boolean = false;
     isDbTableEmpty: boolean = false;
 
-    constructor(private api: APIService) { }
+    constructor(private api: APIService, private spinner: NgxSpinnerService) { }
 
     async ngOnInit() {
         Auth.currentAuthenticatedUser({
@@ -25,6 +26,8 @@ export class WatchListComponent implements OnInit {
     }
 
     async listMovies() {
+        this.spinner.show();
+
         await this.api.ListMovies()
         .then(result => {
             this.allMovies = result.items;
@@ -35,7 +38,12 @@ export class WatchListComponent implements OnInit {
             } else {
                 this.isDbTableEmpty = false;
             }
+
+            this.spinner.hide();
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err);
+            this.spinner.hide();
+        });
     }
 }
