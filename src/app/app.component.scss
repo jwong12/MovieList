@@ -87,66 +87,70 @@ app-sticky-header {
                 margin-left: 30px;
             }
 
-            img {
-                vertical-align: middle;
-                width: 43px;
-                height: 43px;
-                margin: auto;
-                filter: brightness(80%);
+            a {
+                text-decoration: none;
 
-                @include rwd(829) {
-                    width: 46px;
-                    height: 46px;
-                }
-
-                @include lg {
-                    width: 50px;
-                    height: 50px;
-                }
-            }
-
-            h1 {
-                display:none;
-                user-select:none;
-
-                @include rwd(500) {
-                    display:inline-block;
+                img {
                     vertical-align: middle;
-                    width: 73px;
-                    font-size: 20px;
-                    line-height: 21px;
-                    margin: 0;
-                    font-weight: bold;
-                    opacity: 0.8;
-                    background: -webkit-linear-gradient(180deg, #15b38b, #0cb6e8);
-                    background-clip: text;
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
+                    width: 43px;
+                    height: 43px;
+                    margin: auto;
+                    filter: brightness(80%);
+
+                    @include rwd(829) {
+                        width: 46px;
+                        height: 46px;
+                    }
+
+                    @include lg {
+                        width: 50px;
+                        height: 50px;
+                    }
                 }
 
-                @include sm {
-                    display: initial;
-                    width: 100%;
-                    font-size: 22px;
-                    height: 52px;
-                    line-height: 52px;
-                    background: -webkit-linear-gradient(45deg,#0cb6e8, #15b38b);
-                    background-clip: text;
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                }
+                h1 {
+                    display:none;
+                    user-select:none;
 
-                @include md {
-                    font-size: 24px;
-                }
+                    @include rwd(500) {
+                        display:inline-block;
+                        vertical-align: middle;
+                        width: 73px;
+                        font-size: 20px;
+                        line-height: 21px;
+                        margin: 0;
+                        font-weight: bold;
+                        opacity: 0.8;
+                        background: -webkit-linear-gradient(180deg, #15b38b, #0cb6e8);
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
 
-                @include rwd(829) {
-                    font-size: 26px;
-                }
+                    @include sm {
+                        display: initial;
+                        width: 100%;
+                        font-size: 22px;
+                        height: 52px;
+                        line-height: 52px;
+                        background: -webkit-linear-gradient(45deg,#0cb6e8, #15b38b);
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
 
-                @include lg {
-                    font-size: 28px;
-                }                
+                    @include md {
+                        font-size: 24px;
+                    }
+
+                    @include rwd(829) {
+                        font-size: 26px;
+                    }
+
+                    @include lg {
+                        font-size: 28px;
+                    }                
+                }
             }
         }
 
