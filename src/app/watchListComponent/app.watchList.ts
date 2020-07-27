@@ -25,6 +25,16 @@ export class WatchListComponent implements OnInit {
         this.listMovies();
     }
 
+    async removeFromWatchList(movie) {
+        console.log(movie);
+
+        const movieObj = {
+            id: movie.id
+        }
+        
+        await this.api.DeleteMovie(movieObj).catch(err => console.log(err));
+    }
+
     async listMovies() {
         this.spinner.show();
 
