@@ -79,10 +79,10 @@ export class ModalComponent implements OnInit, OnDestroy {
     }
 
     async addToWatchList(spanHTML) {
-        if(this.userAuthenticated && spanHTML.textContent !== "Added") {
-            spanHTML.textContent = "Added";
-            spanHTML.style.backgroundColor = "rgba(142, 142, 142, 0.93)";
-            spanHTML.style.border = "solid 1px rgba(142, 142, 142, 0.93)";
+        if(this.userAuthenticated && spanHTML.textContent !== "Added!") {
+            spanHTML.textContent = "Added!";
+            spanHTML.style.backgroundColor = "rgba(130, 130, 130, 0.93)";
+            spanHTML.style.border = "solid 1px rgba(130, 130, 130, 0.93)";
             spanHTML.style.color = "#ffffff";
             spanHTML.style.cursor = "initial";
             this.saveButton = spanHTML;

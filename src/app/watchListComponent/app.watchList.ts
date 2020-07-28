@@ -26,13 +26,11 @@ export class WatchListComponent implements OnInit {
     }
 
     async removeFromWatchList(movie) {
-        console.log(movie);
-
         const movieObj = {
             id: movie.id
         }
-        
-        await this.api.DeleteMovie(movieObj).catch(err => console.log(err));
+
+        await this.api.DeleteMovie(movieObj).then(() => this.ngOnInit()).catch(err => console.log(err));
     }
 
     async listMovies() {
