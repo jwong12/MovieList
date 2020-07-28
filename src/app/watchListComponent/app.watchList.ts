@@ -19,10 +19,18 @@ export class WatchListComponent implements OnInit {
     async ngOnInit() {
         Auth.currentAuthenticatedUser({
             bypassCache: false
-        }).then(async user => this.userAuthenticated = true)
+        }).then(async () => this.userAuthenticated = true)
         .catch(err => console.log(err));
 
         this.listMovies();
+    }
+
+    async removeFromWatchList(movie) {
+        const movieObj = {
+            id: movie.id
+        }
+
+        await this.api.DeleteMovie(movieObj).then(() => this.ngOnInit()).catch(err => console.log(err));
     }
 
     async listMovies() {

@@ -10,7 +10,7 @@
                 <img src={{movie.poster}} alt={{movie.title}}>
             </div>
             <div class="description-div">
-                <h3>{{movie.title}}</h3>
+                <h3>{{movie.title}}</h3><span id="deleteBtn" (click)="removeFromWatchList(movie)">Delete</span>
                 <p><span>Year Released:</span> {{movie.year}}</p>
                 <p><span>Popularity:</span> {{movie.popularity}}%</p>
                 <p><span>User Rating:</span> {{movie.rating === 0 ? "Unrated" : movie.rating + "%"}}</p>
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div *ngIf="isDbTableEmpty" id="empty-wrapper">
-        <div id="empty-list">You haven't added any movies on your watch list.</div>
+        <div id="empty-list">Your watch list is currently empty.</div>
     </div>
     <ngx-spinner
         size="medium"
