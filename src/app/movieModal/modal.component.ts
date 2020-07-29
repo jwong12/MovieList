@@ -24,6 +24,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     overview: string;
     saveButton: HTMLElement;
     userAuthenticated:boolean = false;
+    movieIsInDB: boolean;
 
     @Input() id: string;
     private element: any;
@@ -54,10 +55,9 @@ export class ModalComponent implements OnInit, OnDestroy {
 
         Auth.currentAuthenticatedUser({
             bypassCache: false
-        }).then(() => this.userAuthenticated = true)
-        .catch(err => console.log(err));
+        }).then(() => this.userAuthenticated = true).catch(err => console.log(err));
     }
-
+    
     // remove self from modal service when component is destroyed
     ngOnDestroy(): void {
         this.modalService.remove(this.id);
@@ -66,6 +66,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
     // open modal
     open(movie, genreArray): void {
+        this.saveButton = this.element.childNodes[0].childNodes[0].childNodes[1].childNodes[1].childNodes[0].childNodes[1];
         this.element.style.display = 'block';
         document.body.classList.add('jw-modal-open');
         this.imgSrc = posterLink + movie.poster_path;
@@ -76,18 +77,57 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.userRating = movie.vote_average * 10;
         this.popularity = Math.round(movie.popularity);
         this.overview = movie.overview === "" ? "Unavailable" : movie.overview;
+        this.isMovieInDB();
     }
 
-    async addToWatchList(spanHTML) {
-        if(this.userAuthenticated && spanHTML.textContent !== "Added!") {
-            spanHTML.textContent = "Added!";
-            spanHTML.style.backgroundColor = "rgba(130, 130, 130, 0.93)";
-            spanHTML.style.border = "solid 1px rgba(130, 130, 130, 0.93)";
-            spanHTML.style.color = "#ffffff";
-            spanHTML.style.cursor = "initial";
-            this.saveButton = spanHTML;
+    async isMovieInDB() {
+        await this.api.GetMovie(this.title).then((result) => {
+            if(result) {
+                this.movieIsInDB = true;
+                this.saveButton.textContent = "Added!";
+                this.saveButton.style.backgroundColor = "rgba(130, 130, 130, 0.93)";
+                this.saveButton.style.border = "solid 1px rgba(130, 130, 130, 0.93)";
+                this.saveButton.style.color = "#ffffff";
+
+            } else {
+                this.movieIsInDB = false;
+                this.saveButton.textContent = "Save";
+                this.saveButton.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
+                this.saveButton.style.border = "solid 1px rgba(204, 127, 46, 0.93)";
+                this.saveButton.style.color = "#fbfbfb";
+            }
+
+        }).catch(err => console.log(err));   
+    }
+
+    async addToWatchList() {
+        console.log(this.saveButton)
+        if(!this.userAuthenticated) {
+            this.close();
+            this.router.navigate(['/account']);
+
+        } else if(this.movieIsInDB) {
+            this.saveButton.textContent = "Save";
+            this.saveButton.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
+            this.saveButton.style.border = "solid 1px rgba(204, 127, 46, 0.93)";
+            this.saveButton.style.color = "#fbfbfb";
+            this.movieIsInDB = false;
 
             const movie = {
+                id: this.title
+            }
+
+            await this.api.DeleteMovie(movie).then().catch(err => console.log(err));    
+
+        } else {
+            this.saveButton.textContent = "Added!";
+            this.saveButton.style.backgroundColor = "rgba(130, 130, 130, 0.93)";
+            this.saveButton.style.border = "solid 1px rgba(130, 130, 130, 0.93)";
+            this.saveButton.style.color = "#ffffff";
+            this.movieIsInDB = true;
+
+            const movie = {
+                id: this.title,
                 title: this.title,
                 year: this.year,
                 genres: this.genres,
@@ -97,12 +137,8 @@ export class ModalComponent implements OnInit, OnDestroy {
                 poster: this.imgSrcLow
             }
 
-            await this.api.CreateMovie(movie).catch(err => console.log("User needs to sign in."));
-
-        } else if(!this.userAuthenticated) {
-            this.close();
-            this.router.navigate(['/account']);
-        }        
+            await this.api.CreateMovie(movie).catch(err => console.log(err));
+        }   
     }
 
     getGenre(genreId, genreArray) {
