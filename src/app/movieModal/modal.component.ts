@@ -84,47 +84,48 @@ export class ModalComponent implements OnInit, OnDestroy {
         await this.api.GetMovie(this.title).then((result) => {
             if(result) {
                 this.movieIsInDB = true;
-                this.saveButton.textContent = "Added!";
-                this.saveButton.style.backgroundColor = "rgba(130, 130, 130, 0.93)";
-                this.saveButton.style.border = "solid 1px rgba(130, 130, 130, 0.93)";
-                this.saveButton.style.color = "#ffffff";
+                this.setAddedButton();
 
             } else {
                 this.movieIsInDB = false;
-                this.saveButton.textContent = "Save";
-                this.saveButton.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
-                this.saveButton.style.border = "solid 1px rgba(204, 127, 46, 0.93)";
-                this.saveButton.style.color = "#fbfbfb";
+                this.setSaveButton();
             }
 
         }).catch(err => console.log(err));   
     }
 
+    setSaveButton() {
+        this.saveButton.textContent = "Save";
+        this.saveButton.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
+        this.saveButton.style.border = "solid 1px rgba(204, 127, 46, 0.93)";
+        this.saveButton.style.color = "#fbfbfb";
+    }
+
+    setAddedButton() {
+        this.saveButton.textContent = "Added!";
+        this.saveButton.style.backgroundColor = "rgba(130, 130, 130, 0.93)";
+        this.saveButton.style.border = "solid 1px rgba(130, 130, 130, 0.93)";
+        this.saveButton.style.color = "#ffffff";
+    }
+
     async addToWatchList() {
-        console.log(this.saveButton)
         if(!this.userAuthenticated) {
             this.close();
             this.router.navigate(['/account']);
 
         } else if(this.movieIsInDB) {
-            this.saveButton.textContent = "Save";
-            this.saveButton.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
-            this.saveButton.style.border = "solid 1px rgba(204, 127, 46, 0.93)";
-            this.saveButton.style.color = "#fbfbfb";
             this.movieIsInDB = false;
+            this.setSaveButton();
 
             const movie = {
                 id: this.title
             }
 
-            await this.api.DeleteMovie(movie).then().catch(err => console.log(err));    
+            await this.api.DeleteMovie(movie).catch(err => console.log(err));    
 
         } else {
-            this.saveButton.textContent = "Added!";
-            this.saveButton.style.backgroundColor = "rgba(130, 130, 130, 0.93)";
-            this.saveButton.style.border = "solid 1px rgba(130, 130, 130, 0.93)";
-            this.saveButton.style.color = "#ffffff";
             this.movieIsInDB = true;
+            this.setAddedButton();
 
             const movie = {
                 id: this.title,
