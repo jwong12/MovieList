@@ -13,6 +13,7 @@ const posterLinkLow = "https://image.tmdb.org/t/p/w220_and_h330_face";
     styleUrls: ['modal.component.less'],
     encapsulation: ViewEncapsulation.None
 })
+
 export class ModalComponent implements OnInit, OnDestroy {
     imgSrc: string; 
     imgSrcLow: string;
@@ -102,7 +103,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     }
 
     setAddedButton() {
-        this.saveButton.textContent = "Added!";
+        this.saveButton.textContent = "Added";
         this.saveButton.style.backgroundColor = "rgba(130, 130, 130, 0.93)";
         this.saveButton.style.border = "solid 1px rgba(130, 130, 130, 0.93)";
         this.saveButton.style.color = "#ffffff";
