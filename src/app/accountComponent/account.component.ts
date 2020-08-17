@@ -37,7 +37,7 @@ export class AccountComponent implements OnInit {
         })
 	}
 
-	ngOnInit() {
+	ngOnInit() {				
 		Auth.currentAuthenticatedUser({
 			bypassCache: false
 			
