@@ -15,6 +15,7 @@
         position: fixed;
         top: 50%;
         left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
 
@@ -45,57 +46,41 @@ jw-modal {
             @media @xxxlarge {
                 #media-query.mixin-one();
                 width: 980px;
-                margin-top: -333px;
-                margin-left: -490px;  
             }
 
             @media @xxlarge {
                 #media-query.mixin-one();
                 width: 910px;
-                margin-top: -309px;
-                margin-left: -450px;
             }
 
             @media @xlarge {
                 #media-query.mixin-one();
-                width: 850px;
-                margin-top: -289px;
-                margin-left: -425px;  
+                width: 850px;  
             }
 
             @media @large {
                 #media-query.mixin-one();
                 width: 800px;
-                margin-top: -272px;
-                margin-left: -400px;  
             }
 
             @media @full {
                 #media-query.mixin-one();
                 width: 730px;
-                margin-top: -237px;
-                margin-left: -365px;  
             }
 
             @media @medium {
                 #media-query.mixin-one();
                 width: 650px;
-                margin-top: -221px;
-                margin-left: -325px;  
             }
 
             @media @tablet {
                 #media-query.mixin-one();
                 width: 580px;
-                margin-top: -198px;
-                margin-left: -290px;
             }
 
             @media @small {
                 #media-query.mixin-one();
-                width: 500px;
-                margin-top: -171px;
-                margin-left: -250px;                
+                width: 100%;             
             }
 
             .img-div {
@@ -103,7 +88,7 @@ jw-modal {
                 background-color: #0a0a0a;
 
                 @media @xxxlarge {
-                    height: 661px; 
+                    height: 662px; 
                 }
     
                 @media @xxlarge {
@@ -111,7 +96,7 @@ jw-modal {
                 }
     
                 @media @xlarge {
-                    height: 573px; 
+                    height: 574px; 
                 }
     
                 @media @large {
@@ -119,7 +104,7 @@ jw-modal {
                 }
     
                 @media @full {
-                    height: 492px; 
+                    height: 493px; 
                 }
     
                 @media @medium {
@@ -127,15 +112,19 @@ jw-modal {
                 }
     
                 @media @tablet {
-                    height: 391px; 
+                    height: 392px; 
                 }
     
                 @media @small {
-                    height: 337px;           
+                    height: 337px;      
                 }
 
                 img{
                     width:100%;
+
+                    @media @small {
+                        height: 100%;     
+                    }
                 }
             }
 
@@ -382,9 +371,3 @@ jw-modal {
         z-index: 990;
     }
 }
-
-body.jw-modal-open {
-    /* body overflow is hidden to hide main scrollbar when modal window is open */
-    overflow: hidden;
-}
-
