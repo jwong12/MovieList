@@ -384,13 +384,9 @@ footer {
                 }
 
                 h2{
-                    margin: 15px 0 5px;
+                    margin: 15px 0 0 0;
                     letter-spacing: 0.3rem;
                     text-transform: uppercase;
-
-                    @include rwd(660) {
-                        margin: 15px 0 0 0;
-                    }
 
                     @include rwd(1075) {
                         font-size: 25px;
