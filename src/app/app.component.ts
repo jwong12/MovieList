@@ -28,12 +28,7 @@ export class AppComponent {
 
     openNav() {
         const links = document.getElementById("hidden-links") as HTMLElement;
-
-        if (links.style.display === "block") {
-            links.style.display = "none";
-        } else {
-            links.style.display = "block";
-        }
+        links.style.display = (links.style.display === "block" ? "none" : "block");
     }
 
     closeNav() {
