@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, HostListener, ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
 import { MovieURLService } from './apiService/app.movieURLService';
@@ -16,11 +16,20 @@ export class AppComponent {
     searchKeywords: string;
     suggestions: Array<string>;
     subject = new Subject<string>();
+    @ViewChild('searchWrapper', { read: ElementRef, static: false }) searchWrapperEl:ElementRef;
 
-    constructor(private router: Router, private _http: HttpClient, private movieAPI: MovieURLService) {
+    @HostListener('document:click', ['$event'])
+    clickout(event) {
+        if (!this.searchWrapperEl.nativeElement.contains(event.target)) {
+            this.closeSuggestions();
+        }
+    }
+    
+    constructor(private router: Router, private _http: HttpClient, private movieAPI: MovieURLService, private rd: Renderer2) {
+        this.searchKeywords = '';
         this.suggestions = [];
         this.subject.pipe(
-            debounceTime(800),
+            debounceTime(500),
             distinctUntilChanged(),
             switchMap(val => { 
                 this.getSuggestions(val);
@@ -38,7 +47,7 @@ export class AppComponent {
     getSuggestions(text) {
         const query = text.trim().replace(/ /g, '%20');
 
-        if (query !== '') {
+        if (query.length > 1) {
             this.suggestions = [];
             this._http.get<any>(this.movieAPI.getSuggestionURL(query))
                 .subscribe(data => {
@@ -48,13 +57,27 @@ export class AppComponent {
                             this.suggestions.push(movie.original_title);
                         }
                     });
-
-                    console.log(this.suggestions);
                 }, 
                 error =>{
                     console.error(error);
                 })
+        } else {
+            this.closeSuggestions();
         }
+    }
+
+    openSuggestions(text) {
+        this.getSuggestions(text);
+    }
+
+    closeSuggestions() {
+        this.suggestions = [];
+    }
+
+    handleClickSuggestion(title) {
+        this.router.navigate(['/results', title]);
+        this.searchKeywords = '';
+        this.suggestions = [];
     }
 
     handleKeywordChange() {

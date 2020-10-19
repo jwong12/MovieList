@@ -7,7 +7,7 @@
                     <h1>Movie List</h1>
                 </a>
             </div>
-            <div id="search-wrapper">
+            <div id="search-wrapper" #searchWrapper>
                 <div id="search">
                     <input 
                         type="text" 
@@ -17,6 +17,7 @@
                         [(ngModel)]="searchKeywords"
                         (ngModelChange)="this.handleKeywordChange()"
                         (keypress)="this.searchOnKeyPress($event)"
+                        (focus)="this.openSuggestions(searchKeywords)"
                     >
                     <button id="search-btn" (click)="this.searchOnClick()">
                         <img src="../assets/images/search.svg" alt="search icon">
@@ -24,7 +25,7 @@
                 </div>
                 <div id="suggestion-box">
                     <ul>
-                        <li *ngFor="let suggestion of suggestions">{{suggestion}}</li>
+                        <li *ngFor="let suggestion of suggestions" (click)="this.handleClickSuggestion(suggestion)">{{suggestion}}</li>
                     </ul>
                 </div>
             </div>
