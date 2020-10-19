@@ -243,11 +243,11 @@ app-sticky-header {
                     line-height: 27px;
                     width: 62%;
                     border: none;
-                    border-radius: 30px;
-                    padding: 2px 60px 2px 10px;
-                    font-size: 14px;
+                    border-radius: 20px;
+                    padding: 2px 60px 2px 15px;
+                    font-size: 15px;
                     background-color: #fbfbfb;
-                    color: rgb(75, 74, 74);
+                    color: #3a3a3a;
                     outline: none;
 
                     @include rwd(500) {
@@ -263,7 +263,7 @@ app-sticky-header {
                     display: inline-flex;
                     height: 35px;
                     border: none;
-                    border-radius: 30px;
+                    border-radius: 20px;
                     padding: 8px 20px;
                     background: linear-gradient(to right, #49a5dc 0%, #3ea9a9 100%);
                     outline: none;
@@ -277,6 +277,91 @@ app-sticky-header {
                         width: 20px;
                         height: 20px;
                         filter: invert(94%) sepia(91%) saturate(0%) hue-rotate(45deg) brightness(110%) contrast(97%);
+                    }
+                }
+            }
+
+            #suggestion-box {
+                position: relative;
+
+                ul {
+                    position: absolute;
+                    left: 3px;
+                    min-width: 99%;
+                    list-style-type: none;
+                    color: #404040;
+                    font-weight: bold;
+                    background-color: #FBFBFB;
+                    box-shadow: 0 2px 6px rgba(32,33,36,.28);
+                    border-radius: 5px;
+                    margin: auto;
+                    padding-left: 0;
+                    cursor: pointer;
+
+                    @include rwd(630) {
+                        left: 7px;
+                        min-width: 97%;
+                    } 
+
+                    @include rwd(660) {
+                        left: 12px;
+                        min-width: 96%;
+                    }
+
+                    @include rwd(690) {
+                        left: 18px;
+                        min-width: 95%;
+                    }
+
+                    @include rwd(829) {
+                        left: 8px;
+                        min-width: 97%;
+                    }
+
+                    @include rwd(855) {
+                        left: 12px;
+                        min-width: 96%;
+                    }
+
+                    @include rwd(885) {
+                        left: 18px;
+                        min-width: 95%;
+                    }
+
+                    @include rwd(915) {
+                        left: 22px;
+                        min-width: 94%;
+                    }
+
+                    @include rwd(992) {
+                        left: 27px;
+                        min-width:93%
+                    }
+
+                    li {
+                        line-height: 18px;
+                        font-size: 14px;
+                        padding: 8px 15px;
+                    }
+
+                    li:first-of-type {
+                        padding-top: 10px;
+                    }
+
+                    li:last-of-type {
+                        padding-bottom: 12px;
+                    }
+
+                    li:hover {
+                        background-color: rgb(235, 235, 235);
+                    }
+
+                    li:first-of-type:hover {
+                        border-radius: 5px 5px 0 0;
+                    }
+
+                    li:last-of-type:hover {
+                        border-radius: 0 0 5px 5px;
                     }
                 }
             }
