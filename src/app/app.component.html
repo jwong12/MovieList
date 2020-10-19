@@ -13,13 +13,18 @@
                         type="text" 
                         id="search-bar" 
                         placeholder="Search..." 
+                        autocomplete="off"
                         [(ngModel)]="searchKeywords"
+                        (ngModelChange)="this.handleKeywordChange()"
                         (keypress)="this.searchOnKeyPress($event)"
                     >
                     <button id="search-btn" (click)="this.searchOnClick()">
                         <img src="../assets/images/search.svg" alt="search icon">
                     </button>
                 </div>
+                <ul>
+                    <li *ngFor="let suggestion of suggestions">{{suggestion}}</li>
+                </ul>
             </div>
             <div class="topnav">
                 <a href="javascript:void(0);" class="icon" (click)="openNav()">

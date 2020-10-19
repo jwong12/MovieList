@@ -1,15 +1,10 @@
 const API_KEY  = '0920ab6465d4820a807193b5d5056ece';
 
-const GENRE_URL = 'https://api.themoviedb.org/3/genre/movie/list?api_key='
-                + API_KEY
-                + '&language=en-US';
+const GENRE_URL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=' + API_KEY + '&language=en-US';
 
-const MOVIES_URL  = 'https://api.themoviedb.org/3/discover/movie?api_key='
-                + API_KEY;  
+const MOVIES_URL  = 'https://api.themoviedb.org/3/discover/movie?api_key=' + API_KEY;  
 
-const SEARCH_MOVIES_URL =  'https://api.themoviedb.org/3/search/movie?api_key='
-                + API_KEY
-                + '&query=';
+const SEARCH_MOVIES_URL =  'https://api.themoviedb.org/3/search/movie?api_key=';
 
 export class MovieURLService {
 
@@ -45,6 +40,10 @@ export class MovieURLService {
     }
 
     getSearchURL() {
-        return SEARCH_MOVIES_URL;
+        return SEARCH_MOVIES_URL + API_KEY + '&query=';
+    }
+
+    getSuggestionURL(keyword) {
+        return SEARCH_MOVIES_URL + API_KEY + '&language=en-US&query=' + keyword + '&page=1&include_adult=false';
     }
 }
