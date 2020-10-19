@@ -18,7 +18,7 @@ export class AppComponent {
     subject = new Subject<string>();
 
     constructor(private router: Router, private _http: HttpClient, private movieAPI: MovieURLService) {
-        this.suggestions = ["Chavo", "Pokemon", "Dragon Ball", "Batman"];
+        this.suggestions = [];
         this.subject.pipe(
             debounceTime(800),
             distinctUntilChanged(),
