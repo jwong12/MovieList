@@ -75,9 +75,16 @@ export class AppComponent {
     }
 
     handleClickSuggestion(title) {
-        this.router.navigate(['/results', title]);
+        this.subject.next('');
         this.searchKeywords = '';
         this.suggestions = [];
+        this.router.navigate(['/results', title]);
+    }
+
+    searchOnClick() {
+        if(this.searchKeywords !== undefined && this.searchKeywords.trim() !== '') {
+            this.handleClickSuggestion(this.searchKeywords.trim());
+        } 
     }
 
     handleKeywordChange() {
@@ -87,15 +94,6 @@ export class AppComponent {
     searchOnKeyPress(e: KeyboardEvent) {
         if (e.key === "Enter") {
             this.searchOnClick();
-        } 
-    }
-
-    searchOnClick() {
-        if(this.searchKeywords !== undefined && this.searchKeywords.trim() !== '') {
-            let keyword = this.searchKeywords.trim();
-            this.router.navigate(['/results', keyword]);
-            this.searchKeywords = '';
-            this.suggestions = [];
         } 
     }
 
