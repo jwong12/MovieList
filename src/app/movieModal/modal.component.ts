@@ -27,6 +27,8 @@ export class ModalComponent implements OnInit, OnDestroy {
     saveButton: HTMLElement;
     userAuthenticated:boolean = false;
     movieIsInDB: boolean;
+    imageLoaded: boolean = false;
+    receiveMovieFromApi: boolean = false;
 
     @Input() id: string;
     private element: any;
@@ -95,11 +97,19 @@ export class ModalComponent implements OnInit, OnDestroy {
                 this.setSaveButton();
             }
 
+            if (this.imageLoaded) {
+                this.spinner.hide();
+            }
+            this.receiveMovieFromApi = true;
+
         }).catch(() => {});  
     }
 
     isImageLoaded() {
-        this.spinner.hide();
+        if (this.receiveMovieFromApi) {
+            this.spinner.hide();
+        }
+        this.imageLoaded = true;
         this.element.childNodes[0].childNodes[0].style.display = 'flex';
     }
 
@@ -181,6 +191,8 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.imgSrc = null;
         this.element.style.display = 'none';
         document.body.classList.remove('jw-modal-open');
+        this.imageLoaded = false;
+        this.receiveMovieFromApi = false;
 
         if(this.saveButton) {
             this.saveButton.textContent = "Save";
