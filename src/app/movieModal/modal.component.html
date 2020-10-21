@@ -1,7 +1,7 @@
 ﻿<div class="jw-modal">
     <div class="jw-modal-body">
         <div class="img-div">
-            <img src={{imgSrc}} alt="">
+            <img src={{imgSrc}} alt={{title}} (load)="isImageLoaded()">
         </div>
         <div class="desc-wrapper">
             <div class="close-button">
@@ -20,4 +20,9 @@
         </div>
     </div>
 </div>
+<ngx-spinner
+    size="medium"
+    color="#1a8cba"
+    type="ball-clip-rotate-pulse"
+></ngx-spinner>
 <div class="jw-modal-background"></div>
