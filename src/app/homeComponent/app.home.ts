@@ -101,6 +101,8 @@ export class HomeComponent {
     }
 
     previousSlide() {
+        this.sliderEl.nativeElement.style.animationDuration = "800ms";
+
         switch(this.currentIndex) {
             case 0:
                 this.sliderEl.nativeElement.style.animationName = "lslide-to-five";
@@ -124,7 +126,6 @@ export class HomeComponent {
                 this.currentIndex--;
                 break;
             default:
-                break;
         }
 
         this.currentMovie = this.movieUrls[this.currentIndex];
@@ -142,6 +143,8 @@ export class HomeComponent {
     }
 
     nextSlide() {
+        this.sliderEl.nativeElement.style.animationDuration = "800ms";
+
         switch(this.currentIndex) {
             case 0:
                 this.sliderEl.nativeElement.style.animationName = "rslide-to-two";
