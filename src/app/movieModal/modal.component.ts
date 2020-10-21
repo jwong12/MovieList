@@ -3,6 +3,7 @@ import { Router } from "@angular/router"
 import { ModalService } from './modal.service';
 import { APIService } from '../API.service';
 import { Auth } from 'aws-amplify';
+import { NgxSpinnerService } from "ngx-spinner";
 
 const posterLink = "https://image.tmdb.org/t/p/w440_and_h660_face";
 const posterLinkLow = "https://image.tmdb.org/t/p/w220_and_h330_face";
@@ -30,7 +31,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     @Input() id: string;
     private element: any;
 
-    constructor(private router: Router, private modalService: ModalService, private el: ElementRef, private api:APIService) {
+    constructor(private router: Router, private modalService: ModalService, private el: ElementRef, private api:APIService, private spinner: NgxSpinnerService) {
         this.element = el.nativeElement;
     }
 
@@ -67,9 +68,11 @@ export class ModalComponent implements OnInit, OnDestroy {
 
     // open modal
     open(movie, genreArray): void {
-        this.saveButton = this.element.childNodes[0].childNodes[0].childNodes[1].childNodes[1].childNodes[0].childNodes[1];
         this.element.style.display = 'block';
+        this.element.childNodes[0].childNodes[0].style.display = 'none';
+        this.spinner.show();
         document.body.classList.add('jw-modal-open');
+        this.saveButton = this.element.childNodes[0].childNodes[0].childNodes[1].childNodes[1].childNodes[0].childNodes[1];
         this.imgSrc = posterLink + movie.poster_path;
         this.imgSrcLow = posterLinkLow + movie.poster_path;
         this.title = movie.title;
@@ -92,7 +95,12 @@ export class ModalComponent implements OnInit, OnDestroy {
                 this.setSaveButton();
             }
 
-        }).catch(err => console.log(err));   
+        }).catch(() => {});  
+    }
+
+    isImageLoaded() {
+        this.spinner.hide();
+        this.element.childNodes[0].childNodes[0].style.display = 'flex';
     }
 
     setSaveButton() {
