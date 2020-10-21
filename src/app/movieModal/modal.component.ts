@@ -103,6 +103,11 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.element.childNodes[0].childNodes[0].style.display = 'flex';
     }
 
+    cancelModal() {
+        this.spinner.hide();
+        this.close();
+    }
+
     setSaveButton() {
         this.saveButton.textContent = "Save";
         this.saveButton.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
