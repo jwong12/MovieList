@@ -28,12 +28,16 @@ export class ModalComponent implements OnInit, OnDestroy {
     movieIsInDB: boolean;
     imageLoaded: boolean = false;
     receiveMovieFromApi: boolean = false;
+    isModalCancelled: boolean = false;
 
     @Input() id: string;
     private element: any;
 
     @ViewChild('modalBody', {static: false}) 
     modalBodyEl: ElementRef; 
+
+    @ViewChild('modalBackground', {static: false}) 
+    modalBackgroundEl: ElementRef; 
 
     @ViewChild('saveButton', {static: false}) 
     saveButtonEl: ElementRef; 
@@ -75,8 +79,10 @@ export class ModalComponent implements OnInit, OnDestroy {
 
     // open modal
     open(movie, genreArray): void {
+        this.isModalCancelled = false;
         this.element.style.display = 'block';
         this.modalBodyEl.nativeElement.style.display = 'none';
+        this.modalBackgroundEl.nativeElement.style.display = 'none';
         this.spinner.show();
         document.body.classList.add('jw-modal-open');
         this.imgSrc = posterLink + movie.poster_path;
@@ -92,39 +98,46 @@ export class ModalComponent implements OnInit, OnDestroy {
 
     async isMovieInDB() {
         await this.api.GetMovie(this.title).then((result) => {
-            if(result) {
-                this.movieIsInDB = true;
-                this.setAddedButton();
+            if (!this.isModalCancelled) {
+                if (result && result.title === this.title) {
+                    this.movieIsInDB = true;
+                    this.setAddedButton();
+    
+                } else {
+                    this.movieIsInDB = false;
+                    this.setSaveButton();
+                }
 
+                if (this.imageLoaded) {
+                    this.spinner.hide();
+                    this.modalBackgroundEl.nativeElement.style.display = 'initial';
+                    this.modalBodyEl.nativeElement.style.display = 'flex';
+                }
+    
+                this.receiveMovieFromApi = true;
             } else {
-                this.movieIsInDB = false;
-                this.setsaveButtonEl();
+                this.receiveMovieFromApi = false;
             }
-
-            if (this.imageLoaded) {
-                this.spinner.hide();
-            }
-
-            this.receiveMovieFromApi = true;
-
         }).catch(() => {});  
     }
 
     isImageLoaded() {
         if (this.receiveMovieFromApi) {
             this.spinner.hide();
+            this.modalBackgroundEl.nativeElement.style.display = 'initial';
+            this.modalBodyEl.nativeElement.style.display = 'flex';
         }
 
         this.imageLoaded = true;
-        this.modalBodyEl.nativeElement.style.display = 'flex';
     }
 
     cancelModal() {
+        this.isModalCancelled = true;
         this.spinner.hide();
         this.close();
     }
 
-    setsaveButtonEl() {
+    setSaveButton() {
         this.saveButtonEl.nativeElement.textContent = "Save";
         this.saveButtonEl.nativeElement.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
         this.saveButtonEl.nativeElement.style.border = "solid 1px rgba(204, 127, 46, 0.93)";
@@ -139,13 +152,13 @@ export class ModalComponent implements OnInit, OnDestroy {
     }
 
     async addToWatchList() {
-        if(!this.userAuthenticated) {
+        if (!this.userAuthenticated) {
             this.close();
             this.router.navigate(['/account']);
 
         } else if(this.movieIsInDB) {
             this.movieIsInDB = false;
-            this.setsaveButtonEl();
+            this.setSaveButton();
 
             const movie = {
                 id: this.title
@@ -175,10 +188,10 @@ export class ModalComponent implements OnInit, OnDestroy {
     getGenre(genreId, genreArray) {
         let genres = '';
 
-        for(let i = 0; i < genreId.length; i++) {
-            for(let j = 0; j < genreArray.length; j++) {
-                if(genreArray[j].id === genreId[i]) {
-                    if(genres === '') {
+        for (let i = 0; i < genreId.length; i++) {
+            for (let j = 0; j < genreArray.length; j++) {
+                if (genreArray[j].id === genreId[i]) {
+                    if (genres === '') {
                         genres += genreArray[j].name
                     } else {
                         genres += ', ' + genreArray[j].name
