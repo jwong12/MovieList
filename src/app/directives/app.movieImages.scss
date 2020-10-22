@@ -9,21 +9,22 @@ img {
     top: 252px;
     width: 42px;
     height: 17px;
-    padding: 4px 2px 4px 4px;
-    background: rgba(220, 220, 220, 0.7);
+    padding: 4px;
+    background: rgba(228, 228, 228, 0.8);
+    border-radius: 0 5px 0 0;
 
     .star {
         position: absolute;
         width: 17px;
         height: 17px;
-        filter: invert(23%) sepia(55%) saturate(6098%) hue-rotate(199deg) brightness(107%) contrast(89%);
+        filter: invert(6%) sepia(55%) saturate(6098%) hue-rotate(199deg) brightness(107%) contrast(89%);
     }
     
     span {
         position: absolute;
         top: 2px;
         left: 24px;
-        color: #0e78de;
+        color: #2d5d8a;
         font-weight: 600;
     }   
 }

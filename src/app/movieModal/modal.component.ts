@@ -1,4 +1,4 @@
-﻿import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from "@angular/router"
 import { ModalService } from './modal.service';
 import { APIService } from '../API.service';
@@ -24,13 +24,24 @@ export class ModalComponent implements OnInit, OnDestroy {
     userRating: number;
     popularity: number;
     overview: string;
-    saveButton: HTMLElement;
     userAuthenticated:boolean = false;
     movieIsInDB: boolean;
+    imageLoaded: boolean = false;
+    receiveMovieFromApi: boolean = false;
+    isModalCancelled: boolean = false;
 
     @Input() id: string;
     private element: any;
 
+    @ViewChild('modalBody', {static: false}) 
+    modalBodyEl: ElementRef; 
+
+    @ViewChild('modalBackground', {static: false}) 
+    modalBackgroundEl: ElementRef; 
+
+    @ViewChild('saveButton', {static: false}) 
+    saveButtonEl: ElementRef; 
+    
     constructor(private router: Router, private modalService: ModalService, private el: ElementRef, private api:APIService, private spinner: NgxSpinnerService) {
         this.element = el.nativeElement;
     }
@@ -68,11 +79,12 @@ export class ModalComponent implements OnInit, OnDestroy {
 
     // open modal
     open(movie, genreArray): void {
+        this.isModalCancelled = false;
         this.element.style.display = 'block';
-        this.element.childNodes[0].childNodes[0].style.display = 'none';
+        this.modalBodyEl.nativeElement.style.display = 'none';
+        this.modalBackgroundEl.nativeElement.style.display = 'none';
         this.spinner.show();
         document.body.classList.add('jw-modal-open');
-        this.saveButton = this.element.childNodes[0].childNodes[0].childNodes[1].childNodes[1].childNodes[0].childNodes[1];
         this.imgSrc = posterLink + movie.poster_path;
         this.imgSrcLow = posterLinkLow + movie.poster_path;
         this.title = movie.title;
@@ -86,39 +98,61 @@ export class ModalComponent implements OnInit, OnDestroy {
 
     async isMovieInDB() {
         await this.api.GetMovie(this.title).then((result) => {
-            if(result) {
-                this.movieIsInDB = true;
-                this.setAddedButton();
+            if (!this.isModalCancelled) {
+                if (result && result.title === this.title) {
+                    this.movieIsInDB = true;
+                    this.setAddedButton();
+    
+                } else {
+                    this.movieIsInDB = false;
+                    this.setSaveButton();
+                }
 
+                if (this.imageLoaded) {
+                    this.spinner.hide();
+                    this.modalBackgroundEl.nativeElement.style.display = 'initial';
+                    this.modalBodyEl.nativeElement.style.display = 'flex';
+                }
+    
+                this.receiveMovieFromApi = true;
             } else {
-                this.movieIsInDB = false;
-                this.setSaveButton();
+                this.receiveMovieFromApi = false;
             }
-
         }).catch(() => {});  
     }
 
     isImageLoaded() {
+        if (this.receiveMovieFromApi) {
+            this.spinner.hide();
+            this.modalBackgroundEl.nativeElement.style.display = 'initial';
+            this.modalBodyEl.nativeElement.style.display = 'flex';
+        }
+
+        this.imageLoaded = true;
+    }
+
+    cancelModal() {
+        this.isModalCancelled = true;
         this.spinner.hide();
-        this.element.childNodes[0].childNodes[0].style.display = 'flex';
+        this.close();
     }
 
     setSaveButton() {
-        this.saveButton.textContent = "Save";
-        this.saveButton.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
-        this.saveButton.style.border = "solid 1px rgba(204, 127, 46, 0.93)";
-        this.saveButton.style.color = "#fbfbfb";
+        this.saveButtonEl.nativeElement.textContent = "Save";
+        this.saveButtonEl.nativeElement.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
+        this.saveButtonEl.nativeElement.style.border = "solid 1px rgba(204, 127, 46, 0.93)";
+        this.saveButtonEl.nativeElement.style.color = "#fbfbfb";
     }
 
     setAddedButton() {
-        this.saveButton.textContent = "Added";
-        this.saveButton.style.backgroundColor = "rgba(130, 130, 130, 0.93)";
-        this.saveButton.style.border = "solid 1px rgba(130, 130, 130, 0.93)";
-        this.saveButton.style.color = "#ffffff";
+        this.saveButtonEl.nativeElement.textContent = "Added";
+        this.saveButtonEl.nativeElement.style.backgroundColor = "rgba(130, 130, 130, 0.93)";
+        this.saveButtonEl.nativeElement.style.border = "solid 1px rgba(130, 130, 130, 0.93)";
+        this.saveButtonEl.nativeElement.style.color = "#ffffff";
     }
 
     async addToWatchList() {
-        if(!this.userAuthenticated) {
+        if (!this.userAuthenticated) {
             this.close();
             this.router.navigate(['/account']);
 
@@ -154,16 +188,14 @@ export class ModalComponent implements OnInit, OnDestroy {
     getGenre(genreId, genreArray) {
         let genres = '';
 
-        for(let i = 0; i < genreId.length; i++) {
-            for(let j = 0; j < genreArray.length; j++) {
-                if(genreArray[j].id === genreId[i]) {
-                    if(genres === '') {
+        for (let i = 0; i < genreId.length; i++) {
+            for (let j = 0; j < genreArray.length; j++) {
+                if (genreArray[j].id === genreId[i]) {
+                    if (genres === '') {
                         genres += genreArray[j].name
-
                     } else {
                         genres += ', ' + genreArray[j].name
                     }
-                    
                     break;
                 }
             }
@@ -176,13 +208,15 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.imgSrc = null;
         this.element.style.display = 'none';
         document.body.classList.remove('jw-modal-open');
+        this.imageLoaded = false;
+        this.receiveMovieFromApi = false;
 
-        if(this.saveButton) {
-            this.saveButton.textContent = "Save";
-            this.saveButton.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
-            this.saveButton.style.border = "solid 1px rgba(204, 127, 46, 0.93)";
-            this.saveButton.style.color = "#fbfbfb";
-            this.saveButton.style.cursor = "pointer";
+        if(this.saveButtonEl) {
+            this.saveButtonEl.nativeElement.textContent = "Save";
+            this.saveButtonEl.nativeElement.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
+            this.saveButtonEl.nativeElement.style.border = "solid 1px rgba(204, 127, 46, 0.93)";
+            this.saveButtonEl.nativeElement.style.color = "#fbfbfb";
+            this.saveButtonEl.nativeElement.style.cursor = "pointer";
         }
     }
 }

@@ -6,7 +6,7 @@
     <div id="goto-block"></div>
 </div>
 <div id="content-wrapper">
-    <div id="movie-content"><br/>   
+    <div *ngIf="isFinishedLoading" id="movie-content"><br/>   
         <div class="pagination">
             <div id="selection-container">
                 <select 
@@ -58,4 +58,10 @@
             <span (click)="closeModal('custom-modal-2')" id="close-icon"><img src="../../assets/images/close.png" alt="close button"></span>
         </jw-modal>
     </div>
+    <ngx-spinner
+        size="medium"
+        color="#1a8cba"
+        type="ball-clip-rotate-pulse"
+        (click)="cancelApiRequest()"
+    ></ngx-spinner>
 </div>

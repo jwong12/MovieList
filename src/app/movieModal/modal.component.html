@@ -1,5 +1,5 @@
 ﻿<div class="jw-modal">
-    <div class="jw-modal-body">
+    <div #modalBody class="jw-modal-body">
         <div class="img-div">
             <img src={{imgSrc}} alt={{title}} (load)="isImageLoaded()">
         </div>
@@ -10,7 +10,7 @@
             <div class="description">
                 <div class="title-wrapper">
                     <h2>{{title}} ({{year}})</h2>
-                    <span class="save-button" (click)="addToWatchList()">Save</span>
+                    <span #saveButton class="save-button" (click)="addToWatchList()">Save</span>
                 </div>
                 <p><b>Popularity:</b> {{popularity}}</p>
                 <p><b>User Rating:</b> {{userRating === 0 ? "Unrated" : userRating + "%"}}</p>
@@ -22,7 +22,9 @@
 </div>
 <ngx-spinner
     size="medium"
+    bdColor="rgba(51, 51, 51, 0.1)"
     color="#1a8cba"
     type="ball-clip-rotate-pulse"
+    (click)="cancelModal()"
 ></ngx-spinner>
-<div class="jw-modal-background"></div>
+<div #modalBackground class="jw-modal-background"></div>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ViewportScroller } from '@angular/common';
 import { MovieURLService } from '../apiService/app.movieURLService';
 import { ModalService } from '../movieModal';
+import { NgxSpinnerService } from "ngx-spinner";
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -22,13 +23,15 @@ export class MoviesComponent {
     genreArray: Array<genre>;
     genreSelect: genre;
     title: string;
-    currentPage: number;
+    currentPage: number = 1;
     totalPages: number;
     totalMovies: number;
     _searchText: string;
     parameter: string;
     isSearched: boolean;
     isUsingPagination: boolean;
+    isFinishedLoading: boolean = false;
+    httpRequest: any;
 
     @Input() set searchText(value: string) {
         this._searchText = value.toUpperCase();
@@ -55,7 +58,7 @@ export class MoviesComponent {
         return this._searchText;
     }
 
-    constructor(private _http: HttpClient, private scroller: ViewportScroller, private movieAPI: MovieURLService, private modalService: ModalService) {
+    constructor(private _http: HttpClient, private scroller: ViewportScroller, private movieAPI: MovieURLService, private modalService: ModalService, private spinner: NgxSpinnerService) {
         this.title = "Recent Movies";
         this.movieArray = [];
         this.isUsingPagination = false;
@@ -70,11 +73,20 @@ export class MoviesComponent {
     }    
 
     getMovies(URL: string) {
-        this._http.get<any>(URL)
+        this.httpRequest = this._http.get<any>(URL)
           .subscribe(data => {
             this.movieArray = [];
-            this.currentPage = data.page;
             this.totalPages = data.total_pages;
+
+            if (data.page === 1) {
+                this.currentPage = data.page;
+
+            } else if (this.currentPage < data.page) {
+                this.currentPage++;
+
+            } else {
+                this.currentPage--;
+            }
 
             if(!this.isUsingPagination) {
                 this.totalMovies = data.total_results;
@@ -85,10 +97,18 @@ export class MoviesComponent {
                 data.results.forEach((movie) => {
                     movie.poster_path !== null ? this.movieArray.push(movie) : null;
                 });
+
+                if (this.movieArray.length === 0) {
+                    data.results.forEach((movie) => {
+                        this.movieArray.push(movie);
+                    });
+                }
             }
 
             this.formatDescription();
             this.isUsingPagination = false;
+            this.spinner.hide();
+            this.isFinishedLoading = true;
           }, 
           error =>{
             console.error(error)
@@ -106,6 +126,11 @@ export class MoviesComponent {
         error =>{
           console.error(error)
         })
+    }
+
+    cancelApiRequest() {
+        this.httpRequest.unsubscribe();
+        this.spinner.hide();
     }
 
     formatDescription() {
@@ -126,20 +151,15 @@ export class MoviesComponent {
                     
             } else if (titleLength > 32) {
                 this.movieArray[i].titleFontSize = '15px';
-
-            } else if (titleLength > 21) {
-                this.movieArray[i].titleFontSize = '16px';
-
-            } else {
-                this.movieArray[i].titleFontSize = '16px';
-            }
+            } 
         }
     }
 
     formatDate(date) {
         if(date !== undefined) {
             const month = MONTHS[parseInt(date.slice(5,7))-1];
-            return month + ' ' + date.slice(8) + ', ' + date.slice(0,4);
+            const day = date.slice(8) > 9 ? date.slice(8) : date.slice(9);
+            return month + ' ' + day + ', ' + date.slice(0,4);
         }
     }
 
@@ -153,43 +173,35 @@ export class MoviesComponent {
 
     nextPage(isBottom: boolean) {
         if(this.currentPage !== this.totalPages) {
-            this.isUsingPagination = true;
-
-            if(this.isSearched) {
-                const searchURL = this.movieAPI.getSearchURL() + this.parameter + '&page=' + ++this.currentPage;
-                this.getMovies(searchURL);
-
-            } else if(this.genreSelect.id === 1) {
-                this.getMovies(this.movieAPI.getRecentMoviesURL(++this.currentPage));
-
-            } else {
-                this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, ++this.currentPage));
-            }
-
-            if(isBottom) {
-                this.scroller.scrollToAnchor('goto-block');
-            }
+            this.switchPageTo(this.currentPage + 1, isBottom);
         }
     }
 
     prevPage(isBottom: boolean) {
         if(this.currentPage !== 1) {
-            this.isUsingPagination = true;
+            this.switchPageTo(this.currentPage - 1, isBottom);
+        }
+    }
 
-            if(this.isSearched) {
-                const searchURL = this.movieAPI.getSearchURL() + this.parameter + '&page=' + --this.currentPage;
-                this.getMovies(searchURL);
+    switchPageTo(pageNumber: number, isBottomPagination: boolean) {
+        this.spinner.show();
+        this.isUsingPagination = true;
 
-            } else if(this.genreSelect.id === 1) {
-                this.getMovies(this.movieAPI.getRecentMoviesURL(--this.currentPage));
+        if(this.isSearched) {
+            const searchURL = this.movieAPI.getSearchURL() + this.parameter + '&page=' + (pageNumber);
+            this.getMovies(searchURL);
 
-            } else {
-                this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, --this.currentPage));
-            }
+        } else if(this.genreSelect.id === 1) {
+            this.getMovies(this.movieAPI.getRecentMoviesURL(pageNumber));
 
-            if(isBottom) {
-                this.scroller.scrollToAnchor('goto-block');
-            }
+        } else {
+            this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, pageNumber));
+        }
+
+        if(isBottomPagination) {
+            this.scroller.scrollToAnchor('goto-block');
+        } else {
+            this.scroller.scrollToAnchor('content-wrapper');
         }
     }
 
