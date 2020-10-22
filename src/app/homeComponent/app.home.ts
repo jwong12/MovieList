@@ -17,6 +17,7 @@ export class HomeComponent {
     currentIndex: number;
     leftArrowAnimToggle: boolean;
     rightArrowAnimToggle: boolean;
+    innerWidth: any;
 
     @ViewChild('slider', {static: false}) sliderEl:ElementRef;
     @ViewChild('firstImage', {static: false}) firstEl:ElementRef;
@@ -31,11 +32,12 @@ export class HomeComponent {
 
     constructor(private _http: HttpClient, private movieAPI: MovieURLService, private modalService: ModalService) {}
 
-    ngOnInit() {
+    ngOnInit() {        
         this.currentMovie = {};
         this.leftArrowAnimToggle = false;
         this.rightArrowAnimToggle = false;
-        this.getGenres(this.movieAPI.getGenreURL());
+        this.innerWidth = window.innerWidth;
+         this.getGenres(this.movieAPI.getGenreURL());
     } 
 
     openModal(id: string, movie) {
@@ -100,8 +102,16 @@ export class HomeComponent {
           })
     }
 
+    setSlidesAnimationSpeed() {
+        if (this.innerWidth < 600) {
+            this.sliderEl.nativeElement.style.animationDuration = "400ms";
+        } else {
+            this.sliderEl.nativeElement.style.animationDuration = "800ms";
+        }
+    }
+
     previousSlide() {
-        this.sliderEl.nativeElement.style.animationDuration = "800ms";
+        this.setSlidesAnimationSpeed();
 
         switch(this.currentIndex) {
             case 0:
@@ -143,7 +153,7 @@ export class HomeComponent {
     }
 
     nextSlide() {
-        this.sliderEl.nativeElement.style.animationDuration = "800ms";
+        this.setSlidesAnimationSpeed();
 
         switch(this.currentIndex) {
             case 0:
