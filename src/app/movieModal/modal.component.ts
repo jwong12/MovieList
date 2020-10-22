@@ -93,7 +93,10 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.userRating = movie.vote_average * 10;
         this.popularity = Math.round(movie.popularity);
         this.overview = movie.overview === "" ? "Unavailable" : movie.overview;
-        this.isMovieInDB();
+        
+        if (this.userAuthenticated) {
+            this.isMovieInDB();
+        }
     }
 
     async isMovieInDB() {
@@ -122,7 +125,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     }
 
     isImageLoaded() {
-        if (this.receiveMovieFromApi) {
+        if (this.receiveMovieFromApi || !this.userAuthenticated) {
             this.spinner.hide();
             this.modalBackgroundEl.nativeElement.style.display = 'initial';
             this.modalBodyEl.nativeElement.style.display = 'flex';
