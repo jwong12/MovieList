@@ -7,7 +7,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-class genre {
+class Genre {
     constructor(public id: number, public name: string) {}
 }
 
@@ -20,8 +20,9 @@ class genre {
 
 export class MoviesComponent {
     movieArray: Array<any>;
-    genreArray: Array<genre>;
-    genreSelect: genre;
+    genreArray: Array<Genre>;
+    genreSelect: Genre;
+    prevGenre: Genre;
     title: string;
     currentPage: number = 1;
     totalPages: number;
@@ -73,6 +74,7 @@ export class MoviesComponent {
     }    
 
     getMovies(URL: string) {
+        this.spinner.show();
         this.httpRequest = this._http.get<any>(URL)
           .subscribe(data => {
             this.movieArray = [];
@@ -107,8 +109,9 @@ export class MoviesComponent {
 
             this.formatDescription();
             this.isUsingPagination = false;
-            this.spinner.hide();
             this.isFinishedLoading = true;
+            this.prevGenre = this.genreSelect;
+            this.spinner.hide();
           }, 
           error =>{
             console.error(error)
@@ -122,6 +125,7 @@ export class MoviesComponent {
         this._http.get<any>(URL)
         .subscribe(data => {
             this.genreArray = [...this.genreArray, ...data.genres];
+            this.prevGenre = this.genreArray[0]; 
         }, 
         error =>{
           console.error(error)
@@ -129,6 +133,7 @@ export class MoviesComponent {
     }
 
     cancelApiRequest() {
+        this.genreSelect = this.prevGenre;
         this.httpRequest.unsubscribe();
         this.spinner.hide();
     }
@@ -184,7 +189,6 @@ export class MoviesComponent {
     }
 
     switchPageTo(pageNumber: number, isBottomPagination: boolean) {
-        this.spinner.show();
         this.isUsingPagination = true;
 
         if(this.isSearched) {
@@ -205,7 +209,7 @@ export class MoviesComponent {
         }
     }
 
-    selectGenre(genreSel: genre){
+    selectGenre(genreSel: Genre){
         if(genreSel !== undefined && genreSel.id === 1) {
             this.genreSelect = genreSel;
             this.title = this.genreSelect.name;
