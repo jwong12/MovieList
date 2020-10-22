@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MovieURLService } from './apiService/app.movieURLService';
 import { Subject, EMPTY } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap  } from 'rxjs/operators';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
     selector: 'app-root',
@@ -25,7 +26,8 @@ export class AppComponent {
         }
     }
     
-    constructor(private router: Router, private _http: HttpClient, private movieAPI: MovieURLService, private rd: Renderer2) {
+    constructor(private router: Router, private _http: HttpClient, private movieAPI: MovieURLService, private rd: Renderer2, private spinner: NgxSpinnerService) {
+        this.spinner.show();
         this.searchKeywords = '';
         this.suggestions = [];
         this.subject.pipe(
@@ -36,6 +38,8 @@ export class AppComponent {
                 return EMPTY;
             })
         ).subscribe();
+
+        setTimeout(() => this.spinner.hide(), 2000);
     }
 
     ngOnDestroy() {

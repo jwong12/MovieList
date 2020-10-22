@@ -13,11 +13,11 @@ export class HomeComponent {
     genres: Array<any>;
     moviesArray: Array<any>;
     movieUrls: Array<any>;
+    innerWidth: any;
     currentMovie: any;
     currentIndex: number;
     leftArrowAnimToggle: boolean;
     rightArrowAnimToggle: boolean;
-    innerWidth: any;
 
     @ViewChild('slider', {static: false}) sliderEl:ElementRef;
     @ViewChild('firstImage', {static: false}) firstEl:ElementRef;
@@ -37,7 +37,7 @@ export class HomeComponent {
         this.leftArrowAnimToggle = false;
         this.rightArrowAnimToggle = false;
         this.innerWidth = window.innerWidth;
-         this.getGenres(this.movieAPI.getGenreURL());
+        this.getGenres(this.movieAPI.getGenreURL());
     } 
 
     openModal(id: string, movie) {
@@ -60,8 +60,7 @@ export class HomeComponent {
           .subscribe(data => {
             this.movieUrls = [];
             this.moviesArray = data.results;
-
-            this.moviesArray.forEach((movie,index) =>{
+            this.moviesArray.forEach(movie =>{
                 if (this.movieUrls.length < 5 && movie.backdrop_path !== null && movie.vote_average > 4) {
                     let obj = {}; 
                     obj['url'] = 'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path;
