@@ -21,8 +21,9 @@ class Genre {
 export class MoviesComponent {
     movieArray: Array<any>;
     genreArray: Array<Genre>;
-    genreSelect: Genre;
     prevGenre: Genre;
+    genreSelect: Genre;
+    genreName: string;
     title: string;
     currentPage: number = 1;
     totalPages: number;
@@ -60,7 +61,7 @@ export class MoviesComponent {
     }
 
     constructor(private _http: HttpClient, private scroller: ViewportScroller, private movieAPI: MovieURLService, private modalService: ModalService, private spinner: NgxSpinnerService) {
-        this.title = "Recent Movies";
+        this.title = "Recent";
         this.movieArray = [];
         this.isUsingPagination = false;
     }
@@ -119,7 +120,7 @@ export class MoviesComponent {
     }
 
     getGenres(URL: string) {
-        this.genreSelect = { id: 1, name: "Recent Movies" };
+        this.genreSelect = { id: 1, name: "Recent" };
         this.genreArray = [this.genreSelect];
 
         this._http.get<any>(URL)

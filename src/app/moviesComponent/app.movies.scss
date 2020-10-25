@@ -101,10 +101,12 @@ h2 {
         display: flex;
         justify-content: flex-end;
         height: 32px;
+        border-radius: 15px;
+        box-shadow: 0 1px 4px 0px rgb(0, 0, 0, 0.1);
         
         .modal {
             border-color: #ddd;
-            color: #4285F4;
+            color: rgb(33, 141, 168);
             background: #fff;
             text-decoration: none;
         }
@@ -114,9 +116,10 @@ h2 {
             font-size: 32px;
             line-height: 25px;
             padding: 1px 15px;
-            -moz-border-radius: 6px 0 0 6px;
-            -webkit-border-radius: 6px;
-            border-radius: 6px 0 0 6px;
+            -moz-border-radius: 15px 0 0 15px;
+            -webkit-border-radius: 15px 0 0 15px;
+            border-radius: 15px 0 0 15px;
+            z-index: 0;
         }
         
         .next {
@@ -124,10 +127,9 @@ h2 {
             font-size: 32px;
             line-height: 25px;
             padding: 1px 15px;
-            -moz-border-radius: 0 6px 6px 0;
-            -webkit-border-radius: 0;
-            border-radius: 0 6px 6px 0;
-
+            -moz-border-radius: 0 15px 15px 0;
+            -webkit-border-radius: 0 15px 15px 0;
+            border-radius: 0 15px 15px 0;
         }
 
         .pages {
@@ -138,13 +140,13 @@ h2 {
         }
 
         a:hover {
-            background: rgb(109, 109, 109);
+            background: rgb(42, 177, 212);
+            box-shadow: 0 1px 5px 1px rgb(0, 0, 0, 0.25);
             color: #fff;
         }
 
         a:active {
-            border-color: #4285F4;
-            background: #4285F4;
+            background: rgb(33, 141, 168);
             color: #fff;
         }
 
@@ -168,7 +170,6 @@ h2 {
             display: inline-grid;
             width: 185px;
             margin: 6px 10px;
-            border: 1px solid rgb(167, 165, 165);
             box-shadow: 0 3px 5px 0 rgb(0, 0, 0, 0.2);
             background-color: white;            
             border-radius: 12px 12px 9px 9px;

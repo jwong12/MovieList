@@ -16,7 +16,7 @@
                 >
                     <option *ngFor="let genre of genreArray" [ngValue]="genre">{{genre.name}}</option>
                 </select>
-                <div id="total-results">Results: {{totalMovies}} movies</div>
+                <div id="total-results">Found {{totalMovies}} movies.</div>
             </div>
             <div [ngStyle]="{'display':this.movieArray.length === 0 ? 'none' : 'initial'}">
                 <div class="paginator pag-top">
