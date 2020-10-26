@@ -1,8 +1,8 @@
 $font-stack: 'Source Sans Pro', arial, sans-serif;
 $font-search: sans-serif, arial;
 $nav-bg: #032541;
-$nav-font: rgba(202, 130, 55, 0.93);
-$nav-font-hover: #b14545;
+$nav-font: rgb(5, 148, 212);
+$nav-font-hover: rgba(192, 124, 51, 0.93);
 $screen-sm-min: 576px;
 $screen-md-min: 768px;
 $screen-lg-min: 992px;
@@ -524,6 +524,10 @@ footer {
                             font-size: 19px;
                             line-height: 64px;
                         }
+                    }
+
+                    a:hover {
+                        color: $nav-font-hover;
                     }
                 }
             }

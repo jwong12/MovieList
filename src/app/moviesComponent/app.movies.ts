@@ -25,7 +25,6 @@ export class MoviesComponent {
     genreSelect: Genre;
     genreName: string;
     showGenres: boolean = false;
-    // title: string;
     currentPage: number = 1;
     totalPages: number;
     totalMovies: number;
@@ -62,14 +61,20 @@ export class MoviesComponent {
 
     @HostListener('document:click', ['$event'])
     clickout(event) {
-        if (!this.showGenres && this.genreSelectedEl.nativeElement.contains(event.target)) {
+        if (!this.showGenres && this.genreSelectedEl !== undefined && this.genreSelectedEl.nativeElement.contains(event.target)) {
             this.showGenres = true;
+            this.genreSelectedEl.nativeElement.style.backgroundColor = "rgb(42, 177, 212)";
+            this.genreSelectedEl.nativeElement.style.color = "white";
+            this.genreSelectedEl.nativeElement.style.boxShadow = "0 1px 3px 1px rgb(0, 0, 0, 0.25)";
+            this.genreSelectedEl.nativeElement.removeEventListener("mouseover", this.changeGenreSelectedOnMouseOver);
+            this.genreSelectedEl.nativeElement.removeEventListener("mouseleave", this.changeGenreSelectedOnMouseLeave);
 
-        } else if (this.showGenres && this.genreSelectedEl.nativeElement.contains(event.target)) {
-            this.showGenres = false;
+        } else if (this.showGenres && this.genreSelectedEl !== undefined && this.genreSelectedEl.nativeElement.contains(event.target)) {
+            this.applyStylesToGenreSelected();
 
-        } else if (this.showGenres && !this.genreSelectedEl.nativeElement.contains(event.target) && !this.genresWrapperEl.nativeElement.contains(event.target)) {
-            this.showGenres = false;
+        } else if (this.showGenres && this.genreSelectedEl !== undefined && !this.genreSelectedEl.nativeElement.contains(event.target) && 
+                    this.genresWrapperEl !== undefined && !this.genresWrapperEl.nativeElement.contains(event.target)) {
+            this.applyStylesToGenreSelected();
         } 
     }
 
@@ -78,7 +83,6 @@ export class MoviesComponent {
     }
 
     constructor(private _http: HttpClient, private scroller: ViewportScroller, private movieAPI: MovieURLService, private modalService: ModalService, private spinner: NgxSpinnerService) {
-        // this.title = "Recent";
         this.movieArray = [];
         this.isUsingPagination = false;
     }
@@ -89,7 +93,7 @@ export class MoviesComponent {
             this.getGenres(this.movieAPI.getGenreURL());
             this.isSearched = false; 
         }
-    }    
+    }   
 
     getMovies(URL: string) {
         this.spinner.show();
@@ -154,6 +158,27 @@ export class MoviesComponent {
         this.genreSelect = this.prevGenre;
         this.httpRequest.unsubscribe();
         this.spinner.hide();
+    }
+
+    changeGenreSelectedOnMouseOver(event) {
+        event.target.style.backgroundColor = "rgb(42, 177, 212)";
+        event.target.style.color = "white";
+        event.target.style.boxShadow = "0 1px 3px 1px rgb(0, 0, 0, 0.25)";
+    }
+
+    changeGenreSelectedOnMouseLeave(event) {
+        event.target.style.backgroundColor = "white";
+        event.target.style.color = "#218da8";
+        event.target.style.boxShadow = "0 1px 2px 0 rgb(0, 0, 0, 0.15)";
+    }
+
+    applyStylesToGenreSelected() {
+        this.showGenres = false;
+        this.genreSelectedEl.nativeElement.style.backgroundColor = "white";
+        this.genreSelectedEl.nativeElement.style.color = "#218da8";
+        this.genreSelectedEl.nativeElement.style.boxShadow = "0 1px 2px 0 rgb(0, 0, 0, 0.15)";
+        this.genreSelectedEl.nativeElement.addEventListener("mouseover", this.changeGenreSelectedOnMouseOver);
+        this.genreSelectedEl.nativeElement.addEventListener("mouseleave", this.changeGenreSelectedOnMouseLeave);
     }
 
     formatDescription() {
@@ -227,25 +252,16 @@ export class MoviesComponent {
         }
     }
 
-    // openGenreSelection() {
-    //     this.showGenres = true;
-    //     console.log('openGenreSelection')
-    // }
-
     selectGenre(genreSel: Genre){
         console.log(genreSel);
         this.showGenres = false;
         this.genreSelect = genreSel;
-        // this.title = this.genreSelect.name;
+        this.applyStylesToGenreSelected();
 
         if(genreSel !== undefined && genreSel.id === 1) {
-            // this.genreSelect = genreSel;
-            // this.title = this.genreSelect.name;
             this.getMovies(this.movieAPI.getRecentMoviesURL());
 
         } else {
-            // this.genreSelect = genreSel;
-            // this.title = this.genreSelect.name;
             this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, 1));
         }
 

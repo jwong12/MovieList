@@ -102,7 +102,7 @@ h2 {
         justify-content: flex-end;
         height: 32px;
         border-radius: 15px;
-        box-shadow: 0 1px 4px 0px rgb(0, 0, 0, 0.1);
+        box-shadow: 0 1px 2px 0 rgb(0, 0, 0, 0.15);
         
         .modal {
             border-color: #ddd;
@@ -141,7 +141,7 @@ h2 {
 
         a:hover {
             background: rgb(42, 177, 212);
-            box-shadow: 0 1px 5px 1px rgb(0, 0, 0, 0.25);
+            box-shadow: 0 1px 4px 1px rgb(0, 0, 0, 0.25);
             color: #fff;
         }
 
@@ -222,21 +222,15 @@ h2 {
         color: #218da8;
         padding: 0 20px;
         border-radius: 20px;
-        box-shadow: 0 1px 4px 0px rgb(0, 0, 0, 0.1);
+        box-shadow: 0 1px 2px 0 rgb(0, 0, 0, 0.15);
         cursor: pointer;
     }
 
     #genre-selected:hover {
         background-color: rgb(42, 177, 212);
+        box-shadow: 0 1px 3px 1px rgb(0, 0, 0, 0.25);
         color:white;
     }
-
-    // select {
-    //     width: 130px;
-    //     height: 25px;
-    //     font-size: 14px;
-    //     color: #313131;
-    // }
 
     #total-results {
         line-height: 30px;
@@ -248,24 +242,28 @@ h2 {
 
 #genres-wrapper {
     position: relative;
-    z-index: 999;
+    z-index: 989;
 
     div {
         position: absolute;
-        top: -5px;
+        top: -3px;
         left: 9px;
 
         ul {
             display: flex;
             flex-wrap: wrap;
             list-style-type: none;
-            border: 1px solid #e8e8e8;
             background-color: white;
+            border: 1px solid #e8e8e8;
             border-radius: 8px;
-            box-shadow: 0 1px 4px 0px rgb(0, 0, 0, 0.1);
-            padding: 3px;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);            
+            padding: 5px 3px;
             margin: 0;
-            max-width: 95%;
+            max-width: 87%;
+
+            @include rwd(400) {
+                max-width: 95%;
+            }
 
             @include rwd(660) {
                 max-width: 74%;
@@ -285,9 +283,11 @@ h2 {
 
             li {
                 color: rgb(90, 90, 90);
-                height: 26px;
-                line-height: 24px;
-                border: 1px solid grey;
+                height: 28px;
+                line-height: 26px;
+                background-color: #f8f8f8;
+                border: 1px solid #d8d8d8;
+                box-shadow: 0 1px 2px 0 rgb(0, 0, 0, 0.15);
                 padding: 0 12px;
                 margin: 3px;
                 border-radius: 20px;
@@ -295,7 +295,10 @@ h2 {
             }
 
             li:hover {
-                background-color: lightblue;
+                background-color: rgb(42, 177, 212);
+                border: 1px solid rgb(42, 177, 212);
+                box-shadow: 0 1px 3px 1px rgb(0, 0, 0, 0.25);
+                color: white;
             }
         }
     }
