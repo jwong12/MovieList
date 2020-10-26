@@ -9,15 +9,18 @@
     <div *ngIf="isFinishedLoading" id="movie-content"><br/>   
         <div class="pagination">
             <div id="selection-container">
-                <select 
+                <span #genreSelected id="genre-selected">{{genreSelect.name}}</span>
+                
+                <!-- <select 
                     name="genreArray" 
                     [(ngModel)]='genreSelect' 
                     (change)="selectGenre(genreSelect)"
                 >
                     <option *ngFor="let genre of genreArray" [ngValue]="genre">{{genre.name}}</option>
-                </select>
+                </select> -->
                 <div id="total-results">Found {{totalMovies}} movies.</div>
             </div>
+
             <div [ngStyle]="{'display':this.movieArray.length === 0 ? 'none' : 'initial'}">
                 <div class="paginator pag-top">
                     <a class="modal prev unselectable" (click)=prevPage(false)>&laquo;</a>
@@ -26,6 +29,14 @@
                 </div>
             </div>
         </div>
+        <div #genresWrapper id="genres-wrapper" *ngIf="showGenres">
+            <div>
+                <ul>
+                    <li *ngFor="let genre of genreArray" (click)="selectGenre(genre)">{{genre.name}}</li>
+                </ul>
+            </div>
+        </div>
+
         <div class="movie-wrapper" *ngFor="let movie of movieArray" >
             <div class="movie" myMovieHighlight (click)="openModal('custom-modal-2', movie)">
                 <div class="movie-img">

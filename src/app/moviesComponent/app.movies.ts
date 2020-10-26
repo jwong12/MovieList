@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, HostListener, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ViewportScroller } from '@angular/common';
 import { MovieURLService } from '../apiService/app.movieURLService';
@@ -24,7 +24,8 @@ export class MoviesComponent {
     prevGenre: Genre;
     genreSelect: Genre;
     genreName: string;
-    title: string;
+    showGenres: boolean = false;
+    // title: string;
     currentPage: number = 1;
     totalPages: number;
     totalMovies: number;
@@ -56,12 +57,28 @@ export class MoviesComponent {
         }
     }
 
+    @ViewChild('genreSelected', { read: ElementRef, static: false }) genreSelectedEl:ElementRef;
+    @ViewChild('genresWrapper', { read: ElementRef, static: false }) genresWrapperEl:ElementRef;
+
+    @HostListener('document:click', ['$event'])
+    clickout(event) {
+        if (!this.showGenres && this.genreSelectedEl.nativeElement.contains(event.target)) {
+            this.showGenres = true;
+
+        } else if (this.showGenres && this.genreSelectedEl.nativeElement.contains(event.target)) {
+            this.showGenres = false;
+
+        } else if (this.showGenres && !this.genreSelectedEl.nativeElement.contains(event.target) && !this.genresWrapperEl.nativeElement.contains(event.target)) {
+            this.showGenres = false;
+        } 
+    }
+
     get searchText(): string {
         return this._searchText;
     }
 
     constructor(private _http: HttpClient, private scroller: ViewportScroller, private movieAPI: MovieURLService, private modalService: ModalService, private spinner: NgxSpinnerService) {
-        this.title = "Recent";
+        // this.title = "Recent";
         this.movieArray = [];
         this.isUsingPagination = false;
     }
@@ -210,15 +227,25 @@ export class MoviesComponent {
         }
     }
 
+    // openGenreSelection() {
+    //     this.showGenres = true;
+    //     console.log('openGenreSelection')
+    // }
+
     selectGenre(genreSel: Genre){
+        console.log(genreSel);
+        this.showGenres = false;
+        this.genreSelect = genreSel;
+        // this.title = this.genreSelect.name;
+
         if(genreSel !== undefined && genreSel.id === 1) {
-            this.genreSelect = genreSel;
-            this.title = this.genreSelect.name;
+            // this.genreSelect = genreSel;
+            // this.title = this.genreSelect.name;
             this.getMovies(this.movieAPI.getRecentMoviesURL());
 
         } else {
-            this.genreSelect = genreSel;
-            this.title = this.genreSelect.name;
+            // this.genreSelect = genreSel;
+            // this.title = this.genreSelect.name;
             this.getMovies(this.movieAPI.getMoviesURL(this.genreSelect.id, 1));
         }
 
