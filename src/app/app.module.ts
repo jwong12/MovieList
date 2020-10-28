@@ -10,8 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { HighlightDirective } from './directives/app.highlightDirective';
 import { ModalModule } from './movieModal';
 import { NgxSpinnerModule } from "ngx-spinner";
-
 import { HttpClientModule } from '@angular/common/http';
+
 import { HomeComponent }    from './homeComponent/app.home';
 import { WatchListComponent } from './watchListComponent/app.watchList';
 import { ResultsComponent }   from './resultsComponent/app.results';
@@ -42,7 +42,7 @@ import { AccountComponent } from './accountComponent/account.component';
     FormsModule,
     AmplifyAngularModule,
     ModalModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
   providers: [
     AmplifyService

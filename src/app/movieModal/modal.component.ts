@@ -22,6 +22,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     year: number;
     genres: string;
     userRating: number;
+    hideCircleProgress: boolean;
     popularity: number;
     overview: string;
     userAuthenticated:boolean = false;
@@ -91,7 +92,9 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.year = parseInt(movie.release_date.slice(0, 4));
         this.genres = this.getGenre(movie.genre_ids, genreArray);
         this.userRating = movie.vote_average * 10;
-        this.popularity = Math.round(movie.popularity);
+        this.hideCircleProgress = (this.userRating === 0 ? true : false);
+        const num = Math.round(movie.popularity / 10);
+        this.popularity = (num > 100 ? 100 : num);
         this.overview = movie.overview === "" ? "Unavailable" : movie.overview;
         
         if (this.userAuthenticated) {
@@ -213,7 +216,9 @@ export class ModalComponent implements OnInit, OnDestroy {
         document.body.classList.remove('jw-modal-open');
         this.imageLoaded = false;
         this.receiveMovieFromApi = false;
-
+        this.userRating = 0;
+        this.popularity = 0;
+        
         if(this.saveButtonEl) {
             this.saveButtonEl.nativeElement.textContent = "Save";
             this.saveButtonEl.nativeElement.style.backgroundColor = "rgba(204, 127, 46, 0.93)";
