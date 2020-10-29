@@ -253,7 +253,6 @@ export class MoviesComponent {
     }
 
     selectGenre(genreSel: Genre){
-        console.log(genreSel);
         this.showGenres = false;
         this.genreSelect = genreSel;
         this.applyStylesToGenreSelected();

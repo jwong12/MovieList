@@ -95,8 +95,21 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.hideCircleProgress = (this.userRating === 0 ? true : false);
         const num = Math.round(movie.popularity / 10);
         this.popularity = (num > 100 ? 100 : num);
-        this.overview = movie.overview === "" ? "Unavailable" : movie.overview;
-        
+        let text = movie.overview === "" ? "Unavailable" : movie.overview;
+
+        while (text.length > 360) {
+            text = text.slice(0, -1);
+            let lastPunctuation = (text.lastIndexOf(".") > text.lastIndexOf("?") ? text.lastIndexOf(".") : text.lastIndexOf("."));
+
+            if (lastPunctuation === -1) {
+                text = text + '.';
+                break;
+            }
+            text = text.slice(0, lastPunctuation+1); 
+        }
+
+        this.overview = text;
+
         if (this.userAuthenticated) {
             this.isMovieInDB();
         }
