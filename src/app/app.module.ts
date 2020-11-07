@@ -11,6 +11,7 @@ import { HighlightDirective } from './directives/app.highlightDirective';
 import { ModalModule } from './movieModal';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { HttpClientModule } from '@angular/common/http';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { HomeComponent }    from './homeComponent/app.home';
 import { WatchListComponent } from './watchListComponent/app.watchList';
@@ -43,6 +44,24 @@ import { AccountComponent } from './accountComponent/account.component';
     AmplifyAngularModule,
     ModalModule,
     NgxSpinnerModule,
+    NgCircleProgressModule.forRoot({
+      maxPercent: 100,
+      showSubtitle: false,
+      radius: 16,
+      titleFontSize: "13",
+      titleFontWeight: "600",
+      titleColor: "#3a3a3a",
+      unitsFontWeight: "600",
+      unitsColor: "#3a3a3a",
+      outerStrokeWidth: 4,
+      innerStrokeWidth: 4,
+      showInnerStroke: true,
+      backgroundStrokeWidth: 0,
+      backgroundPadding: 0,
+      animation: true,
+      animationDuration: 1100,
+      space: -4
+    })
   ],
   providers: [
     AmplifyService

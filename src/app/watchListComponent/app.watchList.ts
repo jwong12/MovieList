@@ -40,6 +40,11 @@ export class WatchListComponent implements OnInit {
         .then(result => {
             this.allMovies = result.items;
 
+            for (let movie of this.allMovies) {
+                let popularity = (movie.popularity > 100 ? 100 : movie.popularity);
+                movie.popularity = popularity;
+            }
+
             if(this.allMovies.length === 0) {
                 this.isDbTableEmpty = true;
                 

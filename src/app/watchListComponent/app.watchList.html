@@ -10,11 +10,26 @@
                 <img src={{movie.poster}} alt={{movie.title}}>
             </div>
             <div class="description-div">
-                <h3>{{movie.title}}</h3><span id="deleteBtn" (click)="removeFromWatchList(movie)">Delete</span>
+                <div class="watch-list-movie-title"><h3>{{movie.title}}</h3><span id="deleteBtn" (click)="removeFromWatchList(movie)">Delete</span></div>
                 <p><span>Year Released:</span> {{movie.year}}</p>
-                <p><span>Popularity:</span> {{movie.popularity}}</p>
-                <p><span>User Rating:</span> {{movie.rating === 0 ? "Unrated" : movie.rating + "%"}}</p>
-                <p><span>Genre:</span> {{movie.genres}}</p>
+                <p class="popularity-p">
+                    <span>Popularity:&nbsp;</span>
+                    <circle-progress
+                        [percent]="movie.popularity"
+                        [outerStrokeColor]="'#c93b3b'"
+                        [innerStrokeColor]="'#d4b0b0'"
+                    ></circle-progress>
+                </p>
+                <div class="break"></div>
+                <p class="user-rating-p">
+                    <span>User Rating:&nbsp;</span>
+                    <circle-progress
+                        [percent]="movie.rating"
+                        [outerStrokeColor]="'#1f8dbd'"
+                        [innerStrokeColor]="'#95c6db'"
+                    ></circle-progress>
+                </p>
+                <p><span>Genre:</span> {{movie.genres.length > 0 ? movie.genres : "Unclassified"}}</p>
                 <p><span>Overview:</span> {{movie.overview}}</p>
             </div>
         </div>
