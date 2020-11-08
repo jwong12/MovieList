@@ -123,7 +123,7 @@ $screen-lg-min: 992px;
                 h3 {
                     color: #427fb5;
                     margin: 4px 12px 4px 0;    
-                    display: inline-block; 
+                    display: inline; 
                     vertical-align: middle;
                 }
 
@@ -160,19 +160,25 @@ $screen-lg-min: 992px;
                     font-weight: bold;
                 }
             }
-            
 
-            .user-rating-p, .popularity-p {
-                display: flex;
-                height: 40px;
+            p:first-of-type {
+                margin: 3px 0 6px;
 
                 @include sm {
-                    display: inline-flex;
-                    flex-wrap: wrap;
+                    margin: 3px auto 5px;   
                 }
 
-                @include rwd(728) {
-                    display: flex;
+                @include rwd(728) { 
+                    margin: 3px 0 6px;
+                }
+            }
+            
+            .watch-list-circles {
+                text-align: center;
+                margin-top: 10px;
+
+                @include rwd(728) { 
+                    text-align: left;
                 }
             }
         }

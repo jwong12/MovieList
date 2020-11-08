@@ -11,24 +11,21 @@
             </div>
             <div class="description-div">
                 <div class="watch-list-movie-title"><h3>{{movie.title}}</h3><span id="deleteBtn" (click)="removeFromWatchList(movie)">Delete</span></div>
-                <p><span>Year Released:</span> {{movie.year}}</p>
-                <p class="popularity-p">
-                    <span>Popularity:&nbsp;</span>
+                <div class="watch-list-circles">
                     <circle-progress
                         [percent]="movie.popularity"
                         [outerStrokeColor]="'#c93b3b'"
-                        [innerStrokeColor]="'#d4b0b0'"
-                    ></circle-progress>
-                </p>
-                <div class="break"></div>
-                <p class="user-rating-p">
-                    <span>User Rating:&nbsp;</span>
+                        [innerStrokeColor]="'#d9bfbf'"
+                        [subtitle]="'Popularity'"
+                    ></circle-progress>&nbsp;
                     <circle-progress
                         [percent]="movie.rating"
-                        [outerStrokeColor]="'#1f8dbd'"
-                        [innerStrokeColor]="'#95c6db'"
+                        [outerStrokeColor]="'#388697'"
+                        [innerStrokeColor]="'#accbd2'"
+                        [subtitle]="'Rating'"
                     ></circle-progress>
-                </p>
+                </div>
+                <p><span>Year Released:</span> {{movie.year}}</p>
                 <p><span>Genre:</span> {{movie.genres.length > 0 ? movie.genres : "Unclassified"}}</p>
                 <p><span>Overview:</span> {{movie.overview}}</p>
             </div>

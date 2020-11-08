@@ -12,21 +12,24 @@
                     <h2>{{title}} ({{year}})</h2>
                     <span #saveButton class="save-button" (click)="addToWatchList()">Save</span>
                 </div>
-                <span class="description-item" id="user-popularity"><b>Popularity:&nbsp;</b>
+                <span class="description-item" id="user-popularity">
                     <circle-progress
                         [percent]="popularity"
                         [outerStrokeColor]="'#c93b3b'"
-                        [innerStrokeColor]="'#d4b0b0'"
+                        [innerStrokeColor]="'#d9bfbf'"
+                        [subtitle]="'Popularity'"
+                    ></circle-progress>&nbsp;
+                    <circle-progress
+                        [percent]="userRating"
+                        [outerStrokeColor]="'#388697'"
+                        [innerStrokeColor]="'#accbd2'"
+                        [subtitle]="'Rating'"
                     ></circle-progress>
                 </span>
-                <span class="description-item" id="user-rating"><b>User Rating:&nbsp;</b> 
+                <span>
                     <span id="unrated" *ngIf="hideCircleProgress; else circleProgress">Unrated</span>
                     <ng-template #circleProgress>
-                        <circle-progress
-                            [percent]="userRating"
-                            [outerStrokeColor]="'#1f8dbd'"
-                            [innerStrokeColor]="'#95c6db'"
-                        ></circle-progress>
+                        
                     </ng-template>
                 </span>
                 <span class="description-item"><b>Genre:</b> {{genres}}</span>
