@@ -1,4 +1,4 @@
-﻿import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy, ViewChild } from '@angular/core';
+﻿import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy, ViewChild, HostListener } from '@angular/core';
 import { Router } from "@angular/router"
 import { ModalService } from './modal.service';
 import { APIService } from '../API.service';
@@ -16,6 +16,7 @@ const posterLinkLow = "https://image.tmdb.org/t/p/w220_and_h330_face";
 })
 
 export class ModalComponent implements OnInit, OnDestroy {
+    innerWidth: any;
     imgSrc: string; 
     imgSrcLow: string;
     title: string;
@@ -43,11 +44,18 @@ export class ModalComponent implements OnInit, OnDestroy {
     @ViewChild('saveButton', {static: false}) 
     saveButtonEl: ElementRef; 
     
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        this.innerWidth = window.innerWidth;
+    }
+
     constructor(private router: Router, private modalService: ModalService, private el: ElementRef, private api:APIService, private spinner: NgxSpinnerService) {
         this.element = el.nativeElement;
     }
 
     ngOnInit(): void {
+        this.innerWidth = window.innerWidth;
+
         // ensure id attribute exists
         if (!this.id) {
             console.error('modal must have an id');
@@ -97,22 +105,36 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.popularity = (num > 100 ? 100 : num);
         let text = movie.overview === "" ? "Unavailable" : movie.overview;
 
-        while (text.length > 360) {
-            text = text.slice(0, -1);
-            let lastPunctuation = (text.lastIndexOf(".") > text.lastIndexOf("?") ? text.lastIndexOf(".") : text.lastIndexOf("."));
+        if (this.innerWidth < 500) {
+            text = this.parseOverviewText(text, 275);
 
-            if (lastPunctuation === -1) {
-                text = text + '.';
-                break;
-            }
-            text = text.slice(0, lastPunctuation+1); 
-        }
+        } else if (this.innerWidth < 585) {
+            text = this.parseOverviewText(text, 375);
+        } 
 
         this.overview = text;
 
         if (this.userAuthenticated) {
             this.isMovieInDB();
         }
+    }
+
+    parseOverviewText(text, charCount) {
+        while (text.length > charCount) {
+            text = text.slice(0, -1);
+            const lastPunctuation = (text.lastIndexOf(".") > text.lastIndexOf("?") ? text.lastIndexOf(".") : text.lastIndexOf("?"));
+
+            if (lastPunctuation === -1) {
+                text = text.slice(0, charCount-5);
+                console.log(text);
+                text = text.slice(0, text.lastIndexOf(' ')) + '...';
+                console.log(text);
+                break;
+            }
+            text = text.slice(0, lastPunctuation+1); 
+        }
+
+        return text;
     }
 
     async isMovieInDB() {
