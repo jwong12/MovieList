@@ -155,9 +155,11 @@ export class MoviesComponent {
     }
 
     cancelApiRequest() {
-        this.genreSelect = this.prevGenre;
-        this.httpRequest.unsubscribe();
-        this.spinner.hide();
+        if (this.movieArray.length > 0) {
+            this.genreSelect = this.prevGenre;
+            this.httpRequest.unsubscribe();
+            this.spinner.hide();
+        }
     }
 
     changeGenreSelectedOnMouseOver(event) {
