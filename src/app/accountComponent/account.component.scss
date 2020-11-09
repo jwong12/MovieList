@@ -12,13 +12,12 @@
         height: 90px;
     }
 
-    #account-content {
-        margin-bottom: 30px;
+    #account-content { 
+        padding:0 25px 30px 25px;
     }
 
-    #account-section-container {
+    #account-section-container { 
         color: #313131;
-        margin: 10px 30px;
         max-width: 750px;
         
         @include rwd(825) {
@@ -141,7 +140,11 @@
                 .ticket {
                     display: grid;
                     width: 60%;
-                    min-width: 310px;
+                    min-width: 265px;
+
+                    @include rwd(370) {
+                        min-width: 310px;
+                    }
 
                     select {
                         margin: 12px 0;
