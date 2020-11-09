@@ -9,10 +9,10 @@
             </div>
             <div class="description">
                 <div class="title-wrapper">
-                    <h2>{{title}} ({{year}})</h2>
+                    <h2>{{title}}</h2>
                     <span #saveButton class="save-button" (click)="addToWatchList()">Save</span>
                 </div>
-                <span class="description-item" id="user-popularity">
+                <span class="description-item" id="progress-circles">
                     <circle-progress
                         [percent]="popularity"
                         [outerStrokeColor]="'#c93b3b'"
@@ -26,7 +26,8 @@
                         [subtitle]="'Rating'"
                     ></circle-progress>
                 </span>
-                <span class="description-item"><b>Genre:</b> {{genres}}</span>
+                <span class="description-item" id="year-released"><b>Year Released:</b> {{year}}</span> 
+                <span class="description-item"><b>Genre:</b> {{genres !== "" ? genres : "Unclassified"}}</span>
                 <span class="description-item"><b>Overview:</b> {{overview}}</span>
             </div>
         </div>

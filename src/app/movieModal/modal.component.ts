@@ -21,7 +21,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     imgSrcLow: string;
     title: string;
     year: number;
-    genres: string;
+    genres: string = "";
     userRating: number;
     hideCircleProgress: boolean;
     popularity: number;
@@ -126,9 +126,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
             if (lastPunctuation === -1) {
                 text = text.slice(0, charCount-5);
-                console.log(text);
                 text = text.slice(0, text.lastIndexOf(' ')) + '...';
-                console.log(text);
                 break;
             }
             text = text.slice(0, lastPunctuation+1); 

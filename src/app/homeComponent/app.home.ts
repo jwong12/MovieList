@@ -116,6 +116,7 @@ export class HomeComponent {
     setSlidesAnimationSpeed() {
         if (this.innerWidth < 600) {
             this.sliderEl.nativeElement.style.animationDuration = "400ms";
+            
         } else {
             this.sliderEl.nativeElement.style.animationDuration = "800ms";
         }

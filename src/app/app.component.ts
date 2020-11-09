@@ -30,7 +30,7 @@ export class AppComponent {
         this.searchKeywords = '';
         this.suggestions = [];
         this.subject.pipe(
-            debounceTime(500),
+            debounceTime(400),
             distinctUntilChanged(),
             switchMap(val => { 
                 this.getSuggestions(val);
@@ -48,7 +48,7 @@ export class AppComponent {
     getSuggestions(text) {
         const query = text.trim().replace(/ /g, '%20');
 
-        if (query.length > 1) {
+        if (query.length > 0) {
             this.suggestions = [];
             this._http.get<any>(this.movieAPI.getSuggestionURL(query))
                 .subscribe(data => {
@@ -56,7 +56,7 @@ export class AppComponent {
                     data.results.forEach((movie) => {
                         if (count < 10) {
                             let titleFound = false;
-                            
+
                             for (let title of this.suggestions) {
                                 if (title === movie.original_title) {
                                     titleFound = true;
