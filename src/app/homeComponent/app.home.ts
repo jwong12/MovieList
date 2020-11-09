@@ -59,9 +59,9 @@ export class HomeComponent {
         this._http.get<any>(URL)
           .subscribe(data => {
             this.movieUrls = [];
-            this.moviesArray = data.results;
+            this.moviesArray = this.shuffle(data.results);
             this.moviesArray.forEach(movie =>{
-                if (this.movieUrls.length < 5 && movie.backdrop_path !== null && movie.vote_average > 4) {
+                if (this.movieUrls.length < 5 && movie.backdrop_path !== null && movie.popularity < 1200 && movie.vote_average > 4.5) {
                     let obj = {}; 
                     obj['url'] = 'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path;
                     obj['title'] = movie.title;
@@ -99,6 +99,20 @@ export class HomeComponent {
           error =>{
             console.error(error);
           })
+    }
+
+    shuffle(array) {
+        let currentIndex = array.length, temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex--);
+
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
     }
 
     setSlidesAnimationSpeed() {
