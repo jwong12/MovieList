@@ -57,48 +57,47 @@ export class HomeComponent {
 
     getMovies(URL: string) {
         this._http.get<any>(URL)
-          .subscribe(data => {
-            this.movieUrls = [];
-            this.moviesArray = this.shuffle(data.results);
-            this.moviesArray.forEach(movie =>{
-                if (this.movieUrls.length < 5 && movie.backdrop_path !== null && movie.popularity < 1200 && movie.vote_average > 4.5) {
-                    let obj = {}; 
-                    obj['url'] = 'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path;
-                    obj['title'] = movie.title;
-                    obj['type'] = 'LATEST';
-                    obj['movie'] = movie;
+            .subscribe(data => {
+                this.movieUrls = [];
+                this.moviesArray = this.shuffle(data.results);
+                this.moviesArray.forEach(movie =>{
+                    if (this.movieUrls.length < 5 && movie.backdrop_path !== null && movie.popularity < 1200 && movie.vote_average > 4.5) {
+                        let obj = {}; 
+                        obj['url'] = 'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path;
+                        obj['title'] = movie.title;
+                        obj['type'] = 'LATEST';
+                        obj['movie'] = movie;
 
-                    if(movie.genre_ids.length >= 0) {
-                        this.genres.forEach((item) => {
-                            if(item.id === movie.genre_ids[0]) {
-                                obj['caption'] = item.name + ' | ' + movie.vote_average + ' Rating';
-                                return;
-                            }
-                        });
+                        if(movie.genre_ids.length >= 0) {
+                            this.genres.forEach((item) => {
+                                if(item.id === movie.genre_ids[0]) {
+                                    obj['caption'] = item.name + ' | ' + movie.vote_average + ' Rating';
+                                    return;
+                                }
+                            });
+                        }
+
+                        this.movieUrls.push(obj);
                     }
+                });
 
-                    this.movieUrls.push(obj);
+                for (let i = this.movieUrls.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [this.movieUrls[i], this.movieUrls[j]] = [this.movieUrls[j], this.movieUrls[i]];
                 }
+
+                if(this.movieUrls.length === 5) {
+                    this.currentIndex = 0;
+                    this.currentMovie = this.movieUrls[0];
+                    this.firstEl.nativeElement.style.backgroundImage = "url(" + this.movieUrls[0].url + ")";
+                    this.secondEl.nativeElement.style.backgroundImage = "url(" + this.movieUrls[1].url + ")";
+                    this.thirdEl.nativeElement.style.backgroundImage = "url(" + this.movieUrls[2].url + ")";
+                    this.fourthEl.nativeElement.style.backgroundImage = "url(" + this.movieUrls[3].url + ")";
+                    this.fifthEl.nativeElement.style.backgroundImage = "url(" + this.movieUrls[4].url + ")";
+                }  
+            }, error =>{
+                console.error(error);
             });
-
-            for (let i = this.movieUrls.length - 1; i > 0; i--) {
-                let j = Math.floor(Math.random() * (i + 1));
-                [this.movieUrls[i], this.movieUrls[j]] = [this.movieUrls[j], this.movieUrls[i]];
-            }
-
-            if(this.movieUrls.length === 5) {
-                this.currentIndex = 0;
-                this.currentMovie = this.movieUrls[0];
-                this.firstEl.nativeElement.style.backgroundImage = "url(" + this.movieUrls[0].url + ")";
-                this.secondEl.nativeElement.style.backgroundImage = "url(" + this.movieUrls[1].url + ")";
-                this.thirdEl.nativeElement.style.backgroundImage = "url(" + this.movieUrls[2].url + ")";
-                this.fourthEl.nativeElement.style.backgroundImage = "url(" + this.movieUrls[3].url + ")";
-                this.fifthEl.nativeElement.style.backgroundImage = "url(" + this.movieUrls[4].url + ")";
-            }  
-          }, 
-          error =>{
-            console.error(error);
-          })
     }
 
     shuffle(array) {
@@ -106,7 +105,6 @@ export class HomeComponent {
 
         while (0 !== currentIndex) {
             randomIndex = Math.floor(Math.random() * currentIndex--);
-
             temporaryValue = array[currentIndex];
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;

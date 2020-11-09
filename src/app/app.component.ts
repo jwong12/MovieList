@@ -54,8 +54,20 @@ export class AppComponent {
                 .subscribe(data => {
                     let count = 0;
                     data.results.forEach((movie) => {
-                        if (count++ < 10) {
-                            this.suggestions.push(movie.original_title);
+                        if (count < 10) {
+                            let titleFound = false;
+                            
+                            for (let title of this.suggestions) {
+                                if (title === movie.original_title) {
+                                    titleFound = true;
+                                    break;
+                                }
+                            }
+
+                            if (!titleFound) {
+                                this.suggestions.push(movie.original_title);
+                                count++;
+                            }
                         }
                     });
                 }, 
