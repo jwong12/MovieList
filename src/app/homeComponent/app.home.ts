@@ -115,11 +115,14 @@ export class HomeComponent {
 
     setSlidesAnimationSpeed() {
         if (this.innerWidth < 600) {
-            this.sliderEl.nativeElement.style.animationDuration = "200ms";
+            this.sliderEl.nativeElement.style.animationDuration = "150ms";
             
         } else {
-            this.sliderEl.nativeElement.style.animationDuration = "400ms";
+            this.sliderEl.nativeElement.style.animationDuration = "300ms";
         }
+
+        this.sliderEl.nativeElement.style.willChange = 'left';
+        setTimeout(() => this.sliderEl.nativeElement.style.willChange = 'auto', 310);
     }
 
     previousSlide() {
@@ -153,13 +156,13 @@ export class HomeComponent {
         this.currentMovie = this.movieUrls[this.currentIndex];
 
         if(this.leftArrowAnimToggle) {
-            this.leftArrowDivEl.nativeElement.style.animation = "arrow-effect-1 400ms 1";
-            this.leftArrowEl.nativeElement.style.animation = "arrow-opacity-1 400ms 1";
+            this.leftArrowDivEl.nativeElement.style.animation = "arrow-effect-1 300ms 1";
+            this.leftArrowEl.nativeElement.style.animation = "arrow-opacity-1 300ms 1";
             this.leftArrowAnimToggle = false;
 
         } else {
-            this.leftArrowDivEl.nativeElement.style.animation = "arrow-effect-2 400ms 1";
-            this.leftArrowEl.nativeElement.style.animation = "arrow-opacity-2 400ms 1";
+            this.leftArrowDivEl.nativeElement.style.animation = "arrow-effect-2 300ms 1";
+            this.leftArrowEl.nativeElement.style.animation = "arrow-opacity-2 300ms 1";
             this.leftArrowAnimToggle = true;
         }
     }
@@ -196,13 +199,13 @@ export class HomeComponent {
         this.currentMovie = this.movieUrls[this.currentIndex];     
         
         if(this.rightArrowAnimToggle) {
-            this.rightArrowDivEl.nativeElement.style.animation = "arrow-effect-1 400ms 1";
-            this.rightArrowEl.nativeElement.style.animation = "arrow-opacity-1 400ms 1";
+            this.rightArrowDivEl.nativeElement.style.animation = "arrow-effect-1 300ms 1";
+            this.rightArrowEl.nativeElement.style.animation = "arrow-opacity-1 300ms 1";
             this.rightArrowAnimToggle = false;
 
         } else {
-            this.rightArrowDivEl.nativeElement.style.animation = "arrow-effect-2 400ms 1";
-            this.rightArrowEl.nativeElement.style.animation = "arrow-opacity-2 400ms 1";
+            this.rightArrowDivEl.nativeElement.style.animation = "arrow-effect-2 300ms 1";
+            this.rightArrowEl.nativeElement.style.animation = "arrow-opacity-2 300ms 1";
             this.rightArrowAnimToggle = true;
         }
     }
