@@ -158,14 +158,18 @@ $screen-xl-min: 1200px;
             display: flex;
             position: relative;
             width: 500%;
-            -webkit-animation-duration: 800ms;
+            -webkit-animation-duration: 400ms;
+                animation-duration: 400ms;
             -webkit-animation-timing-function: linear;
+                animation-timing-function: linear;
             -webkit-animation-iteration-count: 1;
+                animation-iteration-count: 1;
             -webkit-animation-fill-mode: forwards;
-            animation-duration: 800ms;
-            animation-timing-function: linear;
-            animation-iteration-count: 1;
-            animation-fill-mode: forwards;
+                animation-fill-mode: forwards;
+            -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            -webkit-perspective: 1000;
+                perspective: 1000;
 
             .image {
                 height: 100vh;
@@ -214,49 +218,41 @@ $screen-xl-min: 1200px;
 
         @-webkit-keyframes rslide-to-two {
             0% { left: 0%; }
-            50% { left: -100%; }
             100% { left: -100%; }
         }
 
         @-webkit-keyframes rslide-to-three {
             0% { left: -100%; }
-            50% { left: -200%; }
             100% { left: -200%; }
         }
 
         @-webkit-keyframes rslide-to-four {
             0% { left: -200%; }
-            50% { left: -300%; }
             100% { left: -300%; }
         }
 
         @-webkit-keyframes rslide-to-five {
             0% { left: -300%; }
-            50% { left: -400%; }
             100% { left: -400%; }
         }
 
         @keyframes rslide-to-two {
             0% { left: 0%; }
-            50% { left: -100%; }
             100% { left: -100%; }
         }
 
         @keyframes rslide-to-three {
             0% { left: -100%; }
-            50% { left: -200%; }
             100% { left: -200%; }
         }
 
         @keyframes rslide-to-four {
             0% { left: -200%; }
-            50% { left: -300%; }
             100% { left: -300%; }
         }
 
         @keyframes rslide-to-five {
             0% { left: -300%; }
-            50% { left: -400%; }
             100% { left: -400%; }
         }
 
@@ -288,49 +284,41 @@ $screen-xl-min: 1200px;
 
         @-webkit-keyframes lslide-to-four {
             0% { left: -400%; }
-            50% { left: -300%; }
             100% { left: -300%; }
         }
         
         @-webkit-keyframes lslide-to-three {
             0% { left: -300%; }
-            50% { left: -200%; }
             100% { left: -200%; }
         }
 
         @-webkit-keyframes lslide-to-two {
             0% { left: -200%; }
-            50% { left: -100%; }
             100% { left: -100%; }
         }
         
         @-webkit-keyframes lslide-to-one {
             0% { left: -100%; }
-            50% { left: 0%; }
             100% { left: 0%; }
         } 
 
         @keyframes lslide-to-four {
             0% { left: -400%; }
-            50% { left: -300%; }
             100% { left: -300%; }
         }
         
         @keyframes lslide-to-three {
             0% { left: -300%; }
-            50% { left: -200%; }
             100% { left: -200%; }
         }
 
         @keyframes lslide-to-two {
             0% { left: -200%; }
-            50% { left: -100%; }
             100% { left: -100%; }
         }
         
         @keyframes lslide-to-one {
             0% { left: -100%; }
-            50% { left: 0%; }
             100% { left: 0%; }
         }
     }
