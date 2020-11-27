@@ -20,11 +20,13 @@ export class HomeComponent {
     rightArrowAnimToggle: boolean;
 
     @ViewChild('slider', {static: false}) sliderEl:ElementRef;
+
     @ViewChild('firstImage', {static: false}) firstEl:ElementRef;
     @ViewChild('secondImage', {static: false}) secondEl:ElementRef;
     @ViewChild('thirdImage', {static: false}) thirdEl:ElementRef;
     @ViewChild('fourthImage', {static: false}) fourthEl:ElementRef;
     @ViewChild('fifthImage', {static: false}) fifthEl:ElementRef;
+
     @ViewChild('leftArrowDiv', {static: false}) leftArrowDivEl:ElementRef;
     @ViewChild('rightArrowDiv', {static: false}) rightArrowDivEl:ElementRef;
     @ViewChild('leftArrow', {static: false}) leftArrowEl:ElementRef;
@@ -115,14 +117,14 @@ export class HomeComponent {
 
     setSlidesAnimationSpeed() {
         if (this.innerWidth < 600) {
-            this.sliderEl.nativeElement.style.animationDuration = "150ms";
+            this.sliderEl.nativeElement.style.animationDuration = "100ms";
             
         } else {
-            this.sliderEl.nativeElement.style.animationDuration = "300ms";
+            this.sliderEl.nativeElement.style.animationDuration = "150ms";
         }
 
         this.sliderEl.nativeElement.style.willChange = 'left';
-        setTimeout(() => this.sliderEl.nativeElement.style.willChange = 'auto', 310);
+        setTimeout(() => this.sliderEl.nativeElement.style.willChange = 'auto', 200);
     }
 
     previousSlide() {
@@ -130,24 +132,26 @@ export class HomeComponent {
 
         switch(this.currentIndex) {
             case 0:
-                this.sliderEl.nativeElement.style.animationName = "lslide-to-five";
-                this.sliderEl.nativeElement.style.animationDuration = "300ms";
+                setTimeout(() => {
+                    this.sliderEl.nativeElement.style.animationName = "lslide-to-five";
+                    this.sliderEl.nativeElement.style.animationDuration = "150ms";
+                }, 15);                
                 this.currentIndex = 4;
                 break;
             case 1:
-                this.sliderEl.nativeElement.style.animationName = "lslide-to-one";
+                setTimeout(() => this.sliderEl.nativeElement.style.animationName = "lslide-to-one", 15);
                 this.currentIndex--;
                 break;
             case 2:
-                this.sliderEl.nativeElement.style.animationName = "lslide-to-two";
+                setTimeout(() => this.sliderEl.nativeElement.style.animationName = "lslide-to-two", 15);
                 this.currentIndex--;
                 break;
             case 3:
-                this.sliderEl.nativeElement.style.animationName = "lslide-to-three";
+                setTimeout(() => this.sliderEl.nativeElement.style.animationName = "lslide-to-three", 15);
                 this.currentIndex--;
                 break;
             case 4:
-                this.sliderEl.nativeElement.style.animationName = "lslide-to-four";
+                setTimeout(() => this.sliderEl.nativeElement.style.animationName = "lslide-to-four", 15);
                 this.currentIndex--;
                 break;
             default:
@@ -172,28 +176,29 @@ export class HomeComponent {
 
         switch(this.currentIndex) {
             case 0:
-                this.sliderEl.nativeElement.style.animationName = "rslide-to-two";
+                setTimeout(() => this.sliderEl.nativeElement.style.animationName = "rslide-to-two", 15);
                 this.currentIndex++;
                 break;
             case 1:
-                this.sliderEl.nativeElement.style.animationName = "rslide-to-three";
+                setTimeout(() => this.sliderEl.nativeElement.style.animationName = "rslide-to-three", 15);
                 this.currentIndex++;
                 break;
             case 2:
-                this.sliderEl.nativeElement.style.animationName = "rslide-to-four";
+                setTimeout(() => this.sliderEl.nativeElement.style.animationName = "rslide-to-four", 15);
                 this.currentIndex++;
                 break;
             case 3:
-                this.sliderEl.nativeElement.style.animationName = "rslide-to-five";
+                setTimeout(() => this.sliderEl.nativeElement.style.animationName = "rslide-to-five", 15);
                 this.currentIndex++;
                 break;
             case 4:
-                this.sliderEl.nativeElement.style.animationName = "rslide-to-one";
-                this.sliderEl.nativeElement.style.animationDuration = "300ms";
+                setTimeout(() => {
+                    this.sliderEl.nativeElement.style.animationName = "rslide-to-one";
+                    this.sliderEl.nativeElement.style.animationDuration = "150ms";
+                }, 15);
                 this.currentIndex = 0;
                 break;
             default:
-                break;
         }
 
         this.currentMovie = this.movieUrls[this.currentIndex];     
